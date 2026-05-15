@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+	<title></title>
+	<meta name="generator" content="LibreOffice 7.3.7.2 (Linux)"/>
+	<meta name="created" content="2026-05-15T13:36:47"/>
+	<meta name="changed" content="2026-05-15T14:41:17"/>
+	<meta name="AppVersion" content="15.0000"/>
+	<meta name="generator" content="ChatGPT Deep Research"/>
+	<style type="text/css">
+		@page { size: 21.59cm 27.94cm; margin: 2.54cm }
+		p { color: #000000; text-align: left; orphans: 2; widows: 2; margin-top: 0.32cm; margin-bottom: 0.32cm; direction: ltr; background: transparent }
+		p.western { font-family: "Aptos", serif; font-size: 12pt; so-language: en-US }
+		p.cjk { font-family: "Aptos"; font-size: 12pt; so-language: en-US }
+		p.ctl { font-family: ; font-size: 12pt; so-language: ar-SA }
+		h1 { color: #0f4761; text-align: left; page-break-inside: avoid; orphans: 2; widows: 2; margin-top: 0.64cm; margin-bottom: 0.14cm; direction: ltr; background: transparent; page-break-after: avoid }
+		h1.western { font-family: "Aptos Display", serif; font-size: 20pt; so-language: en-US }
+		h1.cjk { font-family: ; font-size: 20pt; so-language: en-US }
+		h1.ctl { font-family: ; font-size: 20pt; so-language: ar-SA }
+		h2 { color: #0f4761; text-align: left; page-break-inside: avoid; orphans: 2; widows: 2; margin-top: 0.28cm; margin-bottom: 0.14cm; direction: ltr; background: transparent; page-break-after: avoid }
+		h2.western { font-family: "Aptos Display", serif; font-size: 16pt; so-language: en-US }
+		h2.cjk { font-family: ; font-size: 16pt; so-language: en-US }
+		h2.ctl { font-family: ; font-size: 16pt; so-language: ar-SA }
+		p.compact { margin-top: 0.06cm; margin-bottom: 0.06cm }
+		a:link { color: #4f81bd }
+	</style>
+</head>
+<body lang="en-US" text="#000000" link="#4f81bd" vlink="#800000" dir="ltr"><h1 class="western" style="page-break-inside: avoid; page-break-after: avoid">
+<img src="Abstract_html_db881f4d3a897a9a.png" name="Image1" align="left" width="624" height="832" border="0"/>
+<br/>
+<br/>
+
+</h1>
+<h1 class="western"><a name="abstract"></a><a name="content"></a><a name="header"></a>
+Abstract</h1>
+<p class="first-paragraph">HTML6 is envisioned not merely as an
+incremental update to HTML5, but as a convergence of advanced
+programming‐language and semantic‐web concepts into markup. In
+this speculative paper we survey how cutting‐edge computer science
+theory could influence the next evolution of HTML. We discuss <b>type
+systems</b> (ensuring only valid tags/attributes via smart
+constructors and phantom types<font color="#4f81bd"><a href="https://book.purescript.org/chapter14.html#:~:text=,cannot%20contain%20content%20by%20construction">[1]</a><a href="https://book.purescript.org/chapter14.html#:~:text=The%20type%20variable%20,time%2C%20the%20type%20of">[2]</a></font>),
+<b>functional declarative DSLs</b> (using monads and algebraic types
+to structure pages<font color="#4f81bd"><a href="https://book.purescript.org/chapter14.html#:~:text=In%20our%20final%20set%20of,clearer%20%E2%80%93%20instead%20of%20this">[3]</a><a href="https://book.purescript.org/chapter14.html#:~:text=p%20%5B%20_class%20%3A%3D%20,A%20cat">[4]</a></font>),
+and <b>semantic knowledge integration</b> (embedding RDFa‐style
+structured data and ontologies<font color="#4f81bd"><a href="https://www.w3.org/2001/sw/wiki/RDFa#:~:text=RDFa%20is%20a%20specification%20for,can%20be%20considered%20as%20another">[5]</a><a href="https://ontology2.com/the-book/html5-the-official-document-language.html#:~:text=operate%20on%20documents%20with%20meaningful,In%20one">[6]</a></font>).
+We also consider <b>reactive/incremental models</b> for dynamic
+content and <b>formal semantics</b> for rigorous reasoning. Each
+section outlines the theoretical foundation, possible HTML6 syntax or
+constructs inspired by it, and how authors could adopt these features
+(with fallbacks/polyfills). This analysis draws on primary literature
+(W3C/WHATWG specs, academic examples) to ground speculative proposals
+in plausible web standards practice.</p>
+<h2 class="western"><a name="type-systems-and-verified-html"></a>Type
+Systems and Verified HTML</h2>
+<p class="first-paragraph">Modern functional‐language techniques
+can make HTML self‐validating. For example, a type‐safe DSL for
+HTML uses <i>smart constructors</i> so that invalid tags or
+mismatched content can never be built<font color="#4f81bd"><a href="https://book.purescript.org/chapter14.html#:~:text=,cannot%20contain%20content%20by%20construction">[1]</a></font>.
+In that PureScript example, the <font face="Consolas, serif"><font size="2" style="font-size: 11pt">Element</font></font>
+type’s constructors are hidden, and only functions like <font face="Consolas, serif"><font size="2" style="font-size: 11pt">p</font></font>,
+<font face="Consolas, serif"><font size="2" style="font-size: 11pt">img</font></font>
+etc. are exported. This guarantees “it is impossible to represent
+HTML elements with invalid names” or wrong structure<font color="#4f81bd"><a href="https://book.purescript.org/chapter14.html#:~:text=,cannot%20contain%20content%20by%20construction">[1]</a></font>.
+Going further, <b>phantom types</b> can encode attribute semantics:
+in one design, an <font face="Consolas, serif"><font size="2" style="font-size: 11pt">AttributeKey
+a</font></font> type is parameterized by a phantom type <font face="Consolas, serif"><font size="2" style="font-size: 11pt">a</font></font>
+so that, say, <font face="Consolas, serif"><font size="2" style="font-size: 11pt">width</font></font>
+can only take numeric values. Any attempt to use a non‐numeric
+value is a compile‐time type error<font color="#4f81bd"><a href="https://book.purescript.org/chapter14.html#:~:text=The%20type%20variable%20,time%2C%20the%20type%20of">[2]</a></font>.
+In effect, the signature</p>
+<p style="margin-top: 0cm; margin-bottom: 0.35cm"><font face="Consolas, serif"><font size="2" style="font-size: 11pt">attribute
+:: forall a. IsValue a =&gt; AttributeKey a -&gt; a -&gt; Attribute</font></font></p>
+<p class="first-paragraph">ensures the key and value types match<font color="#4f81bd"><a href="https://book.purescript.org/chapter14.html#:~:text=The%20type%20variable%20,time%2C%20the%20type%20of">[2]</a></font>.
+Applying this to HTML6, one could imagine built‐in type‐checked
+attributes: e.g. <font face="Consolas, serif"><font size="2" style="font-size: 11pt">&lt;img
+width=&quot;100&quot;&gt;</font></font> might be valid only if “100”
+is parseable as a number, perhaps flagged as invalid at parse time if
+not. Advanced type systems (including algebraic and dependent types)
+could also model more complex patterns. For instance, an HTML
+template with a loop might be seen as a dependent type parameterized
+by a collection size<font color="#4f81bd"><a href="https://cs.stackexchange.com/questions/94026/defining-an-html-template-as-an-algebraic-type#:~:text=type%20Section%20,type%20Div">[7]</a><a href="https://cs.stackexchange.com/questions/94026/defining-an-html-template-as-an-algebraic-type#:~:text=%3Ctemplate%20id%3D,li">[8]</a></font>.
+In summary, HTML6 could incorporate a “type grammar” so that
+editors or compilers can statically verify well-formedness and
+attribute‐value correctness, catching many errors before rendering.</p>
+<h2 class="western"><a name="X279b844c387fcc9f76fd713bdea86423e62b268"></a>
+Declarative Functional DSLs (Monads, Do-Notation)</h2>
+<p class="first-paragraph">HTML is inherently declarative, but we can
+embed even richer functional abstractions. One idea is to adopt a
+<b>monadic DSL</b> for HTML in the browser. For example, the “free
+monad” construction can turn HTML content into a monad supporting
+<font face="Consolas, serif"><font size="2" style="font-size: 11pt">do</font></font>‐notation<font color="#4f81bd"><a href="https://book.purescript.org/chapter14.html#:~:text=In%20our%20final%20set%20of,clearer%20%E2%80%93%20instead%20of%20this">[3]</a><a href="https://book.purescript.org/chapter14.html#:~:text=p%20%5B%20_class%20%3A%3D%20,A%20cat">[4]</a></font>.
+In practice, this means one could write markup like:</p>
+<p style="margin-top: 0cm; margin-bottom: 0.35cm"><font face="Consolas, serif"><font size="2" style="font-size: 11pt">p
+[class := &quot;main&quot;] $ do</font></font><br/>
+<font face="Consolas, serif"><font size="2" style="font-size: 11pt">
+ img [src := &quot;cat.jpg&quot;, width := 100] </font></font><br/>
+<font face="Consolas, serif"><font size="2" style="font-size: 11pt">
+ text &quot;A cat&quot;</font></font></p>
+<p class="first-paragraph">where the nesting is clear and structured,
+rather than building nested arrays manually. Such syntax could be
+mirrored in HTML6 by allowing a “content block” or <font face="Consolas, serif"><font size="2" style="font-size: 11pt">&lt;block&gt;</font></font>
+element that delimits a monadic section, or by new script‐type
+modules that interpret HTML as expressions. The benefit is twofold:
+it separates <b>structure</b> from <b>control flow</b>, and it allows
+multiple interpretations (e.g. rendering vs. analysis) of the same
+content structure<font color="#4f81bd"><a href="https://book.purescript.org/chapter14.html#:~:text=In%20our%20final%20set%20of,clearer%20%E2%80%93%20instead%20of%20this">[3]</a></font>.
+In short, HTML6 could treat pages as programs in a small functional
+language, with custom tags or attributes serving as syntax sugar for
+composition. Existing research (e.g. in PureScript/Haskell) shows
+these DSLs greatly improve readability and safety<font color="#4f81bd"><a href="https://book.purescript.org/chapter14.html#:~:text=In%20our%20final%20set%20of,clearer%20%E2%80%93%20instead%20of%20this">[3]</a><a href="https://book.purescript.org/chapter14.html#:~:text=p%20%5B%20_class%20%3A%3D%20,A%20cat">[4]</a></font>,
+suggesting HTML6 adoption would help manage complex UIs more
+declaratively.</p>
+<h2 class="western"><a name="formal-semantics-and-ontologies"></a>Formal
+Semantics and Ontologies</h2>
+<p class="first-paragraph">A major new direction is viewing HTML as
+not just markup but as a component of the semantic web and formal
+knowledge bases. In practice, HTML5 already supports embedded
+semantics (e.g. RDFa attributes to expose structured data)<font color="#4f81bd"><a href="https://www.w3.org/2001/sw/wiki/RDFa#:~:text=RDFa%20is%20a%20specification%20for,can%20be%20considered%20as%20another">[5]</a></font>.
+HTML6 could deepen this by natively connecting elements to ontology
+terms or inference rules. For instance, the RDFa specification notes
+that “RDFa is a specification for attributes to express structured
+data in HTML5”<font color="#4f81bd"><a href="https://www.w3.org/2001/sw/wiki/RDFa#:~:text=RDFa%20is%20a%20specification%20for,can%20be%20considered%20as%20another">[5]</a></font>.
+Building on that, HTML6 might define a <font face="Consolas, serif"><font size="2" style="font-size: 11pt">data-type</font></font>
+or <font face="Consolas, serif"><font size="2" style="font-size: 11pt">vocab</font></font>
+attribute linking elements to ontology classes, letting user agents
+automatically generate RDF triples or validate data against schemas.
+Moreover, techniques like <b>Real Semantics</b> propose treating HTML
+documents as parse trees operated on by “meaningful operators”<font color="#4f81bd"><a href="https://ontology2.com/the-book/html5-the-official-document-language.html#:~:text=operate%20on%20documents%20with%20meaningful,In%20one">[6]</a></font>.
+That approach breaks HTML into components that can be reassembled in
+new ways<font color="#4f81bd"><a href="https://ontology2.com/the-book/html5-the-official-document-language.html#:~:text=operate%20on%20documents%20with%20meaningful,In%20one">[6]</a></font>;
+HTML6 could adopt similar ideas via standardized DOM transformation
+APIs or XSL-like rules built into the language. For example, a new
+<font face="Consolas, serif"><font size="2" style="font-size: 11pt">&lt;import
+src=&quot;page.html&quot;&gt;</font></font> tag (with semantic
+mapping rules) might let pages compose fragments with guaranteed
+semantic consistency. This blurs the line between web pages and
+knowledge‐graph documents: in essence, HTML6 could become both the
+“markup layer” and part of the data model for the Semantic Web.</p>
+<h2 class="western"><a name="reactive-and-incremental-updates"></a>Reactive
+and Incremental Updates</h2>
+<p class="first-paragraph">HTML6 can also learn from <i>reactive
+programming</i>. Today’s frameworks use Virtual DOMs and diffing to
+update pages efficiently, but HTML6 might bake reactivity into the
+language itself. One could imagine tags like <font face="Consolas, serif"><font size="2" style="font-size: 11pt">&lt;on
+event=&quot;click&quot; update=&quot;...&quot;&gt;</font></font> that
+declaratively tie events to DOM transformations without imperative
+scripts. Or attributes that express data dependencies, enabling
+incremental updates; for instance, an HTML6 <font face="Consolas, serif"><font size="2" style="font-size: 11pt">&lt;data&gt;</font></font>
+element bound to a model value could auto-update connected parts of
+the document when the data changes. Languages like Elm introduce
+primitives (<font face="Consolas, serif"><font size="2" style="font-size: 11pt">lazy</font></font>
+nodes) to avoid recomputing unchanged subtrees<font color="#4f81bd"><a href="https://blog.janestreet.com/incrementality-and-the-web/#:~:text=match%20at%20L151%20val%20lazy1,Html.t">[9]</a></font>.
+HTML6 could include similar hints (e.g. a <font face="Consolas, serif"><font size="2" style="font-size: 11pt">once</font></font>
+attribute or a lazy&#8209;content marker) so user agents only
+re-render segments that truly need it. Although we have no formal
+reference for exactly how, the theoretical model is clear: treat the
+DOM as a dependency graph and allow declarative edges. In effect,
+HTML6 could unify markup with reactive streams (akin to Functional
+Reactive Programming), so that the page structure <i>itself</i>
+reacts to data flows. This would greatly simplify dynamic UIs and
+state management.</p>
+<h2 class="western"><a name="concurrency-and-parallelism"></a>Concurrency
+and Parallelism</h2>
+<p class="first-paragraph">Another theoretical angle is introducing
+concurrency constructs. HTML6 could provide built‐in support for
+safe parallel updates or background workers. For example, a new
+element <font face="Consolas, serif"><font size="2" style="font-size: 11pt">&lt;worker&gt;</font></font>
+might spawn a Web Worker by annotation, rather than using <font face="Consolas, serif"><font size="2" style="font-size: 11pt">&lt;script&gt;</font></font>.
+Threads (via WebAssembly/Atomics) could be first‐class in HTML6
+markup, with scoped variables shared across frames. The theory here
+comes from concurrency models (actors, CSP): e.g. elements could
+communicate via message‐passing attributes. While this is largely
+uncharted territory, it draws on established models of concurrent
+computing. For instance, HTML6 might declare that certain data-*
+attributes are atomic or synchronized, enabling multi-threaded
+scripts to coordinate without races. Although purely speculative,
+integrating concurrency theory would future-proof HTML for
+high-performance applications (e.g. real-time games or simulations in
+the browser).</p>
+<h2 class="western">Summary of Theoretical Enhancements</h2>
+<p class="first-paragraph">To summarize the theoretical ideas:</p>
+<ul>
+	<li><p class="compact"><b>Type-Theoretic Syntax:</b> Built-in type
+	grammar for HTML elements (smart constructors, phantom types, maybe
+	even dependent types) ensures correctness by construction<font color="#4f81bd"><a href="https://book.purescript.org/chapter14.html#:~:text=,cannot%20contain%20content%20by%20construction">[1]</a><a href="https://book.purescript.org/chapter14.html#:~:text=The%20type%20variable%20,time%2C%20the%20type%20of">[2]</a></font>.</p>
+	<li><p class="compact"><b>Algebraic and Monadic Structure:</b> Treat
+	HTML as a host for DSL constructs (free monads, do-notation,
+	algebraic data types) to compose content programmatically<font color="#4f81bd"><a href="https://book.purescript.org/chapter14.html#:~:text=In%20our%20final%20set%20of,clearer%20%E2%80%93%20instead%20of%20this">[3]</a><a href="https://cs.stackexchange.com/questions/94026/defining-an-html-template-as-an-algebraic-type#:~:text=type%20Section%20,type%20Div">[7]</a></font>.</p>
+	<li><p class="compact"><b>Semantic Web Integration:</b> Extend RDFa
+	and microdata; connect HTML tags and attributes to formal
+	ontologies, enabling machine inference<font color="#4f81bd"><a href="https://www.w3.org/2001/sw/wiki/RDFa#:~:text=RDFa%20is%20a%20specification%20for,can%20be%20considered%20as%20another">[5]</a><a href="https://ontology2.com/the-book/html5-the-official-document-language.html#:~:text=operate%20on%20documents%20with%20meaningful,In%20one">[6]</a></font>.</p>
+	<li><p class="compact"><b>Reactive/Incremental Execution:</b>
+	Incorporate FRP‐style reactive attributes and lazy evaluation so
+	pages update automatically with minimal DOM diffing (similar in
+	spirit to virtual DOM techniques<font color="#4f81bd"><a href="https://blog.janestreet.com/incrementality-and-the-web/#:~:text=Virtual%20DOM%2C%20incrementally">[10]</a></font>).</p>
+	<li><p class="compact"><b>Concurrent Models:</b> Introduce markup
+	for parallelism (e.g. WebWorkers or synchronized attributes) based
+	on actor/CSP theories.</p>
+	<li><p class="compact"><b>Formal Verification:</b> With a formal
+	semantics (possibly using attribute grammars or parser combinators),
+	one could even verify properties of HTML pages (e.g. no dead links,
+	no layout conflicts) before deployment.</p>
+</ul>
+<p class="first-paragraph"><a name="summary-of-theoretical-enhancements"></a>
+Each of these speculative features would come with HTML6 syntax or
+APIs (e.g. new tags, type annotations, data-binding attributes) and
+require changes in browser engines. Polyfills or transpilers (similar
+to Babel/TypeScript) could emulate some features. Crucially, all
+proposals must remain backward‐compatible: unknown tags/attributes
+degrade gracefully, and legacy content still renders.</p>
+<h2 class="western"><a name="conclusion"></a>Conclusion</h2>
+<p class="first-paragraph">Pushing HTML into new areas of computer
+science theory offers exciting possibilities. By leveraging <b>type
+theory</b>, HTML6 could eliminate many common errors at creation
+time<font color="#4f81bd"><a href="https://book.purescript.org/chapter14.html#:~:text=,cannot%20contain%20content%20by%20construction">[1]</a><a href="https://book.purescript.org/chapter14.html#:~:text=The%20type%20variable%20,time%2C%20the%20type%20of">[2]</a></font>.
+A <b>functional DSL</b> approach would let developers write
+structured pages with cleaner syntax<font color="#4f81bd"><a href="https://book.purescript.org/chapter14.html#:~:text=In%20our%20final%20set%20of,clearer%20%E2%80%93%20instead%20of%20this">[3]</a><a href="https://book.purescript.org/chapter14.html#:~:text=p%20%5B%20_class%20%3A%3D%20,A%20cat">[4]</a></font>.
+Integrating <b>semantics and knowledge graphs</b> would make web
+content immediately machine‐understandable<font color="#4f81bd"><a href="https://www.w3.org/2001/sw/wiki/RDFa#:~:text=RDFa%20is%20a%20specification%20for,can%20be%20considered%20as%20another">[5]</a><a href="https://ontology2.com/the-book/html5-the-official-document-language.html#:~:text=operate%20on%20documents%20with%20meaningful,In%20one">[6]</a></font>.
+These ideas draw on known research and proposals (such as the
+HTML.next discussions and semantic-web standards), suggesting they
+are at least <i>feasible</i> even if ambitious. As we move forward,
+browser vendors and standards bodies could experiment with prototype
+elements and attributes guided by these theories. An HTML6 grounded
+in such principles would not only be “better HTML” – it would
+be a <b>richer computational language</b>, bridging markup with
+logic, types, and declarative programming. The groundwork already
+exists in academic examples and working drafts; realizing this vision
+will require both specification work and proof-of-concept
+implementations. Nonetheless, the convergence of HTML with advanced
+CS theory holds the promise of a more robust, expressive, and
+future-proof Web.</p>
+<p class="western"><b>Sources:</b> We draw on programming-language
+research (e.g. PureScript HTML DSLs<font color="#4f81bd"><a href="https://book.purescript.org/chapter14.html#:~:text=,cannot%20contain%20content%20by%20construction">[1]</a><a href="https://book.purescript.org/chapter14.html#:~:text=In%20our%20final%20set%20of,clearer%20%E2%80%93%20instead%20of%20this">[3]</a></font>),
+semantic-web specifications (RDFa<font color="#4f81bd"><a href="https://www.w3.org/2001/sw/wiki/RDFa#:~:text=RDFa%20is%20a%20specification%20for,can%20be%20considered%20as%20another">[5]</a></font>),
+and thought-pieces on semantics (Real Semantics approach<font color="#4f81bd"><a href="https://ontology2.com/the-book/html5-the-official-document-language.html#:~:text=operate%20on%20documents%20with%20meaningful,In%20one">[6]</a></font>
+and HTML template types<font color="#4f81bd"><a href="https://cs.stackexchange.com/questions/94026/defining-an-html-template-as-an-algebraic-type#:~:text=type%20Section%20,type%20Div">[7]</a><a href="https://cs.stackexchange.com/questions/94026/defining-an-html-template-as-an-algebraic-type#:~:text=%3Ctemplate%20id%3D,li">[8]</a></font>)
+to inform these speculative HTML6 directions. Each cited source
+demonstrates a building block for the envisioned features.</p>
+<p class="western" style="margin-top: 0cm; margin-bottom: 0.35cm"><img src="Abstract_html_1d8037e165dd5c85.gif" name="Shape1" alt="Shape1" align="bottom" width="624" height="2"/>
+</p>
+<p class="first-paragraph"><font color="#4f81bd"><a href="https://book.purescript.org/chapter14.html#:~:text=,cannot%20contain%20content%20by%20construction">[1]</a></font>
+<font color="#4f81bd"><a href="https://book.purescript.org/chapter14.html#:~:text=The%20type%20variable%20,time%2C%20the%20type%20of">[2]</a></font>
+<font color="#4f81bd"><a href="https://book.purescript.org/chapter14.html#:~:text=In%20our%20final%20set%20of,clearer%20%E2%80%93%20instead%20of%20this">[3]</a></font>
+<font color="#4f81bd"><a href="https://book.purescript.org/chapter14.html#:~:text=p%20%5B%20_class%20%3A%3D%20,A%20cat">[4]</a></font>
+Domain-Specific Languages - PureScript by Example</p>
+<p class="western"><font color="#4f81bd"><a href="https://book.purescript.org/chapter14.html">https://book.purescript.org/chapter14.html</a></font></p>
+<p class="western"><font color="#4f81bd"><a href="https://www.w3.org/2001/sw/wiki/RDFa#:~:text=RDFa%20is%20a%20specification%20for,can%20be%20considered%20as%20another">[5]</a></font>
+RDFa - Semantic Web Standards</p>
+<p class="western"><font color="#4f81bd"><a href="https://www.w3.org/2001/sw/wiki/RDFa">https://www.w3.org/2001/sw/wiki/RDFa</a></font></p>
+<p class="western"><font color="#4f81bd"><a href="https://ontology2.com/the-book/html5-the-official-document-language.html#:~:text=operate%20on%20documents%20with%20meaningful,In%20one">[6]</a></font>
+HTML 5: the official document language of Real Semantics</p>
+<p class="western"><font color="#4f81bd"><a href="https://ontology2.com/the-book/html5-the-official-document-language.html">https://ontology2.com/the-book/html5-the-official-document-language.html</a></font></p>
+<p class="western"><font color="#4f81bd"><a href="https://cs.stackexchange.com/questions/94026/defining-an-html-template-as-an-algebraic-type#:~:text=type%20Section%20,type%20Div">[7]</a></font>
+<font color="#4f81bd"><a href="https://cs.stackexchange.com/questions/94026/defining-an-html-template-as-an-algebraic-type#:~:text=%3Ctemplate%20id%3D,li">[8]</a></font>
+functional programming - Defining an HTML Template as an Algebraic
+Type - Computer Science Stack Exchange</p>
+<p class="western"><font color="#4f81bd"><a href="https://cs.stackexchange.com/questions/94026/defining-an-html-template-as-an-algebraic-type">https://cs.stackexchange.com/questions/94026/defining-an-html-template-as-an-algebraic-type</a></font></p>
+<p class="western"><font color="#4f81bd"><a href="https://blog.janestreet.com/incrementality-and-the-web/#:~:text=match%20at%20L151%20val%20lazy1,Html.t">[9]</a></font>
+<font color="#4f81bd"><a href="https://blog.janestreet.com/incrementality-and-the-web/#:~:text=Virtual%20DOM%2C%20incrementally">[10]</a></font>
+Jane Street Blog - Incremental computation and the web 
+</p>
+<p class="western"><a name="citations"></a><font color="#4f81bd"><a href="https://blog.janestreet.com/incrementality-and-the-web/">https://blog.janestreet.com/incrementality-and-the-web/</a></font></p>
+</body>
+</html>
