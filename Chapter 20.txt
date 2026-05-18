@@ -127,7 +127,6 @@ Kincaid looked at him properly now.
 “No,” he said. A pause. “Rome conquered Greece many times. And then became it.”
 He let that sit, without elaboration.
 “Civilisations do not move in straight lines of inheritance. They move in cycles of absorption. The question is not who follows whom. It is what gets metabolised first, and at what cost.”
-Kincaid did not answer immediately.
 When he did, it came in the same steady register, as though he were continuing a line of reasoning already in motion before Thorne had spoken.
 “They are content, for now, with how the situation in the North is being played out.”
 A pause.
@@ -137,7 +136,7 @@ He walked a little further along the room, hands still loosely behind his back.
 He glanced out again, briefly.
 “Jack Stone has, in his way, created a texture that sits easily across the country to obfuscate that. It is adaptable. Portable. It moves well through the current environment.”
 A faint hesitation now, as if he were choosing the next part carefully.
-“But philosophy cannot always be implemented so easily. Hence the tyrant saying they can implement the philosophy from the top down.
+“But philosophy cannot always be implemented so easily. Hence the tyrant saying they can implement the philosophy from the top down."
 Kincaid watched him for a moment longer, as if the question had already been answered and he was only waiting for Thorne to catch up to it.
 “And your next move?” he asked finally.
 It was not rhetorical. It was procedural.
@@ -199,7 +198,7 @@ Classification: Classified
 
 Special Report: The Case of Alexander Thorne and the Rule of Law in the United Kingdom
 Executive Summary
-The Department of State expresses grave concern regarding the attempted prosecution and detention of United States national Alexander Thorne by authorities in the United Kingdom under allegations of sedition-related conduct. Following extensive diplomatic engagement and legal review, the Department concludes that actions contemplated by British authorities represented a serious departure from established constitutional protections long understood to form part of the British legal tradition.
+The Department of State expresses grave concern regarding the attempted prosecution and detention of British national Alexander Thorne by authorities in the United Kingdom under allegations of sedition-related conduct. Following extensive diplomatic engagement and legal review, the Department concludes that actions contemplated by British authorities represented a serious departure from established constitutional protections long understood to form part of the British legal tradition.
 The Government of the United Kingdom initially sought Mr. Thorne’s imprisonment under authorities described to Department officials as necessary for “public order and national stability.” Upon examination, however, such detention appeared incompatible with protections against arbitrary deprivation of liberty reflected in foundational constitutional instruments of the United Kingdom itself, including principles originating in the Magna Carta (1215).
 The Department further notes with concern subsequent efforts reportedly undertaken to impose substantial punitive financial sanctions upon Mr. Thorne absent lawful conviction. Such proposals raised significant questions regarding compliance with constitutional safeguards articulated in the Bill of Rights (1689).
 Following sustained diplomatic representations by the United States Government and consultations with British legal authorities, the Government of the United Kingdom agreed to terminate proceedings and secure Mr. Thorne’s release.
