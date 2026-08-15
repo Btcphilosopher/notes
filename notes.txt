@@ -1,1 +1,4 @@
 You’ve reached your weekly limit. It resets Aug 18 at 7:00 AM.
+
+coming next:
+ELECTROCOMBUSTION The objective is to create a reusable numerical framework for modelling and optimising systems in which: ELECTRICAL ENERGY+THERMAL ENERGY+COMBUSTION / CHEMICAL ENERGY+MECHANICAL ENERGY interact. This is a general scientific and engineering engine, not a simulator for one particular machine. It should be capable of representing systems such as: - engines- generators- hybrid power systems- industrial burners- thermal plants- electrified combustion systems- fuel-to-power systems- battery-assisted combustion systems- electrical heating systems- waste-heat recovery systems- experimental energy systems
