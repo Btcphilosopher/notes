@@ -13,3 +13,8 @@ RightHand Robotics (RightPick™)	Piece-picking system (cobot-mounted gripper)	2
 Konecranes (AS/RS Crane)	Overhead stacker crane	Up to ~3000 kg (pallets)	Custom (rack height)	Autonomous	Laser/LiDAR positioning; weight/load sensors	PLC safety logic; EO/EC stops; safety edges	OPC-UA, REST APIs (modern cranes)	~£0.5–5M (system)	12+ months
 Dematic/Schnelle (AS/RS Shuttle)	Shuttle + mini-load crane	~1000–1500 kg (case loads)	Up to 40 m high	Autonomous	Bin-ID scanners; tilt sensors	PLC logic; redundant drives; safety zones	Proprietary WCS/WMS interface	~£0.2–2M (system)	6–12 months
 Swisslog AutoStore (cube system)	Robotic cube (not crane)	~10 kg per robot	2640 mm (ceiling-mounted)	Autonomous (shuttle)	Barcode/RFID cameras on robots	Rail safety gates; controlled walkways	API via AutoStore Control + WMS plug-ins	£0.5–2M (system)	6–9 months
+
+
+
+if only...
+https://buy.stripe.com/3cIaEY2vU5798GVdwrbAs00
