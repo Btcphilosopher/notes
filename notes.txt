@@ -19,3 +19,5 @@ Swisslog AutoStore (cube system)	Robotic cube (not crane)	~10 kg per robot	2640 
 if only...
 https://buy.stripe.com/3cIaEY2vU5798GVdwrbAs00
 pk_live_51O02LdKnjMI2EJBAOmAt74GRphhlVXu2RybrMIAQ6nzAeDnp0Wyqg8xbJkmkRa49SoZPpqqV8IqCHoX9rIsSGgoa00qdys7rDY
+
+already done gemini for the day. just blasting though it on 3.7.
