@@ -1,1 +1,1014 @@
 am i gonna see any of the backend out of that?
+
+
+
+# ============================================================
+# ARBORFORGE.OS
+# FOREST STATISTICAL OVERLAY ENGINE
+# ============================================================
+#
+# Purpose:
+#   Statistical/analytical layer sitting above the Python
+#   forest digital twin.
+#
+# Input:
+#   tree-level simulation data
+#
+# Output:
+#   tree statistics
+#   plot statistics
+#   growth statistics
+#   spatial statistics
+#   correlations
+#   distributions
+#   confidence intervals
+#   anomaly scores
+#   modelled forecasts
+#   frontend-ready JSON
+#
+# ============================================================
+
+suppressPackageStartupMessages({
+  library(dplyr)
+  library(tidyr)
+  library(data.table)
+  library(jsonlite)
+  library(ggplot2)
+})
+
+# ------------------------------------------------------------
+# 1. CONFIGURATION
+# ------------------------------------------------------------
+
+ARBORFORGE_CONFIG <- list(
+  confidence_level = 0.95,
+  minimum_tree_sample = 10,
+  growth_window_years = 5,
+  anomaly_z_threshold = 3,
+  biomass_carbon_fraction = 0.50
+)
+
+
+# ------------------------------------------------------------
+# 2. INPUT VALIDATION
+# ------------------------------------------------------------
+
+validate_tree_data <- function(df) {
+
+  required <- c(
+    "tree_id",
+    "year",
+    "species",
+    "x",
+    "y",
+    "height",
+    "dbh",
+    "biomass",
+    "carbon",
+    "health",
+    "competition",
+    "water_stress"
+  )
+
+  missing <- setdiff(required, names(df))
+
+  if (length(missing) > 0) {
+    stop(
+      paste(
+        "Missing required columns:",
+        paste(missing, collapse = ", ")
+      )
+    )
+  }
+
+  if (any(df$height < 0, na.rm = TRUE)) {
+    stop("Invalid negative tree height detected.")
+  }
+
+  if (any(df$dbh < 0, na.rm = TRUE)) {
+    stop("Invalid negative DBH detected.")
+  }
+
+  if (any(df$biomass < 0, na.rm = TRUE)) {
+    stop("Invalid negative biomass detected.")
+  }
+
+  TRUE
+}
+
+
+# ------------------------------------------------------------
+# 3. BASIC FOREST STATISTICS
+# ------------------------------------------------------------
+
+forest_summary <- function(df) {
+
+  list(
+
+    tree_count = n_distinct(df$tree_id),
+
+    species_count = n_distinct(df$species),
+
+    mean_height = mean(df$height, na.rm = TRUE),
+
+    median_height = median(df$height, na.rm = TRUE),
+
+    sd_height = sd(df$height, na.rm = TRUE),
+
+    mean_dbh = mean(df$dbh, na.rm = TRUE),
+
+    median_dbh = median(df$dbh, na.rm = TRUE),
+
+    mean_biomass = mean(df$biomass, na.rm = TRUE),
+
+    total_biomass = sum(df$biomass, na.rm = TRUE),
+
+    total_carbon = sum(df$carbon, na.rm = TRUE),
+
+    mean_health = mean(df$health, na.rm = TRUE),
+
+    mean_competition = mean(df$competition, na.rm = TRUE),
+
+    mean_water_stress = mean(df$water_stress, na.rm = TRUE)
+  )
+}
+
+
+# ------------------------------------------------------------
+# 4. SPECIES STATISTICS
+# ------------------------------------------------------------
+
+species_statistics <- function(df) {
+
+  df %>%
+    group_by(species) %>%
+    summarise(
+      trees = n_distinct(tree_id),
+
+      mean_height = mean(height, na.rm = TRUE),
+
+      median_height = median(height, na.rm = TRUE),
+
+      height_sd = sd(height, na.rm = TRUE),
+
+      mean_dbh = mean(dbh, na.rm = TRUE),
+
+      dbh_sd = sd(dbh, na.rm = TRUE),
+
+      total_biomass = sum(biomass, na.rm = TRUE),
+
+      mean_biomass = mean(biomass, na.rm = TRUE),
+
+      total_carbon = sum(carbon, na.rm = TRUE),
+
+      mean_health = mean(health, na.rm = TRUE),
+
+      mean_competition = mean(competition, na.rm = TRUE),
+
+      mean_water_stress = mean(water_stress, na.rm = TRUE),
+
+      .groups = "drop"
+    )
+}
+
+
+# ------------------------------------------------------------
+# 5. AGE STRUCTURE
+# ------------------------------------------------------------
+
+age_structure <- function(df) {
+
+  latest <- df %>%
+    group_by(tree_id) %>%
+    filter(year == max(year)) %>%
+    ungroup()
+
+  latest %>%
+    mutate(
+      age_class = case_when(
+        year <= 5 ~ "seedling",
+        year <= 15 ~ "young",
+        year <= 40 ~ "mature",
+        TRUE ~ "old"
+      )
+    ) %>%
+    count(age_class, name = "trees")
+}
+
+
+# ------------------------------------------------------------
+# 6. HEIGHT DISTRIBUTION
+# ------------------------------------------------------------
+
+height_distribution <- function(df, bins = 20) {
+
+  latest <- df %>%
+    group_by(tree_id) %>%
+    filter(year == max(year)) %>%
+    ungroup()
+
+  hist_data <- hist(
+    latest$height,
+    breaks = bins,
+    plot = FALSE
+  )
+
+  data.frame(
+    lower = head(hist_data$breaks, -1),
+    upper = tail(hist_data$breaks, -1),
+    trees = hist_data$counts
+  )
+}
+
+
+# ------------------------------------------------------------
+# 7. DBH DISTRIBUTION
+# ------------------------------------------------------------
+
+dbh_distribution <- function(df, bins = 20) {
+
+  latest <- df %>%
+    group_by(tree_id) %>%
+    filter(year == max(year)) %>%
+    ungroup()
+
+  hist_data <- hist(
+    latest$dbh,
+    breaks = bins,
+    plot = FALSE
+  )
+
+  data.frame(
+    lower = head(hist_data$breaks, -1),
+    upper = tail(hist_data$breaks, -1),
+    trees = hist_data$counts
+  )
+}
+
+
+# ------------------------------------------------------------
+# 8. ANNUAL FOREST GROWTH
+# ------------------------------------------------------------
+
+annual_growth <- function(df) {
+
+  df %>%
+    group_by(year) %>%
+    summarise(
+      tree_count = n_distinct(tree_id),
+
+      mean_height = mean(height, na.rm = TRUE),
+
+      mean_dbh = mean(dbh, na.rm = TRUE),
+
+      total_biomass = sum(biomass, na.rm = TRUE),
+
+      total_carbon = sum(carbon, na.rm = TRUE),
+
+      mean_health = mean(health, na.rm = TRUE),
+
+      mean_water_stress = mean(water_stress, na.rm = TRUE),
+
+      mean_competition = mean(competition, na.rm = TRUE),
+
+      .groups = "drop"
+    ) %>%
+    arrange(year) %>%
+    mutate(
+      biomass_increment =
+        total_biomass - lag(total_biomass),
+
+      carbon_increment =
+        total_carbon - lag(total_carbon)
+    )
+}
+
+
+# ------------------------------------------------------------
+# 9. TREE GROWTH RATES
+# ------------------------------------------------------------
+
+tree_growth_rates <- function(df) {
+
+  df %>%
+    arrange(tree_id, year) %>%
+    group_by(tree_id) %>%
+    mutate(
+      height_increment =
+        height - lag(height),
+
+      dbh_increment =
+        dbh - lag(dbh),
+
+      biomass_increment =
+        biomass - lag(biomass),
+
+      carbon_increment =
+        carbon - lag(carbon)
+    ) %>%
+    ungroup()
+}
+
+
+# ------------------------------------------------------------
+# 10. GROWTH STATISTICS BY SPECIES
+# ------------------------------------------------------------
+
+species_growth_rates <- function(df) {
+
+  growth <- tree_growth_rates(df)
+
+  growth %>%
+    group_by(species, year) %>%
+    summarise(
+      mean_height_increment =
+        mean(height_increment, na.rm = TRUE),
+
+      mean_dbh_increment =
+        mean(dbh_increment, na.rm = TRUE),
+
+      mean_biomass_increment =
+        mean(biomass_increment, na.rm = TRUE),
+
+      mean_carbon_increment =
+        mean(carbon_increment, na.rm = TRUE),
+
+      .groups = "drop"
+    )
+}
+
+
+# ------------------------------------------------------------
+# 11. CONFIDENCE INTERVAL
+# ------------------------------------------------------------
+
+mean_confidence_interval <- function(x,
+                                     confidence =
+                                       ARBORFORGE_CONFIG$confidence_level) {
+
+  x <- x[is.finite(x)]
+
+  n <- length(x)
+
+  if (n < 2) {
+    return(
+      c(
+        mean = mean(x, na.rm = TRUE),
+        lower = NA_real_,
+        upper = NA_real_
+      )
+    )
+  }
+
+  mean_value <- mean(x)
+
+  standard_error <- sd(x) / sqrt(n)
+
+  alpha <- 1 - confidence
+
+  critical <- qt(
+    1 - alpha / 2,
+    df = n - 1
+  )
+
+  margin <- critical * standard_error
+
+  c(
+    mean = mean_value,
+    lower = mean_value - margin,
+    upper = mean_value + margin
+  )
+}
+
+
+# ------------------------------------------------------------
+# 12. SPECIES CONFIDENCE INTERVALS
+# ------------------------------------------------------------
+
+species_confidence <- function(df) {
+
+  df %>%
+    group_by(species) %>%
+    summarise(
+      height_ci =
+        list(mean_confidence_interval(height)),
+
+      dbh_ci =
+        list(mean_confidence_interval(dbh)),
+
+      biomass_ci =
+        list(mean_confidence_interval(biomass)),
+
+      .groups = "drop"
+    ) %>%
+    mutate(
+      height_mean = sapply(height_ci, `[[`, "mean"),
+      height_lower = sapply(height_ci, `[[`, "lower"),
+      height_upper = sapply(height_ci, `[[`, "upper"),
+
+      dbh_mean = sapply(dbh_ci, `[[`, "mean"),
+      dbh_lower = sapply(dbh_ci, `[[`, "lower"),
+      dbh_upper = sapply(dbh_ci, `[[`, "upper"),
+
+      biomass_mean = sapply(biomass_ci, `[[`, "mean"),
+      biomass_lower = sapply(biomass_ci, `[[`, "lower"),
+      biomass_upper = sapply(biomass_ci, `[[`, "upper")
+    ) %>%
+    select(
+      species,
+      height_mean,
+      height_lower,
+      height_upper,
+      dbh_mean,
+      dbh_lower,
+      dbh_upper,
+      biomass_mean,
+      biomass_lower,
+      biomass_upper
+    )
+}
+
+
+# ------------------------------------------------------------
+# 13. CORRELATION ENGINE
+# ------------------------------------------------------------
+
+forest_correlations <- function(df) {
+
+  variables <- df %>%
+    select(
+      height,
+      dbh,
+      biomass,
+      carbon,
+      health,
+      competition,
+      water_stress
+    )
+
+  cor(
+    variables,
+    use = "pairwise.complete.obs",
+    method = "pearson"
+  )
+}
+
+
+# ------------------------------------------------------------
+# 14. GROWTH / COMPETITION RELATIONSHIP
+# ------------------------------------------------------------
+
+competition_relationship <- function(df) {
+
+  growth <- tree_growth_rates(df)
+
+  growth %>%
+    select(
+      biomass_increment,
+      height_increment,
+      competition,
+      water_stress
+    ) %>%
+    cor(
+      use = "pairwise.complete.obs"
+    )
+}
+
+
+# ------------------------------------------------------------
+# 15. WATER-STRESS ANALYSIS
+# ------------------------------------------------------------
+
+water_stress_analysis <- function(df) {
+
+  df %>%
+    mutate(
+      stress_class = case_when(
+        water_stress < 0.20 ~ "low",
+        water_stress < 0.50 ~ "moderate",
+        water_stress < 0.75 ~ "high",
+        TRUE ~ "severe"
+      )
+    ) %>%
+    group_by(stress_class) %>%
+    summarise(
+      trees = n_distinct(tree_id),
+
+      mean_height = mean(height, na.rm = TRUE),
+
+      mean_biomass = mean(biomass, na.rm = TRUE),
+
+      mean_health = mean(health, na.rm = TRUE),
+
+      .groups = "drop"
+    )
+}
+
+
+# ------------------------------------------------------------
+# 16. COMPETITION ANALYSIS
+# ------------------------------------------------------------
+
+competition_analysis <- function(df) {
+
+  df %>%
+    mutate(
+      competition_class = case_when(
+        competition < 0.25 ~ "low",
+        competition < 0.50 ~ "moderate",
+        competition < 0.75 ~ "high",
+        TRUE ~ "severe"
+      )
+    ) %>%
+    group_by(competition_class) %>%
+    summarise(
+      trees = n_distinct(tree_id),
+
+      mean_height = mean(height, na.rm = TRUE),
+
+      mean_dbh = mean(dbh, na.rm = TRUE),
+
+      mean_biomass = mean(biomass, na.rm = TRUE),
+
+      mean_water_stress =
+        mean(water_stress, na.rm = TRUE),
+
+      .groups = "drop"
+    )
+}
+
+
+# ------------------------------------------------------------
+# 17. TREE ANOMALY DETECTION
+# ------------------------------------------------------------
+
+tree_anomalies <- function(df) {
+
+  latest <- df %>%
+    group_by(tree_id) %>%
+    filter(year == max(year)) %>%
+    ungroup()
+
+  latest %>%
+    mutate(
+      height_z =
+        as.numeric(scale(height)),
+
+      dbh_z =
+        as.numeric(scale(dbh)),
+
+      biomass_z =
+        as.numeric(scale(biomass)),
+
+      health_z =
+        as.numeric(scale(health)),
+
+      anomaly_score =
+        rowMeans(
+          abs(
+            cbind(
+              height_z,
+              dbh_z,
+              biomass_z,
+              health_z
+            )
+          ),
+          na.rm = TRUE
+        ),
+
+      anomaly =
+        anomaly_score >=
+        ARBORFORGE_CONFIG$anomaly_z_threshold
+    ) %>%
+    select(
+      tree_id,
+      species,
+      x,
+      y,
+      year,
+      anomaly_score,
+      anomaly
+    )
+}
+
+
+# ------------------------------------------------------------
+# 18. SPATIAL GRID
+# ------------------------------------------------------------
+
+create_spatial_grid <- function(df,
+                                cell_size = 50) {
+
+  df %>%
+    mutate(
+      grid_x =
+        floor(x / cell_size) * cell_size,
+
+      grid_y =
+        floor(y / cell_size) * cell_size
+    )
+}
+
+
+# ------------------------------------------------------------
+# 19. SPATIAL FOREST STATISTICS
+# ------------------------------------------------------------
+
+spatial_statistics <- function(df,
+                               cell_size = 50) {
+
+  create_spatial_grid(
+    df,
+    cell_size
+  ) %>%
+    group_by(grid_x, grid_y) %>%
+    summarise(
+      trees = n_distinct(tree_id),
+
+      mean_height =
+        mean(height, na.rm = TRUE),
+
+      mean_dbh =
+        mean(dbh, na.rm = TRUE),
+
+      biomass =
+        sum(biomass, na.rm = TRUE),
+
+      carbon =
+        sum(carbon, na.rm = TRUE),
+
+      mean_water_stress =
+        mean(water_stress, na.rm = TRUE),
+
+      mean_competition =
+        mean(competition, na.rm = TRUE),
+
+      mean_health =
+        mean(health, na.rm = TRUE),
+
+      .groups = "drop"
+    )
+}
+
+
+# ------------------------------------------------------------
+# 20. FOREST DENSITY
+# ------------------------------------------------------------
+
+forest_density <- function(df,
+                           area_hectares) {
+
+  latest <- df %>%
+    group_by(tree_id) %>%
+    filter(year == max(year)) %>%
+    ungroup()
+
+  list(
+    trees_per_hectare =
+      n_distinct(latest$tree_id) /
+      area_hectares,
+
+    biomass_per_hectare =
+      sum(latest$biomass, na.rm = TRUE) /
+      area_hectares,
+
+    carbon_per_hectare =
+      sum(latest$carbon, na.rm = TRUE) /
+      area_hectares
+  )
+}
+
+
+# ------------------------------------------------------------
+# 21. FOREST GROWTH TREND
+# ------------------------------------------------------------
+
+growth_trend <- function(df) {
+
+  annual <- annual_growth(df)
+
+  annual <- annual %>%
+    filter(
+      is.finite(total_biomass)
+    )
+
+  if (nrow(annual) < 3) {
+    return(NULL)
+  }
+
+  biomass_model <- lm(
+    total_biomass ~ year,
+    data = annual
+  )
+
+  carbon_model <- lm(
+    total_carbon ~ year,
+    data = annual
+  )
+
+  list(
+
+    biomass_model =
+      summary(biomass_model),
+
+    carbon_model =
+      summary(carbon_model),
+
+    biomass_slope =
+      coef(biomass_model)[["year"]],
+
+    carbon_slope =
+      coef(carbon_model)[["year"]]
+  )
+}
+
+
+# ------------------------------------------------------------
+# 22. SPECIES DIVERSITY
+# ------------------------------------------------------------
+
+species_diversity <- function(df) {
+
+  latest <- df %>%
+    group_by(tree_id) %>%
+    filter(year == max(year)) %>%
+    ungroup()
+
+  counts <- table(latest$species)
+
+  proportions <- counts / sum(counts)
+
+  shannon <-
+    -sum(
+      proportions *
+        log(proportions)
+    )
+
+  simpson <-
+    1 -
+    sum(proportions ^ 2)
+
+  list(
+    species_richness = length(counts),
+    shannon_index = shannon,
+    simpson_index = simpson
+  )
+}
+
+
+# ------------------------------------------------------------
+# 23. FOREST STATISTICAL OVERLAY
+# ------------------------------------------------------------
+
+generate_statistical_overlay <- function(
+    df,
+    area_hectares = NULL,
+    spatial_cell_size = 50
+) {
+
+  validate_tree_data(df)
+
+  latest <- df %>%
+    group_by(tree_id) %>%
+    filter(year == max(year)) %>%
+    ungroup()
+
+  result <- list(
+
+    metadata = list(
+      engine = "ARBORFORGE.OS",
+      analysis = "forest_statistical_overlay",
+      generated_at =
+        format(
+          Sys.time(),
+          tz = "UTC"
+        )
+    ),
+
+    forest = forest_summary(latest),
+
+    species =
+      species_statistics(latest),
+
+    age_structure =
+      age_structure(latest),
+
+    height_distribution =
+      height_distribution(latest),
+
+    dbh_distribution =
+      dbh_distribution(latest),
+
+    annual_growth =
+      annual_growth(df),
+
+    growth_by_species =
+      species_growth_rates(df),
+
+    confidence_intervals =
+      species_confidence(latest),
+
+    correlations =
+      forest_correlations(latest),
+
+    competition =
+      competition_analysis(latest),
+
+    water_stress =
+      water_stress_analysis(latest),
+
+    competition_relationship =
+      competition_relationship(df),
+
+    anomalies =
+      tree_anomalies(latest),
+
+    spatial =
+      spatial_statistics(
+        latest,
+        spatial_cell_size
+      ),
+
+    biodiversity =
+      species_diversity(latest)
+  )
+
+  if (!is.null(area_hectares)) {
+
+    result$land_productivity <-
+      forest_density(
+        latest,
+        area_hectares
+      )
+  }
+
+  result$growth_trend <-
+    growth_trend(df)
+
+  result
+}
+
+
+# ------------------------------------------------------------
+# 24. TREE-LEVEL OVERLAY
+# ------------------------------------------------------------
+
+tree_overlay <- function(df) {
+
+  growth <- tree_growth_rates(df)
+
+  growth %>%
+    group_by(tree_id) %>%
+    mutate(
+      height_percentile =
+        percent_rank(height),
+
+      dbh_percentile =
+        percent_rank(dbh),
+
+      biomass_percentile =
+        percent_rank(biomass),
+
+      growth_percentile =
+        percent_rank(biomass_increment),
+
+      health_percentile =
+        percent_rank(health),
+
+      competition_percentile =
+        percent_rank(competition),
+
+      water_stress_percentile =
+        percent_rank(water_stress)
+    ) %>%
+    ungroup()
+}
+
+
+# ------------------------------------------------------------
+# 25. FRONTEND TREE STATE
+# ------------------------------------------------------------
+
+tree_state_for_frontend <- function(df) {
+
+  latest <- df %>%
+    group_by(tree_id) %>%
+    filter(year == max(year)) %>%
+    ungroup()
+
+  anomalies <-
+    tree_anomalies(latest)
+
+  latest %>%
+    left_join(
+      anomalies,
+      by = "tree_id"
+    ) %>%
+    transmute(
+
+      tree_id,
+
+      species,
+
+      year,
+
+      position = list(
+        list(
+          x = x,
+          y = y,
+          z = ifelse(
+            "z" %in% names(latest),
+            z,
+            0
+          )
+        )
+      ),
+
+      dimensions = list(
+        list(
+          height = height,
+          dbh = dbh
+        )
+      ),
+
+      biological = list(
+        list(
+          biomass = biomass,
+          carbon = carbon,
+          health = health
+        )
+      ),
+
+      stress = list(
+        list(
+          competition = competition,
+          water = water_stress
+        )
+      ),
+
+      statistical = list(
+        list(
+          anomaly = anomaly,
+          anomaly_score = anomaly_score
+        )
+      )
+    )
+}
+
+
+# ------------------------------------------------------------
+# 26. JSON EXPORT
+# ------------------------------------------------------------
+
+export_overlay_json <- function(
+    overlay,
+    filepath
+) {
+
+  json <- jsonlite::toJSON(
+    overlay,
+    pretty = TRUE,
+    auto_unbox = TRUE,
+    na = "null"
+  )
+
+  writeLines(
+    json,
+    filepath
+  )
+
+  invisible(filepath)
+}
+
+
+# ------------------------------------------------------------
+# 27. COMPLETE PIPELINE
+# ------------------------------------------------------------
+
+run_forest_statistics <- function(
+    df,
+    area_hectares = NULL,
+    output_json = NULL
+) {
+
+  overlay <-
+    generate_statistical_overlay(
+      df = df,
+      area_hectares = area_hectares
+    )
+
+  if (!is.null(output_json)) {
+
+    export_overlay_json(
+      overlay,
+      output_json
+    )
+  }
+
+  overlay
+}
+
+
+# ============================================================
+# END ARBORFORGE.OS STATISTICAL OVERLAY
+# ============================================================
