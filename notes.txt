@@ -1012,3 +1012,1467 @@ run_forest_statistics <- function(
 # ============================================================
 # END ARBORFORGE.OS STATISTICAL OVERLAY
 # ============================================================
+
+
+
+
+
+
+
+
+
+
+
+# GEMINI 3.7 MASTER PROJECT PROMPT
+
+# TELESCREEN.OS
+
+## AI-DRIVEN TELESCREEN DATA AUTOMATION & DISPLAY MANAGEMENT PLATFORM
+
+Build a complete industrial-grade software platform called:
+
+```text
+TELESCREEN.OS
+```
+
+The purpose of the platform is to automatically collect, interpret, transform, validate, schedule and publish structured information to large-format digital displays and tele-screens.
+
+The system should operate as an:
+
+```text
+AI DATA PIPELINE
++
+CONTENT AUTOMATION ENGINE
++
+DISPLAY SCHEDULER
++
+SCREEN DIGITAL TWIN
++
+REAL-TIME DATA PROCESSOR
+```
+
+The software is designed for:
+
+```text
+airports
+railway stations
+metro systems
+bus stations
+shopping centres
+stadiums
+universities
+hospitals
+hotels
+retail stores
+corporate campuses
+public information displays
+large-format televisions
+digital signage networks
+transport information screens
+industrial control-room displays
+```
+
+---
+
+# 1. CORE CONCEPT
+
+The system receives raw information:
+
+```text
+weather
+transport schedules
+train arrivals
+flight information
+news
+advertising
+prices
+stock information
+events
+calendar data
+maps
+emergency announcements
+company information
+restaurant menus
+retail promotions
+sensor information
+API data
+CSV data
+JSON data
+database records
+RSS feeds
+images
+video
+documents
+```
+
+and automatically converts it into:
+
+```text
+DISPLAY DATA
+```
+
+The pipeline should be:
+
+```text
+RAW DATA
+    ↓
+INGESTION
+    ↓
+VALIDATION
+    ↓
+NORMALISATION
+    ↓
+AI INTERPRETATION
+    ↓
+CONTENT GENERATION
+    ↓
+LAYOUT ENGINE
+    ↓
+SCHEDULER
+    ↓
+DISPLAY RENDERER
+    ↓
+SCREEN
+```
+
+---
+
+# 2. GEMINI AI LAYER
+
+Use Gemini as the intelligent interpretation layer.
+
+The AI should be responsible for:
+
+```text
+classification
+summarisation
+content transformation
+language translation
+priority detection
+layout recommendations
+anomaly detection
+content tagging
+semantic understanding
+display suitability
+```
+
+Do NOT allow the AI to directly control hardware.
+
+Instead:
+
+```text
+Gemini
+   ↓
+structured JSON decision
+   ↓
+TELESCREEN rules engine
+   ↓
+validated display command
+   ↓
+display API
+```
+
+The deterministic Python/application layer remains authoritative.
+
+---
+
+# 3. STRUCTURED AI OUTPUT
+
+Every AI-generated display instruction must produce structured data.
+
+Example:
+
+```json
+{
+  "content_type": "transport_update",
+  "priority": "high",
+  "headline": "Train 1421 delayed",
+  "body": "The 18:42 service is currently delayed by approximately 12 minutes.",
+  "language": "en-GB",
+  "display_duration_seconds": 15,
+  "colour_profile": "warning",
+  "layout": "transport_alert",
+  "expiry_timestamp": "2026-08-28T19:15:00Z"
+}
+```
+
+Never allow free-form AI output to be sent directly to a display.
+
+---
+
+# 4. DATA INGESTION ENGINE
+
+Create connectors for:
+
+```text
+REST APIs
+JSON
+CSV
+XML
+RSS
+WebSocket
+MQTT
+SQL databases
+PostgreSQL
+SQLite
+Excel
+manual input
+```
+
+Create a common interface:
+
+```python
+class DataSource:
+    def fetch(self):
+        pass
+```
+
+Implement:
+
+```text
+APIDataSource
+CSVDataSource
+JSONDataSource
+RSSDataSource
+SQLDataSource
+WebSocketDataSource
+MQTTDataSource
+```
+
+---
+
+# 5. DATA NORMALISATION
+
+Convert all incoming data into a standard internal schema.
+
+Example:
+
+```json
+{
+  "source_id": "rail_api_01",
+  "timestamp": "...",
+  "category": "transport",
+  "location": "London",
+  "priority": 2,
+  "payload": {}
+}
+```
+
+Every item must contain:
+
+```text
+source
+timestamp
+category
+location
+priority
+expiry
+payload
+```
+
+---
+
+# 6. AI CONTENT CLASSIFIER
+
+Gemini should classify incoming information into:
+
+```text
+NORMAL
+INFORMATION
+PROMOTION
+WARNING
+ALERT
+EMERGENCY
+ADVERTISEMENT
+TRANSPORT
+WEATHER
+NEWS
+EVENT
+PRICE
+SPORT
+CORPORATE
+```
+
+Example:
+
+```text
+INPUT:
+
+"Heavy rain expected between 17:00 and 20:00."
+
+AI:
+
+category = WEATHER
+priority = MEDIUM
+display_duration = 20 seconds
+```
+
+---
+
+# 7. PRIORITY ENGINE
+
+Create deterministic priority rules.
+
+Levels:
+
+```text
+0 = background
+1 = normal
+2 = important
+3 = urgent
+4 = emergency
+```
+
+AI may recommend a priority.
+
+The rules engine must approve it.
+
+For example:
+
+```text
+emergency warning
+      ↓
+priority 4
+      ↓
+interrupt normal content
+```
+
+---
+
+# 8. CONTENT QUEUE
+
+Create a display-content queue.
+
+Each object contains:
+
+```text
+content_id
+priority
+created_at
+expires_at
+display_duration
+screen_group
+content_type
+language
+status
+```
+
+Statuses:
+
+```text
+QUEUED
+VALIDATED
+SCHEDULED
+DISPLAYING
+EXPIRED
+FAILED
+ARCHIVED
+```
+
+---
+
+# 9. CONTENT SCHEDULER
+
+Build an intelligent scheduler.
+
+Inputs:
+
+```text
+priority
+time
+screen
+audience
+location
+content type
+expiry
+campaign
+```
+
+The scheduler decides:
+
+```text
+WHAT
+WHEN
+WHERE
+HOW LONG
+```
+
+to display.
+
+---
+
+# 10. SCREEN GROUPS
+
+Support:
+
+```text
+individual screen
+screen cluster
+building
+station
+airport
+shopping centre
+city-wide network
+```
+
+Example:
+
+```text
+Airport
+ ├── Terminal 1
+ │    ├── Screen 01
+ │    ├── Screen 02
+ │    └── Screen 03
+ │
+ └── Terminal 2
+      ├── Screen 04
+      └── Screen 05
+```
+
+---
+
+# 11. DISPLAY DIGITAL TWIN
+
+Create a digital representation of every physical screen.
+
+Example:
+
+```json
+{
+  "screen_id": "T1_GATE_04",
+  "width_px": 3840,
+  "height_px": 2160,
+  "orientation": "landscape",
+  "brightness": 1000,
+  "location": "Terminal 1 Gate 4",
+  "status": "online"
+}
+```
+
+Track:
+
+```text
+resolution
+aspect ratio
+orientation
+brightness
+refresh rate
+location
+network state
+temperature
+power state
+current content
+```
+
+---
+
+# 12. SCREEN CAPABILITY ENGINE
+
+Different screens may have different capabilities.
+
+Model:
+
+```text
+4K
+8K
+portrait
+landscape
+HDR
+SDR
+video
+image
+HTML
+text
+audio
+touch
+```
+
+The scheduler must select content compatible with the target screen.
+
+---
+
+# 13. LAYOUT ENGINE
+
+Create reusable layouts:
+
+```text
+full_screen
+split_screen
+ticker
+headline
+transport_board
+weather_board
+advertisement
+news_panel
+emergency_alert
+map
+calendar
+price_board
+menu
+```
+
+Example:
+
+```text
+┌──────────────────────────────────────────┐
+│              HEADLINE                    │
+├──────────────────────┬───────────────────┤
+│                      │                   │
+│       MAIN DATA      │    SECONDARY      │
+│                      │      DATA         │
+│                      │                   │
+├──────────────────────┴───────────────────┤
+│              INFORMATION TICKER           │
+└──────────────────────────────────────────┘
+```
+
+---
+
+# 14. AI LAYOUT SELECTION
+
+Gemini can recommend:
+
+```text
+layout
+font scale
+content density
+priority
+duration
+```
+
+but the renderer must validate all values.
+
+For example:
+
+```text
+large amount of information
+        ↓
+AI recommends
+        ↓
+split-screen layout
+        ↓
+layout engine validates
+        ↓
+render
+```
+
+---
+
+# 15. CONTENT ADAPTATION
+
+The same source information should automatically adapt to different displays.
+
+Example:
+
+### 8K 100" screen
+
+```text
+large typography
+high information density
+rich graphics
+```
+
+### 32" screen
+
+```text
+simplified information
+fewer elements
+larger relative text
+```
+
+### Portrait screen
+
+Automatically rearrange the layout.
+
+---
+
+# 16. MULTILINGUAL ENGINE
+
+Support:
+
+```text
+English
+Traditional Chinese
+Simplified Chinese
+Japanese
+Korean
+French
+German
+Spanish
+Italian
+Arabic
+```
+
+Allow per-screen language configuration.
+
+Example:
+
+```text
+SCREEN LANGUAGE:
+
+zh-TW
+
+English secondary language.
+```
+
+Gemini handles translation, but every translation must be represented as structured display data.
+
+---
+
+# 17. TRANSPORT DISPLAY ENGINE
+
+Create a specialised transport template.
+
+Input:
+
+```text
+service
+destination
+platform
+scheduled_time
+estimated_time
+status
+delay
+```
+
+Output:
+
+```text
+SERVICE 1421
+SHEFFIELD
+18:42
+
+PLATFORM 4
+
+DELAYED
+Approximately 12 min
+```
+
+---
+
+# 18. AIRPORT DISPLAY ENGINE
+
+Support:
+
+```text
+flight
+destination
+gate
+boarding
+departure
+arrival
+baggage
+security
+```
+
+Example states:
+
+```text
+SCHEDULED
+BOARDING
+FINAL CALL
+DEPARTED
+DELAYED
+CANCELLED
+```
+
+---
+
+# 19. WEATHER DISPLAY
+
+Automatically transform weather data into:
+
+```text
+temperature
+forecast
+rain
+wind
+warnings
+```
+
+The AI may generate concise human-readable summaries.
+
+---
+
+# 20. NEWS ENGINE
+
+Input:
+
+```text
+RSS
+API
+approved news feed
+```
+
+Gemini generates:
+
+```text
+headline
+summary
+category
+priority
+expiry
+```
+
+Implement strict source attribution.
+
+Do not fabricate news.
+
+---
+
+# 21. ADVERTISING ENGINE
+
+Create campaigns:
+
+```text
+campaign_id
+advertiser
+creative
+start_time
+end_time
+target_screens
+frequency
+priority
+```
+
+Calculate:
+
+```text
+impressions
+display_count
+screen_time
+```
+
+---
+
+# 22. PROGRAMMATIC DISPLAY ALLOCATION
+
+Allow available display time to be allocated automatically.
+
+Example:
+
+```text
+60-minute period
+
+Transport: 30%
+Weather: 10%
+News: 10%
+Advertising: 40%
+```
+
+Make percentages configurable.
+
+---
+
+# 23. CONTENT CONFLICT ENGINE
+
+If two items require the same screen:
+
+```text
+Emergency
+vs
+Advertisement
+```
+
+Emergency wins.
+
+If:
+
+```text
+Transport Alert
+vs
+Normal News
+```
+
+Transport Alert wins.
+
+Implement deterministic priority resolution.
+
+---
+
+# 24. EXPIRATION ENGINE
+
+Automatically remove stale content.
+
+Examples:
+
+```text
+train delay expires after service arrival
+weather warning expires after timestamp
+advertisement expires after campaign end
+event disappears after event time
+```
+
+---
+
+# 25. REAL-TIME UPDATE ENGINE
+
+Use:
+
+```text
+WebSockets
+MQTT
+event queues
+```
+
+where appropriate.
+
+When source data changes:
+
+```text
+DATA CHANGED
+    ↓
+DETECT
+    ↓
+RECALCULATE
+    ↓
+VALIDATE
+    ↓
+UPDATE DISPLAY
+```
+
+---
+
+# 26. CONTENT CACHE
+
+Cache frequently used content:
+
+```text
+logos
+images
+weather
+station names
+translations
+advertisements
+templates
+```
+
+Avoid repeatedly requesting identical AI transformations.
+
+---
+
+# 27. GEMINI COST CONTROL
+
+Do not call Gemini for every display refresh.
+
+Instead:
+
+```text
+RAW DATA
+ ↓
+CHANGE DETECTION
+ ↓
+Does semantic interpretation need to change?
+ ↓
+YES → Gemini
+NO  → cached content
+```
+
+This makes the system suitable for high-volume display networks.
+
+---
+
+# 28. AI CONFIDENCE
+
+Every AI transformation should include:
+
+```text
+confidence
+source
+timestamp
+reason
+```
+
+Example:
+
+```json
+{
+  "confidence": 0.97,
+  "source": "rail_api_01",
+  "reason": "Service status explicitly reports delay."
+}
+```
+
+If confidence is below a configurable threshold:
+
+```text
+SEND TO REVIEW QUEUE
+```
+
+rather than automatically displaying it.
+
+---
+
+# 29. HUMAN APPROVAL
+
+Create:
+
+```text
+AUTO
+REVIEW
+MANUAL
+```
+
+modes.
+
+### AUTO
+
+Low-risk routine information.
+
+### REVIEW
+
+AI-generated summaries or uncertain information.
+
+### MANUAL
+
+Emergency or sensitive content requiring human approval.
+
+---
+
+# 30. SAFETY MODEL
+
+The AI must never independently:
+
+```text
+control physical machinery
+change safety systems
+override emergency infrastructure
+modify railway signalling
+control aircraft systems
+```
+
+It only creates display content.
+
+All display commands pass through deterministic validation.
+
+---
+
+# 31. DISPLAY HEALTH MONITOR
+
+Monitor:
+
+```text
+online/offline
+CPU
+GPU
+temperature
+network latency
+brightness
+power
+storage
+last heartbeat
+```
+
+Show:
+
+```text
+ONLINE
+DEGRADED
+OFFLINE
+```
+
+---
+
+# 32. SCREEN TELEMETRY
+
+Each display sends:
+
+```text
+screen_id
+timestamp
+temperature
+power
+network_latency
+current_content
+uptime
+```
+
+to the central platform.
+
+---
+
+# 33. CONTENT AUDIT LOG
+
+Every display event must be recorded:
+
+```text
+content_id
+screen_id
+timestamp
+source
+AI_model
+decision
+operator
+duration
+```
+
+This creates a complete audit trail.
+
+---
+
+# 34. AI DECISION LOG
+
+Store:
+
+```text
+input
+AI instruction
+structured output
+validation result
+final display decision
+```
+
+Do not store sensitive data unnecessarily.
+
+---
+
+# 35. SCREEN SIMULATOR
+
+Create a virtual display wall.
+
+Example:
+
+```text
+┌────────────┐ ┌────────────┐ ┌────────────┐
+│ SCREEN 01  │ │ SCREEN 02  │ │ SCREEN 03  │
+│            │ │            │ │            │
+│ LIVE DATA  │ │ WEATHER    │ │ ADVERT     │
+└────────────┘ └────────────┘ └────────────┘
+```
+
+Allow hundreds of virtual screens.
+
+---
+
+# 36. DISPLAY DIGITAL TWIN MAP
+
+Represent:
+
+```text
+building
+floor
+room
+screen
+```
+
+hierarchically.
+
+Allow:
+
+```text
+CITY
+ ↓
+SITE
+ ↓
+BUILDING
+ ↓
+FLOOR
+ ↓
+SCREEN
+```
+
+---
+
+# 37. NETWORK DASHBOARD
+
+Main dashboard:
+
+```text
+TELESCREEN.OS
+
+SCREENS
+1,284
+
+ONLINE
+1,273
+
+OFFLINE
+11
+
+ACTIVE CONTENT
+842
+
+ALERTS
+3
+
+AI TRANSFORMATIONS
+12,493
+
+DATA SOURCES
+87
+```
+
+---
+
+# 38. CONTENT DASHBOARD
+
+Show:
+
+```text
+QUEUED
+SCHEDULED
+DISPLAYING
+EXPIRED
+FAILED
+```
+
+---
+
+# 39. AI DASHBOARD
+
+Display:
+
+```text
+AI REQUESTS
+AI TRANSFORMATIONS
+CACHE HIT RATE
+AVERAGE LATENCY
+LOW-CONFIDENCE ITEMS
+HUMAN REVIEWS
+```
+
+---
+
+# 40. DATA PIPELINE VISUALISATION
+
+Show:
+
+```text
+DATA SOURCES
+     ↓
+INGESTION
+     ↓
+NORMALISATION
+     ↓
+AI
+     ↓
+VALIDATION
+     ↓
+SCHEDULER
+     ↓
+DISPLAY NETWORK
+```
+
+Animate data flowing through the system.
+
+---
+
+# 41. EVENT-DRIVEN ARCHITECTURE
+
+Use events:
+
+```text
+DATA_RECEIVED
+DATA_CHANGED
+CONTENT_CREATED
+CONTENT_VALIDATED
+CONTENT_SCHEDULED
+CONTENT_STARTED
+CONTENT_EXPIRED
+SCREEN_OFFLINE
+SCREEN_ONLINE
+ALERT_CREATED
+```
+
+---
+
+# 42. API
+
+Create:
+
+```text
+POST /sources
+GET /sources
+
+POST /content
+GET /content
+
+POST /screens
+GET /screens
+
+POST /campaigns
+GET /campaigns
+
+POST /ai/transform
+POST /display/publish
+
+GET /telemetry
+GET /audit
+```
+
+---
+
+# 43. GEMINI FUNCTION CALLING
+
+Where appropriate, define functions such as:
+
+```text
+create_display_content()
+classify_content()
+translate_content()
+select_layout()
+schedule_content()
+request_human_review()
+get_screen_capabilities()
+get_current_screen_state()
+```
+
+Gemini should request these functions rather than directly modifying databases or screens.
+
+---
+
+# 44. STRUCTURED OUTPUT
+
+All Gemini responses should conform to schemas such as:
+
+```json
+{
+  "content_type": "weather",
+  "priority": 1,
+  "layout": "weather_panel",
+  "language": "en-GB",
+  "duration": 15,
+  "expires_at": "...",
+  "content": {
+    "headline": "...",
+    "body": "...",
+    "icon": "rain"
+  }
+}
+```
+
+Reject malformed outputs.
+
+---
+
+# 45. OFFLINE MODE
+
+If Gemini is unavailable:
+
+```text
+display cached content
+continue deterministic schedules
+continue emergency templates
+continue local data sources
+```
+
+The display network must not collapse simply because the AI service is unavailable.
+
+---
+
+# 46. FALLBACK ENGINE
+
+Create deterministic templates for:
+
+```text
+transport
+weather
+emergency
+advertising
+news
+information
+```
+
+Gemini is an enhancement layer, not the only source of truth.
+
+---
+
+# 47. PERFORMANCE
+
+Design for:
+
+```text
+10 screens
+100 screens
+1,000 screens
+10,000 screens
+```
+
+Avoid making one AI request per screen.
+
+Instead:
+
+```text
+SOURCE EVENT
+      ↓
+ONE CONTENT OBJECT
+      ↓
+MANY SCREEN TARGETS
+```
+
+---
+
+# 48. MULTI-TENANT ARCHITECTURE
+
+Support:
+
+```text
+Organisation
+ ├── Site
+ │    ├── Screen Group
+ │    │    ├── Screen
+```
+
+Each organisation has:
+
+```text
+users
+permissions
+screens
+campaigns
+content
+data sources
+audit logs
+```
+
+---
+
+# 49. ROLE-BASED ACCESS
+
+Roles:
+
+```text
+ADMIN
+OPERATOR
+CONTENT_MANAGER
+MARKETING
+ANALYST
+VIEWER
+```
+
+---
+
+# 50. SIMULATION MODE
+
+Create a full simulation environment.
+
+Generate:
+
+```text
+1,000 virtual screens
+50 data sources
+10,000 content events
+```
+
+Then simulate:
+
+```text
+weather changes
+transport delays
+advertising campaigns
+network outages
+screen failures
+emergency alerts
+```
+
+Observe how the system responds.
+
+---
+
+# 51. FINAL GEMINI ARCHITECTURE
+
+The finished system should behave as:
+
+```text
+             ┌──────────────────┐
+             │     GEMINI       │
+             │  AI INTERPRETER  │
+             └────────┬─────────┘
+                      │
+                      ▼
+┌─────────────┐   ┌─────────────┐
+│ DATA SOURCES│ → │ NORMALISER  │
+└─────────────┘   └──────┬──────┘
+                         │
+                         ▼
+                  ┌─────────────┐
+                  │ AI CONTENT  │
+                  │  ENGINE     │
+                  └──────┬──────┘
+                         │
+                         ▼
+                  ┌─────────────┐
+                  │ VALIDATION  │
+                  └──────┬──────┘
+                         │
+                         ▼
+                  ┌─────────────┐
+                  │ SCHEDULER   │
+                  └──────┬──────┘
+                         │
+                         ▼
+                  ┌─────────────┐
+                  │ DISPLAY API │
+                  └──────┬──────┘
+                         │
+             ┌───────────┼───────────┐
+             ▼           ▼           ▼
+          SCREEN       SCREEN      SCREEN
+            01           02          03
+```
+
+---
+
+# 52. FINAL DEVELOPMENT REQUIREMENT
+
+Build the complete working application.
+
+Do not create merely a visual mock-up.
+
+Provide:
+
+```text
+complete source code
+project structure
+database models
+API
+Gemini integration
+structured schemas
+display scheduler
+AI content pipeline
+screen simulator
+telemetry
+audit logging
+authentication
+tests
+synthetic data
+documentation
+```
+
+Use Gemini as the **semantic intelligence layer**, while deterministic software controls:
+
+```text
+validation
+scheduling
+permissions
+display compatibility
+expiry
+audit
+network communication
+```
+
+The final result should feel like an enterprise-grade **AI operating system for a global digital signage / tele-screen network**.
+
+The core design principle is:
+
+```text
+ANY DATA
+     ↓
+UNDERSTAND
+     ↓
+STRUCTURE
+     ↓
+VALIDATE
+     ↓
+OPTIMISE
+     ↓
+SCHEDULE
+     ↓
+DISPLAY
+     ↓
+MONITOR
+     ↓
+LEARN
+```
+
+The system must be able to scale from **one 100"+ television to thousands of networked tele-screens**, with Gemini transforming heterogeneous information into consistent, validated, screen-appropriate display data.
