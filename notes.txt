@@ -4430,3 +4430,2203 @@ int main(int argc,char **argv)
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# ================================================================
+# 3D METROLOGY ENGINE
+# Julia 1.10+
+#
+# General-purpose computational metrology engine.
+#
+# Capabilities:
+#   - 3D points / vectors
+#   - Coordinate transformations
+#   - Distances / angles
+#   - Point-cloud processing
+#   - Noise filtering
+#   - Plane / line / circle / sphere / cylinder fitting
+#   - Point-cloud registration
+#   - Surface deviation
+#   - Tolerance analysis
+#   - Measurement uncertainty
+#   - Measurement quality
+#   - Measurement audit trail
+#   - JSON export
+#
+# Intended as a foundation for industrial inspection,
+# manufacturing, construction, robotics and digital-twin systems.
+# ================================================================
+
+module MetrologyEngine
+
+using LinearAlgebra
+using Statistics
+using Dates
+using Random
+using Printf
+
+# ================================================================
+# CONFIGURATION
+# ================================================================
+
+const ENGINE_NAME = "Julia 3D Metrology Engine"
+const ENGINE_VERSION = "0.1.0"
+
+# ================================================================
+# BASIC TYPES
+# ================================================================
+
+struct Point3D{T<:Real}
+    x::T
+    y::T
+    z::T
+end
+
+Point3D(x::Real, y::Real, z::Real) =
+    Point3D(promote(x, y, z)...)
+
+Base.show(io::IO, p::Point3D) =
+    print(io, "Point3D($(p.x), $(p.y), $(p.z))")
+
+Base.:+(a::Point3D, b::Point3D) =
+    Point3D(a.x+b.x, a.y+b.y, a.z+b.z)
+
+Base.:-(a::Point3D, b::Point3D) =
+    Point3D(a.x-b.x, a.y-b.y, a.z-b.z)
+
+Base.:*(s::Real, p::Point3D) =
+    Point3D(s*p.x, s*p.y, s*p.z)
+
+Base.:/(p::Point3D, s::Real) =
+    Point3D(p.x/s, p.y/s, p.z/s)
+
+function vector(p::Point3D)
+    return [Float64(p.x), Float64(p.y), Float64(p.z)]
+end
+
+function point(v::AbstractVector)
+    length(v) == 3 || error("3D vector required")
+    return Point3D(v[1], v[2], v[3])
+end
+
+# ================================================================
+# VECTOR OPERATIONS
+# ================================================================
+
+function dot3(a::Point3D, b::Point3D)
+    return a.x*b.x + a.y*b.y + a.z*b.z
+end
+
+function cross3(a::Point3D, b::Point3D)
+    return Point3D(
+        a.y*b.z - a.z*b.y,
+        a.z*b.x - a.x*b.z,
+        a.x*b.y - a.y*b.x
+    )
+end
+
+function norm3(p::Point3D)
+    return sqrt(p.x^2 + p.y^2 + p.z^2)
+end
+
+function normalize3(p::Point3D)
+    n = norm3(p)
+
+    n > eps(Float64) ||
+        error("Cannot normalize zero vector")
+
+    return p / n
+end
+
+function distance(a::Point3D, b::Point3D)
+    return norm3(a-b)
+end
+
+# ================================================================
+# ANGLES
+# ================================================================
+
+function angle_between(a::Point3D, b::Point3D)
+
+    na = norm3(a)
+    nb = norm3(b)
+
+    na > 0 || error("Zero vector")
+    nb > 0 || error("Zero vector")
+
+    c = dot3(a,b)/(na*nb)
+
+    c = clamp(c, -1.0, 1.0)
+
+    return acos(c)
+end
+
+function angle_degrees(a::Point3D, b::Point3D)
+    return rad2deg(angle_between(a,b))
+end
+
+# ================================================================
+# POINT CLOUD
+# ================================================================
+
+struct PointCloud{T<:Real}
+    points::Vector{Point3D{T}}
+    timestamp::DateTime
+    sensor_id::String
+    frame::String
+end
+
+function PointCloud(
+    points::Vector{Point3D{T}};
+    sensor_id="unknown",
+    frame="world"
+) where T<:Real
+
+    return PointCloud(
+        points,
+        now(),
+        sensor_id,
+        frame
+    )
+end
+
+Base.length(pc::PointCloud) = length(pc.points)
+
+# ================================================================
+# POINT CLOUD CONVERSION
+# ================================================================
+
+function point_matrix(pc::PointCloud)
+
+    n = length(pc)
+
+    M = Matrix{Float64}(undef, 3, n)
+
+    for i in 1:n
+        p = pc.points[i]
+
+        M[:,i] = [
+            p.x,
+            p.y,
+            p.z
+        ]
+    end
+
+    return M
+end
+
+function matrix_to_cloud(
+    M;
+    sensor_id="unknown",
+    frame="world"
+)
+
+    size(M,1) == 3 ||
+        error("Matrix must be 3 × N")
+
+    pts = Point3D{Float64}[]
+
+    for i in axes(M,2)
+        push!(
+            pts,
+            Point3D(
+                M[1,i],
+                M[2,i],
+                M[3,i]
+            )
+        )
+    end
+
+    return PointCloud(
+        pts,
+        sensor_id=sensor_id,
+        frame=frame
+    )
+end
+
+# ================================================================
+# CENTROID
+# ================================================================
+
+function centroid(points::Vector{<:Point3D})
+
+    isempty(points) &&
+        error("Empty point collection")
+
+    x = mean(p.x for p in points)
+    y = mean(p.y for p in points)
+    z = mean(p.z for p in points)
+
+    return Point3D(x,y,z)
+end
+
+centroid(pc::PointCloud) =
+    centroid(pc.points)
+
+# ================================================================
+# BOUNDING BOX
+# ================================================================
+
+function bounding_box(pc::PointCloud)
+
+    isempty(pc.points) &&
+        error("Empty point cloud")
+
+    xs = [p.x for p in pc.points]
+    ys = [p.y for p in pc.points]
+    zs = [p.z for p in pc.points]
+
+    minimum_point = Point3D(
+        minimum(xs),
+        minimum(ys),
+        minimum(zs)
+    )
+
+    maximum_point = Point3D(
+        maximum(xs),
+        maximum(ys),
+        maximum(zs)
+    )
+
+    dimensions =
+        maximum_point - minimum_point
+
+    return (
+        min = minimum_point,
+        max = maximum_point,
+        dimensions = dimensions
+    )
+end
+
+# ================================================================
+# 4 × 4 TRANSFORMATION
+# ================================================================
+
+struct Transform3D
+    matrix::Matrix{Float64}
+
+    function Transform3D(M::AbstractMatrix)
+
+        size(M) == (4,4) ||
+            error("Transformation must be 4 × 4")
+
+        new(Matrix{Float64}(M))
+    end
+end
+
+function identity_transform()
+    return Transform3D(Matrix{Float64}(I,4,4))
+end
+
+function translation(tx,ty,tz)
+
+    M = Matrix{Float64}(I,4,4)
+
+    M[1,4] = tx
+    M[2,4] = ty
+    M[3,4] = tz
+
+    return Transform3D(M)
+end
+
+function rotation_x(angle)
+
+    c = cos(angle)
+    s = sin(angle)
+
+    M = Matrix{Float64}(I,4,4)
+
+    M[2,2] = c
+    M[2,3] = -s
+    M[3,2] = s
+    M[3,3] = c
+
+    return Transform3D(M)
+end
+
+function rotation_y(angle)
+
+    c = cos(angle)
+    s = sin(angle)
+
+    M = Matrix{Float64}(I,4,4)
+
+    M[1,1] = c
+    M[1,3] = s
+    M[3,1] = -s
+    M[3,3] = c
+
+    return Transform3D(M)
+end
+
+function rotation_z(angle)
+
+    c = cos(angle)
+    s = sin(angle)
+
+    M = Matrix{Float64}(I,4,4)
+
+    M[1,1] = c
+    M[1,2] = -s
+    M[2,1] = s
+    M[2,2] = c
+
+    return Transform3D(M)
+end
+
+function compose(A::Transform3D, B::Transform3D)
+
+    return Transform3D(
+        A.matrix * B.matrix
+    )
+end
+
+function transform_point(
+    T::Transform3D,
+    p::Point3D
+)
+
+    v = [
+        p.x,
+        p.y,
+        p.z,
+        1.0
+    ]
+
+    r = T.matrix * v
+
+    return Point3D(
+        r[1]/r[4],
+        r[2]/r[4],
+        r[3]/r[4]
+    )
+end
+
+function transform_cloud(
+    pc::PointCloud,
+    T::Transform3D
+)
+
+    pts = [
+        transform_point(T,p)
+        for p in pc.points
+    ]
+
+    return PointCloud(
+        pts,
+        sensor_id=pc.sensor_id,
+        frame=pc.frame
+    )
+end
+
+# ================================================================
+# PLANE
+# ================================================================
+
+struct Plane
+    normal::Point3D{Float64}
+    point::Point3D{Float64}
+    d::Float64
+end
+
+function Plane(normal::Point3D, point::Point3D)
+
+    n = normalize3(normal)
+
+    d = -dot3(n,point)
+
+    return Plane(n,point,d)
+end
+
+function point_plane_distance(
+    p::Point3D,
+    plane::Plane
+)
+
+    return abs(
+        dot3(plane.normal,p) + plane.d
+    )
+end
+
+function signed_plane_distance(
+    p::Point3D,
+    plane::Plane
+)
+
+    return dot3(
+        plane.normal,p
+    ) + plane.d
+end
+
+# ================================================================
+# PLANE FITTING
+# ================================================================
+
+function fit_plane(points::Vector{<:Point3D})
+
+    length(points) >= 3 ||
+        error("At least 3 points required")
+
+    c = centroid(points)
+
+    X = zeros(Float64, length(points), 3)
+
+    for (i,p) in enumerate(points)
+
+        X[i,:] = [
+            p.x-c.x,
+            p.y-c.y,
+            p.z-c.z
+        ]
+
+    end
+
+    _,_,V = svd(X)
+
+    n = V[:,end]
+
+    plane = Plane(
+        Point3D(n[1],n[2],n[3]),
+        c
+    )
+
+    residuals = [
+        signed_plane_distance(p,plane)
+        for p in points
+    ]
+
+    rms = sqrt(
+        mean(residuals.^2)
+    )
+
+    return (
+        plane=plane,
+        rms_error=rms,
+        residuals=residuals
+    )
+end
+
+# ================================================================
+# LINE FITTING
+# ================================================================
+
+struct Line3D
+    origin::Point3D{Float64}
+    direction::Point3D{Float64}
+end
+
+function fit_line(points::Vector{<:Point3D})
+
+    length(points) >= 2 ||
+        error("At least 2 points required")
+
+    c = centroid(points)
+
+    X = zeros(Float64,length(points),3)
+
+    for (i,p) in enumerate(points)
+
+        X[i,:] = [
+            p.x-c.x,
+            p.y-c.y,
+            p.z-c.z
+        ]
+
+    end
+
+    _,_,V = svd(X)
+
+    d = V[:,1]
+
+    line = Line3D(
+        c,
+        normalize3(
+            Point3D(d[1],d[2],d[3])
+        )
+    )
+
+    return line
+end
+
+function point_line_distance(
+    p::Point3D,
+    line::Line3D
+)
+
+    v = p - line.origin
+
+    projection =
+        dot3(v,line.direction) *
+        line.direction
+
+    perpendicular =
+        v - projection
+
+    return norm3(perpendicular)
+end
+
+# ================================================================
+# SPHERE
+# ================================================================
+
+struct Sphere
+    center::Point3D{Float64}
+    radius::Float64
+end
+
+function fit_sphere(points::Vector{<:Point3D})
+
+    length(points) >= 4 ||
+        error("At least 4 points required")
+
+    A = zeros(Float64,length(points),4)
+    b = zeros(Float64,length(points))
+
+    for (i,p) in enumerate(points)
+
+        A[i,1] = 2*p.x
+        A[i,2] = 2*p.y
+        A[i,3] = 2*p.z
+
+        A[i,4] = 1
+
+        b[i] =
+            p.x^2 +
+            p.y^2 +
+            p.z^2
+
+    end
+
+    solution =
+        A \ b
+
+    center = Point3D(
+        solution[1],
+        solution[2],
+        solution[3]
+    )
+
+    radius = sqrt(
+        solution[4] +
+        center.x^2 +
+        center.y^2 +
+        center.z^2
+    )
+
+    residuals = [
+        distance(p,center)-radius
+        for p in points
+    ]
+
+    rms = sqrt(
+        mean(residuals.^2)
+    )
+
+    return (
+        sphere=Sphere(center,radius),
+        rms_error=rms,
+        residuals=residuals
+    )
+end
+
+# ================================================================
+# CYLINDER
+# ================================================================
+
+struct Cylinder
+    axis::Line3D
+    radius::Float64
+end
+
+function fit_cylinder(
+    points::Vector{<:Point3D};
+    iterations=5
+)
+
+    length(points) >= 10 ||
+        error("At least 10 points recommended")
+
+    line = fit_line(points)
+
+    radius = mean(
+        point_line_distance(p,line)
+        for p in points
+    )
+
+    for _ in 1:iterations
+
+        distances = [
+            point_line_distance(p,line)
+            for p in points
+        ]
+
+        weights = [
+            1.0/(1.0+d+eps())
+            for d in distances
+        ]
+
+        c = centroid(points)
+
+        # Weighted covariance
+        X = zeros(Float64,length(points),3)
+
+        for i in eachindex(points)
+
+            p = points[i]
+
+            X[i,:] = sqrt(weights[i]) .* [
+                p.x-c.x,
+                p.y-c.y,
+                p.z-c.z
+            ]
+
+        end
+
+        _,_,V = svd(X)
+
+        direction = V[:,1]
+
+        line = Line3D(
+            c,
+            normalize3(
+                Point3D(
+                    direction[1],
+                    direction[2],
+                    direction[3]
+                )
+            )
+        )
+
+        radius = mean(
+            point_line_distance(p,line)
+            for p in points
+        )
+
+    end
+
+    residuals = [
+        point_line_distance(p,line)-radius
+        for p in points
+    ]
+
+    return (
+        cylinder=Cylinder(line,radius),
+        rms_error=sqrt(mean(residuals.^2)),
+        residuals=residuals
+    )
+end
+
+# ================================================================
+# CIRCLE IN PLANE
+# ================================================================
+
+struct Circle3D
+    center::Point3D{Float64}
+    normal::Point3D{Float64}
+    radius::Float64
+end
+
+function fit_circle_3d(points::Vector{<:Point3D})
+
+    length(points) >= 3 ||
+        error("At least 3 points required")
+
+    plane_result =
+        fit_plane(points)
+
+    plane =
+        plane_result.plane
+
+    n = vector(plane.normal)
+
+    # Construct orthogonal basis
+    temp =
+        abs(n[1]) < 0.9 ?
+        [1.0,0.0,0.0] :
+        [0.0,1.0,0.0]
+
+    u = normalize(cross(n,temp))
+    v = cross(n,u)
+
+    c = centroid(points)
+
+    X = zeros(Float64,length(points),2)
+
+    for (i,p) in enumerate(points)
+
+        r = vector(p-c)
+
+        X[i,1] = dot(r,u)
+        X[i,2] = dot(r,v)
+
+    end
+
+    A = zeros(Float64,length(points),3)
+    b = zeros(Float64,length(points))
+
+    for i in axes(X,1)
+
+        x = X[i,1]
+        y = X[i,2]
+
+        A[i,:] = [
+            2x,
+            2y,
+            1
+        ]
+
+        b[i] = x^2+y^2
+
+    end
+
+    sol = A\b
+
+    cx = sol[1]
+    cy = sol[2]
+
+    center =
+        c +
+        Point3D(
+            cx*u[1] + cy*v[1],
+            cx*u[2] + cy*v[2],
+            cx*u[3] + cy*v[3]
+        )
+
+    radius = sqrt(
+        sol[3] +
+        cx^2 +
+        cy^2
+    )
+
+    return Circle3D(
+        center,
+        plane.normal,
+        radius
+    )
+end
+
+# ================================================================
+# NEAREST NEIGHBOUR
+# ================================================================
+
+function nearest_neighbor(
+    p::Point3D,
+    cloud::PointCloud
+)
+
+    isempty(cloud.points) &&
+        error("Empty point cloud")
+
+    best_index = 1
+    best_distance = Inf
+
+    for i in eachindex(cloud.points)
+
+        d = distance(
+            p,
+            cloud.points[i]
+        )
+
+        if d < best_distance
+
+            best_distance = d
+            best_index = i
+
+        end
+
+    end
+
+    return (
+        index=best_index,
+        point=cloud.points[best_index],
+        distance=best_distance
+    )
+end
+
+# ================================================================
+# NOISE FILTER
+# ================================================================
+
+function statistical_filter(
+    pc::PointCloud;
+    sigma=2.5
+)
+
+    n = length(pc)
+
+    n < 4 &&
+        return pc
+
+    distances = Float64[]
+
+    for i in 1:n
+
+        local_sum = 0.0
+        count = 0
+
+        for j in 1:n
+
+            i == j && continue
+
+            local_sum +=
+                distance(
+                    pc.points[i],
+                    pc.points[j]
+                )
+
+            count += 1
+
+            count >= min(10,n-1) &&
+                break
+        end
+
+        push!(
+            distances,
+            local_sum/count
+        )
+
+    end
+
+    μ = mean(distances)
+    σ = std(distances)
+
+    threshold =
+        μ + sigma*σ
+
+    filtered = [
+        pc.points[i]
+        for i in 1:n
+        if distances[i] <= threshold
+    ]
+
+    return PointCloud(
+        filtered,
+        sensor_id=pc.sensor_id,
+        frame=pc.frame
+    )
+end
+
+# ================================================================
+# ICP-STYLE REGISTRATION
+# ================================================================
+
+function rigid_transform(
+    source::Vector{<:Point3D},
+    target::Vector{<:Point3D}
+)
+
+    length(source) ==
+    length(target) ||
+        error("Point sets must have equal length")
+
+    length(source) >= 3 ||
+        error("At least 3 correspondences required")
+
+    cs = centroid(source)
+    ct = centroid(target)
+
+    H = zeros(Float64,3,3)
+
+    for i in eachindex(source)
+
+        a = vector(source[i]-cs)
+        b = vector(target[i]-ct)
+
+        H += a*b'
+
+    end
+
+    U,_,Vt = svd(H)
+
+    R = Vt*U'
+
+    if det(R) < 0
+
+        Vt[3,:] .*= -1
+
+        R = Vt*U'
+
+    end
+
+    t =
+        vector(ct) -
+        R*vector(cs)
+
+    M = Matrix{Float64}(I,4,4)
+
+    M[1:3,1:3] = R
+    M[1:3,4] = t
+
+    return Transform3D(M)
+end
+
+function register_clouds(
+    source::PointCloud,
+    target::PointCloud;
+    iterations=10,
+    tolerance=1e-6
+)
+
+    current = source
+    T_total = identity_transform()
+
+    previous_error = Inf
+
+    for iteration in 1:iterations
+
+        src = current.points
+        tgt = Point3D{Float64}[]
+
+        for p in src
+
+            nn =
+                nearest_neighbor(
+                    p,
+                    target
+                )
+
+            push!(
+                tgt,
+                nn.point
+            )
+
+        end
+
+        T =
+            rigid_transform(src,tgt)
+
+        current =
+            transform_cloud(
+                current,T
+            )
+
+        T_total =
+            compose(T,T_total)
+
+        errors = [
+            distance(
+                current.points[i],
+                tgt[i]
+            )
+            for i in eachindex(src)
+        ]
+
+        error_value =
+            mean(errors)
+
+        if abs(
+            previous_error -
+            error_value
+        ) < tolerance
+
+            break
+
+        end
+
+        previous_error =
+            error_value
+    end
+
+    final_errors = [
+        nearest_neighbor(
+            p,target
+        ).distance
+        for p in current.points
+    ]
+
+    return (
+        transform=T_total,
+        registered=current,
+        rms_error=
+            sqrt(mean(final_errors.^2)),
+        mean_error=
+            mean(final_errors),
+        iterations=iterations
+    )
+end
+
+# ================================================================
+# SURFACE DEVIATION
+# ================================================================
+
+function deviation_map(
+    measured::PointCloud,
+    reference::PointCloud
+)
+
+    deviations = Float64[]
+
+    for p in measured.points
+
+        nn =
+            nearest_neighbor(
+                p,
+                reference
+            )
+
+        push!(
+            deviations,
+            nn.distance
+        )
+
+    end
+
+    return deviations
+end
+
+# ================================================================
+# TOLERANCE
+# ================================================================
+
+struct ToleranceSpec
+    nominal::Float64
+    lower::Float64
+    upper::Float64
+end
+
+struct ToleranceResult
+    measured::Float64
+    nominal::Float64
+    deviation::Float64
+    lower_limit::Float64
+    upper_limit::Float64
+    pass::Bool
+end
+
+function check_tolerance(
+    value::Real,
+    tolerance::ToleranceSpec
+)
+
+    deviation =
+        Float64(value) -
+        tolerance.nominal
+
+    lower =
+        tolerance.nominal +
+        tolerance.lower
+
+    upper =
+        tolerance.nominal +
+        tolerance.upper
+
+    pass =
+        lower <= value <= upper
+
+    return ToleranceResult(
+        Float64(value),
+        tolerance.nominal,
+        deviation,
+        lower,
+        upper,
+        pass
+    )
+end
+
+# ================================================================
+# UNCERTAINTY
+# ================================================================
+
+struct MeasurementResult
+    id::String
+    value::Float64
+    unit::String
+    uncertainty::Float64
+    confidence::Float64
+    method::String
+    timestamp::DateTime
+    quality::Float64
+end
+
+function uncertainty_from_samples(
+    values;
+    confidence=0.95,
+    unit=""
+)
+
+    n = length(values)
+
+    n >= 2 ||
+        error("At least two observations required")
+
+    μ = mean(values)
+    s = std(values)
+
+    standard_error =
+        s/sqrt(n)
+
+    # Normal approximation.
+    # Replace with appropriate t-distribution
+    # implementation for formal metrology work.
+    z =
+        confidence >= 0.99 ? 2.576 :
+        confidence >= 0.95 ? 1.960 :
+        confidence >= 0.90 ? 1.645 :
+        1.0
+
+    u =
+        z*standard_error
+
+    return (
+        value=μ,
+        uncertainty=u,
+        confidence=confidence,
+        unit=unit
+    )
+end
+
+# ================================================================
+# MEASUREMENT QUALITY
+# ================================================================
+
+function quality_score(
+    residuals;
+    specification=1.0
+)
+
+    isempty(residuals) &&
+        return 0.0
+
+    rms =
+        sqrt(mean(residuals.^2))
+
+    score =
+        100 *
+        exp(-rms /
+            max(specification,eps()))
+
+    return clamp(score,0.0,100.0)
+end
+
+# ================================================================
+# DIMENSIONAL MEASUREMENTS
+# ================================================================
+
+function measure_length(
+    points::Vector{<:Point3D}
+)
+
+    isempty(points) &&
+        error("No points supplied")
+
+    min_p = centroid(points)
+    max_distance = 0.0
+
+    for i in eachindex(points)
+
+        for j in i+1:length(points)
+
+            d =
+                distance(
+                    points[i],
+                    points[j]
+                )
+
+            if d > max_distance
+
+                max_distance = d
+
+            end
+        end
+    end
+
+    return max_distance
+end
+
+function measure_width(pc::PointCloud)
+
+    box =
+        bounding_box(pc)
+
+    return box.dimensions.x
+end
+
+function measure_height(pc::PointCloud)
+
+    box =
+        bounding_box(pc)
+
+    return box.dimensions.z
+end
+
+function measure_depth(pc::PointCloud)
+
+    box =
+        bounding_box(pc)
+
+    return box.dimensions.y
+end
+
+# ================================================================
+# VOLUME — AXIS ALIGNED BOUNDING BOX
+# ================================================================
+
+function bounding_volume(pc::PointCloud)
+
+    d =
+        bounding_box(pc).dimensions
+
+    return d.x*d.y*d.z
+end
+
+# ================================================================
+# CONVEX-HULL-FRIENDLY SIMPLE VOLUME
+#
+# This is deliberately a placeholder abstraction rather than
+# pretending an arbitrary point cloud has a trivial volume.
+# ================================================================
+
+function estimate_volume_voxel(
+    pc::PointCloud;
+    resolution=1.0
+)
+
+    isempty(pc.points) &&
+        error("Empty point cloud")
+
+    box =
+        bounding_box(pc)
+
+    minp = box.min
+    maxp = box.max
+
+    occupied = Set{Tuple{Int,Int,Int}}()
+
+    for p in pc.points
+
+        ix = floor(Int,
+            (p.x-minp.x)/resolution)
+
+        iy = floor(Int,
+            (p.y-minp.y)/resolution)
+
+        iz = floor(Int,
+            (p.z-minp.z)/resolution)
+
+        push!(
+            occupied,
+            (ix,iy,iz)
+        )
+
+    end
+
+    return length(occupied) *
+        resolution^3
+end
+
+# ================================================================
+# PLANE TO PLANE ANGLE
+# ================================================================
+
+function plane_angle(
+    a::Plane,
+    b::Plane
+)
+
+    return angle_degrees(
+        a.normal,
+        b.normal
+    )
+end
+
+# ================================================================
+# PLANE TO POINT PROJECTION
+# ================================================================
+
+function project_to_plane(
+    p::Point3D,
+    plane::Plane
+)
+
+    d =
+        signed_plane_distance(
+            p,
+            plane
+        )
+
+    return p -
+        d*plane.normal
+end
+
+# ================================================================
+# LINE / PLANE INTERSECTION
+# ================================================================
+
+function line_plane_intersection(
+    line::Line3D,
+    plane::Plane
+)
+
+    denominator =
+        dot3(
+            plane.normal,
+            line.direction
+        )
+
+    abs(denominator) < 1e-12 &&
+        return nothing
+
+    t =
+        -(
+            dot3(
+                plane.normal,
+                line.origin
+            ) + plane.d
+        ) / denominator
+
+    return (
+        point =
+            line.origin +
+            t*line.direction,
+        parameter=t
+    )
+end
+
+# ================================================================
+# MEASUREMENT PIPELINE
+# ================================================================
+
+struct MeasurementPipeline
+    name::String
+    steps::Vector{Function}
+end
+
+function MeasurementPipeline(name::String)
+
+    return MeasurementPipeline(
+        name,
+        Function[]
+    )
+end
+
+function add_step!(
+    pipeline::MeasurementPipeline,
+    step::Function
+)
+
+    push!(
+        pipeline.steps,
+        step
+    )
+
+    return pipeline
+end
+
+function execute(
+    pipeline::MeasurementPipeline,
+    input
+)
+
+    data = input
+
+    for step in pipeline.steps
+
+        data = step(data)
+
+    end
+
+    return data
+end
+
+# ================================================================
+# AUDIT TRAIL
+# ================================================================
+
+struct AuditRecord
+    timestamp::DateTime
+    operation::String
+    input_description::String
+    output_description::String
+    operator::String
+    software_version::String
+end
+
+mutable struct AuditTrail
+    records::Vector{AuditRecord}
+end
+
+AuditTrail() =
+    AuditTrail(AuditRecord[])
+
+function audit!(
+    trail::AuditTrail;
+    operation,
+    input_description,
+    output_description,
+    operator="system"
+)
+
+    push!(
+        trail.records,
+        AuditRecord(
+            now(),
+            operation,
+            input_description,
+            output_description,
+            operator,
+            ENGINE_VERSION
+        )
+    )
+
+    return trail
+end
+
+# ================================================================
+# CSV POINT-CLOUD LOADER
+#
+# Expected:
+#
+# x,y,z
+# 1.0,2.0,3.0
+# ...
+# ================================================================
+
+function load_xyz_csv(
+    filename;
+    sensor_id="csv"
+)
+
+    lines =
+        readlines(filename)
+
+    points =
+        Point3D{Float64}[]
+
+    for line in lines
+
+        stripped =
+            strip(line)
+
+        isempty(stripped) &&
+            continue
+
+        startswith(
+            lowercase(stripped),
+            "x,"
+        ) && continue
+
+        fields =
+            split(stripped,',')
+
+        length(fields) >= 3 ||
+            continue
+
+        x =
+            parse(Float64,
+                strip(fields[1]))
+
+        y =
+            parse(Float64,
+                strip(fields[2]))
+
+        z =
+            parse(Float64,
+                strip(fields[3]))
+
+        push!(
+            points,
+            Point3D(x,y,z)
+        )
+
+    end
+
+    return PointCloud(
+        points,
+        sensor_id=sensor_id
+    )
+end
+
+# ================================================================
+# CSV EXPORT
+# ================================================================
+
+function save_xyz_csv(
+    pc::PointCloud,
+    filename
+)
+
+    open(filename,"w") do io
+
+        println(io,"x,y,z")
+
+        for p in pc.points
+
+            println(
+                io,
+                "$(p.x),$(p.y),$(p.z)"
+            )
+
+        end
+
+    end
+
+    return filename
+end
+
+# ================================================================
+# RANDOM SYNTHETIC DATA
+# ================================================================
+
+function synthetic_plane(
+    n=1000;
+    width=100.0,
+    noise=0.1
+)
+
+    points =
+        Point3D{Float64}[]
+
+    for _ in 1:n
+
+        x =
+            rand() * width -
+            width/2
+
+        y =
+            rand() * width -
+            width/2
+
+        z =
+            randn()*noise
+
+        push!(
+            points,
+            Point3D(x,y,z)
+        )
+
+    end
+
+    return PointCloud(
+        points,
+        sensor_id="synthetic",
+        frame="world"
+    )
+end
+
+function synthetic_sphere(
+    n=2000;
+    radius=50.0,
+    noise=0.1
+)
+
+    points =
+        Point3D{Float64}[]
+
+    for _ in 1:n
+
+        θ =
+            acos(
+                2*rand()-1
+            )
+
+        φ =
+            2π*rand()
+
+        r =
+            radius +
+            randn()*noise
+
+        push!(
+            points,
+            Point3D(
+                r*sin(θ)*cos(φ),
+                r*sin(θ)*sin(φ),
+                r*cos(θ)
+            )
+        )
+
+    end
+
+    return PointCloud(
+        points,
+        sensor_id="synthetic",
+        frame="world"
+    )
+end
+
+# ================================================================
+# METROLOGY REPORT
+# ================================================================
+
+function report_plane(
+    result
+)
+
+    plane =
+        result.plane
+
+    println()
+    println(
+        "=============================="
+    )
+    println(
+        "3D METROLOGY — PLANE"
+    )
+    println(
+        "=============================="
+    )
+
+    println(
+        "Normal: ",
+        plane.normal
+    )
+
+    println(
+        "Point: ",
+        plane.point
+    )
+
+    @printf(
+        "RMS error: %.6f\n",
+        result.rms_error
+    )
+
+end
+
+function report_sphere(
+    result
+)
+
+    sphere =
+        result.sphere
+
+    println()
+    println(
+        "=============================="
+    )
+    println(
+        "3D METROLOGY — SPHERE"
+    )
+    println(
+        "=============================="
+    )
+
+    println(
+        "Centre: ",
+        sphere.center
+    )
+
+    @printf(
+        "Radius: %.6f\n",
+        sphere.radius
+    )
+
+    @printf(
+        "Diameter: %.6f\n",
+        2*sphere.radius
+    )
+
+    @printf(
+        "RMS error: %.6f\n",
+        result.rms_error
+    )
+
+end
+
+function report_cylinder(
+    result
+)
+
+    cylinder =
+        result.cylinder
+
+    println()
+    println(
+        "=============================="
+    )
+    println(
+        "3D METROLOGY — CYLINDER"
+    )
+    println(
+        "=============================="
+    )
+
+    println(
+        "Axis origin: ",
+        cylinder.axis.origin
+    )
+
+    println(
+        "Axis direction: ",
+        cylinder.axis.direction
+    )
+
+    @printf(
+        "Radius: %.6f\n",
+        cylinder.radius
+    )
+
+    @printf(
+        "Diameter: %.6f\n",
+        2*cylinder.radius
+    )
+
+    @printf(
+        "RMS error: %.6f\n",
+        result.rms_error
+    )
+
+end
+
+# ================================================================
+# ENGINE SELF TEST
+# ================================================================
+
+function self_test()
+
+    println()
+    println(
+        "======================================"
+    )
+    println(
+        " JULIA 3D METROLOGY ENGINE"
+    )
+    println(
+        " SELF TEST"
+    )
+    println(
+        " Version: ",
+        ENGINE_VERSION
+    )
+    println(
+        "======================================"
+    )
+
+    # ------------------------------------------------------------
+    # Point test
+    # ------------------------------------------------------------
+
+    p1 =
+        Point3D(0.0,0.0,0.0)
+
+    p2 =
+        Point3D(3.0,4.0,12.0)
+
+    d =
+        distance(p1,p2)
+
+    println(
+        "Distance test: ",
+        d
+    )
+
+    @assert isapprox(
+        d,
+        13.0
+    )
+
+    # ------------------------------------------------------------
+    # Plane test
+    # ------------------------------------------------------------
+
+    cloud =
+        synthetic_plane(
+            1000,
+            width=100.0,
+            noise=0.01
+        )
+
+    plane =
+        fit_plane(
+            cloud.points
+        )
+
+    report_plane(plane)
+
+    # ------------------------------------------------------------
+    # Sphere test
+    # ------------------------------------------------------------
+
+    sphere_cloud =
+        synthetic_sphere(
+            2000,
+            radius=50.0,
+            noise=0.05
+        )
+
+    sphere =
+        fit_sphere(
+            sphere_cloud.points
+        )
+
+    report_sphere(sphere)
+
+    # ------------------------------------------------------------
+    # Transform test
+    # ------------------------------------------------------------
+
+    T =
+        compose(
+            translation(
+                10.0,
+                20.0,
+                30.0
+            ),
+            rotation_z(
+                deg2rad(30)
+            )
+        )
+
+    transformed =
+        transform_point(
+            T,
+            p2
+        )
+
+    println(
+        "Transformed point: ",
+        transformed
+    )
+
+    # ------------------------------------------------------------
+    # Tolerance test
+    # ------------------------------------------------------------
+
+    tolerance =
+        ToleranceSpec(
+            100.0,
+            -0.10,
+            0.10
+        )
+
+    tolerance_result =
+        check_tolerance(
+            100.07,
+            tolerance
+        )
+
+    println(
+        "Tolerance result: ",
+        tolerance_result.pass
+    )
+
+    @assert tolerance_result.pass
+
+    println()
+    println(
+        "ALL SELF TESTS PASSED"
+    )
+    println()
+
+    return true
+end
+
+# ================================================================
+# EXPORTS
+# ================================================================
+
+export Point3D
+export PointCloud
+export Plane
+export Line3D
+export Sphere
+export Cylinder
+export Circle3D
+export Transform3D
+
+export distance
+export angle_between
+export angle_degrees
+export centroid
+export bounding_box
+
+export translation
+export rotation_x
+export rotation_y
+export rotation_z
+export compose
+export transform_point
+export transform_cloud
+
+export fit_plane
+export fit_line
+export fit_sphere
+export fit_cylinder
+export fit_circle_3d
+
+export point_plane_distance
+export signed_plane_distance
+export point_line_distance
+export line_plane_intersection
+export project_to_plane
+export plane_angle
+
+export nearest_neighbor
+export statistical_filter
+export register_clouds
+export deviation_map
+
+export ToleranceSpec
+export ToleranceResult
+export check_tolerance
+
+export uncertainty_from_samples
+export quality_score
+
+export measure_length
+export measure_width
+export measure_height
+export measure_depth
+export bounding_volume
+export estimate_volume_voxel
+
+export MeasurementPipeline
+export add_step!
+export execute
+
+export AuditTrail
+export audit!
+
+export load_xyz_csv
+export save_xyz_csv
+
+export synthetic_plane
+export synthetic_sphere
+
+export report_plane
+export report_sphere
+export report_cylinder
+
+export self_test
+
+end # module
+
+
+# ================================================================
+# EXAMPLE APPLICATION
+# ================================================================
+
+using .MetrologyEngine
+
+println()
+println("Starting $(MetrologyEngine.ENGINE_NAME)")
+println("Version: $(MetrologyEngine.ENGINE_VERSION)")
+println()
+
+# ================================================================
+# 1. BASIC 3D MEASUREMENT
+# ================================================================
+
+p1 = Point3D(
+    100.0,
+    200.0,
+    300.0
+)
+
+p2 = Point3D(
+    450.0,
+    600.0,
+    900.0
+)
+
+println(
+    "3D distance = ",
+    distance(p1,p2)
+)
+
+# ================================================================
+# 2. SYNTHETIC LASER SCAN
+# ================================================================
+
+scan =
+    synthetic_sphere(
+        5000,
+        radius=100.0,
+        noise=0.03
+    )
+
+println(
+    "Scan points: ",
+    length(scan)
+)
+
+# ================================================================
+# 3. FILTER NOISE
+# ================================================================
+
+filtered =
+    statistical_filter(
+        scan,
+        sigma=2.5
+    )
+
+println(
+    "Filtered points: ",
+    length(filtered)
+)
+
+# ================================================================
+# 4. FIT SPHERE
+# ================================================================
+
+sphere_result =
+    fit_sphere(
+        filtered.points
+    )
+
+report_sphere(
+    sphere_result
+)
+
+# ================================================================
+# 5. MEASURE DIAMETER
+# ================================================================
+
+diameter =
+    2*sphere_result.sphere.radius
+
+println(
+    "Measured diameter = ",
+    diameter
+)
+
+# ================================================================
+# 6. TOLERANCE
+# ================================================================
+
+spec =
+    ToleranceSpec(
+        200.0,
+        -0.20,
+        0.20
+    )
+
+result =
+    check_tolerance(
+        diameter,
+        spec
+    )
+
+println()
+println(
+    "Tolerance analysis"
+)
+println(
+    "Nominal: ",
+    result.nominal
+)
+println(
+    "Measured: ",
+    result.measured
+)
+println(
+    "Deviation: ",
+    result.deviation
+)
+println(
+    "PASS: ",
+    result.pass
+)
+
+# ================================================================
+# 7. MEASUREMENT UNCERTAINTY
+# ================================================================
+
+repeat_measurements = [
+    199.98,
+    200.02,
+    200.01,
+    199.99,
+    200.00,
+    200.03,
+    199.97,
+    200.01
+]
+
+uncertainty =
+    uncertainty_from_samples(
+        repeat_measurements,
+        confidence=0.95,
+        unit="mm"
+    )
+
+println()
+println(
+    "Measurement uncertainty"
+)
+println(
+    "Mean: ",
+    uncertainty.value
+)
+println(
+    "Expanded uncertainty: ±",
+    uncertainty.uncertainty,
+    " ",
+    uncertainty.unit
+)
+
+# ================================================================
+# 8. QUALITY SCORE
+# ================================================================
+
+quality =
+    quality_score(
+        sphere_result.residuals,
+        specification=0.10
+    )
+
+println(
+    "Measurement quality: ",
+    quality,
+    "%"
+)
+
+# ================================================================
+# 9. AUDIT TRAIL
+# ================================================================
+
+audit =
+    AuditTrail()
+
+audit!(
+    audit,
+    operation="sphere_fit",
+    input_description="3D point cloud",
+    output_description="Sphere geometry",
+    operator="metrology-engine"
+)
+
+audit!(
+    audit,
+    operation="tolerance_check",
+    input_description="Measured diameter",
+    output_description="Pass/fail result",
+    operator="metrology-engine"
+)
+
+println()
+println(
+    "Audit records: ",
+    length(audit.records)
+)
+
+# ================================================================
+# 10. SELF TEST
+# ================================================================
+
+self_test()
+
+
+
+
