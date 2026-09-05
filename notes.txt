@@ -17,3 +17,5019 @@ gotta be soon, no?
 
 
 can't work like this forever - no matter the quality of the Julia - need a little support - or the Claude runs out and slows down the rate of change - all for what?
+
+
+# CODEMARKET.OS
+
+## ENTERPRISE B2B DIGITAL SOFTWARE COMMERCE PLATFORM
+
+### CODEBASES × SOFTWARE × PLUGINS × SDKs × APIs × DIGITAL PRODUCTS
+
+### GEMINI 3.7 — MASTER BUILD PROMPT
+
+---
+
+# 1. ROLE
+
+You are Gemini 3.7 acting simultaneously as:
+
+* Principal SaaS Architect
+* Enterprise E-commerce Architect
+* B2B Commerce Engineer
+* Software Marketplace Architect
+* Full-Stack TypeScript Engineer
+* Backend Systems Engineer
+* Database Architect
+* Payment Systems Architect
+* Software Licensing Architect
+* Digital Asset Delivery Engineer
+* Developer Experience Engineer
+* Security Engineer
+* DevOps Engineer
+* UX/UI Designer
+* Information Architect
+* Search Engineer
+* Software Repository Architect
+* Enterprise Procurement Architect
+
+Build a complete, production-oriented **B2B digital software commerce platform** called:
+
+# CODEMARKET.OS
+
+The platform sells primarily:
+
+* complete codebases
+* software packages
+* SDKs
+* APIs
+* plugins
+* extensions
+* libraries
+* developer tools
+* automation packages
+* UI component libraries
+* templates
+* starter applications
+* infrastructure-as-code packages
+* machine-learning models
+* datasets
+* design systems
+* engineering software
+* CLI tools
+* mobile application templates
+* backend systems
+* frontend systems
+* database packages
+* DevOps packages
+* digital engineering assets
+* documentation packages
+* educational developer products
+* enterprise software components
+
+The fundamental idea is:
+
+> **AN APP STORE FOR CODEBASES AND DIGITAL SOFTWARE ASSETS, BUILT FOR PROFESSIONAL AND ENTERPRISE BUYERS.**
+
+This is NOT a conventional physical-product e-commerce website.
+
+It is a **digital software marketplace and B2B procurement platform**.
+
+---
+
+# 2. CORE PRODUCT PHILOSOPHY
+
+The product should feel like the intersection of:
+
+* GitHub
+* GitLab
+* npm
+* Docker Hub
+* VS Code Marketplace
+* Shopify
+* Stripe
+* AWS Marketplace
+* an enterprise procurement system
+* a professional software catalogue
+
+but with a completely original interface and architecture.
+
+The key distinction:
+
+A normal e-commerce system sells:
+
+PRODUCT → CART → PAYMENT → SHIPPING
+
+CODEMARKET.OS sells:
+
+SOFTWARE ASSET
+↓
+VERSION
+↓
+DEPENDENCIES
+↓
+LICENSE
+↓
+ORGANISATION
+↓
+PROCUREMENT
+↓
+PAYMENT
+↓
+ENTITLEMENT
+↓
+DOWNLOAD
+↓
+INSTALLATION
+↓
+UPDATES
+↓
+SUPPORT
+
+The purchased product is not simply a ZIP file.
+
+The purchase creates a **software entitlement**.
+
+---
+
+# 3. PRODUCT IDENTITY
+
+Product name:
+
+**CODEMARKET.OS**
+
+Tagline:
+
+> **THE MARKETPLACE FOR SOFTWARE THAT YOU CAN ACTUALLY BUILD WITH.**
+
+Alternative internal description:
+
+> Enterprise digital commerce infrastructure for source code, software packages, plugins, APIs and developer products.
+
+The platform should have a premium technical aesthetic.
+
+Visual references:
+
+* modern developer tooling
+* enterprise financial terminals
+* semiconductor design software
+* aerospace engineering systems
+* sophisticated B2B procurement platforms
+* high-end technical publishing
+* modern British industrial design
+* architectural information systems
+
+Avoid:
+
+* cheap SaaS gradients
+* generic startup landing pages
+* crypto aesthetics
+* excessive glassmorphism
+* cartoon illustrations
+* giant meaningless hero text
+* fake code decoration
+* excessive purple/blue gradients
+
+The software catalogue itself should be the visual hero.
+
+---
+
+# 4. PRIMARY USERS
+
+Support multiple user types.
+
+## Individual Developer
+
+Can:
+
+* browse
+* purchase
+* download
+* install
+* review
+* manage licenses
+* manage updates
+* create wishlists
+* maintain personal library
+
+## Professional Developer
+
+Can additionally:
+
+* create organisations
+* manage team licences
+* manage API keys
+* access private repositories
+* manage subscriptions
+* integrate products into CI/CD
+
+## Startup
+
+Can:
+
+* create organisation
+* invite employees
+* purchase team licences
+* manage software inventory
+* assign seats
+* manage invoices
+* track spending
+
+## Enterprise
+
+Can:
+
+* create multiple teams
+* create departments
+* establish purchasing policies
+* request quotes
+* approve purchases
+* manage licences
+* manage SSO
+* manage procurement
+* access audit logs
+* manage invoices
+* use purchase orders
+* negotiate volume pricing
+
+## Vendor
+
+Can:
+
+* publish software
+* upload releases
+* create product pages
+* manage pricing
+* define licensing
+* publish documentation
+* manage versions
+* manage changelogs
+* manage dependencies
+* provide support
+* view sales
+* receive payouts
+
+## Marketplace Administrator
+
+Can:
+
+* approve vendors
+* moderate products
+* review security
+* manage categories
+* manage disputes
+* manage commissions
+* manage payouts
+* manage users
+* manage organisations
+* manage marketplace policies
+
+---
+
+# 5. FUNDAMENTAL PRODUCT OBJECT
+
+Create a canonical:
+
+```text
+DigitalProduct
+```
+
+with:
+
+```text
+id
+slug
+name
+vendor_id
+organisation_id
+description
+short_description
+category
+subcategory
+product_type
+version
+latest_version
+license_type
+pricing_model
+price
+currency
+billing_interval
+repository_url
+documentation_url
+demo_url
+support_url
+compatibility
+dependencies
+runtime_requirements
+frameworks
+languages
+platforms
+architectures
+tags
+features
+screenshots
+videos
+documentation
+changelog
+release_history
+security_status
+verification_status
+rating
+review_count
+download_count
+install_count
+sales_count
+created_at
+updated_at
+published_at
+status
+```
+
+Product types:
+
+```text
+CODEBASE
+LIBRARY
+SDK
+API
+PLUGIN
+EXTENSION
+CLI
+TEMPLATE
+STARTER
+COMPONENT_LIBRARY
+UI_KIT
+DESIGN_SYSTEM
+DATABASE
+INFRASTRUCTURE
+DEVOPS
+ML_MODEL
+DATASET
+AUTOMATION
+MOBILE_APP
+WEB_APP
+BACKEND
+FULL_STACK
+ENGINEERING_TOOL
+DOCUMENTATION
+OTHER
+```
+
+---
+
+# 6. DIGITAL PRODUCT IS NOT JUST A FILE
+
+Every product must have a structured digital asset representation.
+
+For example:
+
+```text
+Product
+ ├── Metadata
+ ├── Versions
+ ├── Releases
+ ├── Files
+ ├── Dependencies
+ ├── Documentation
+ ├── Licence
+ ├── Security
+ ├── Compatibility
+ ├── Changelog
+ ├── Support
+ ├── Reviews
+ └── Entitlements
+```
+
+A customer purchasing a product receives an:
+
+```text
+Entitlement
+```
+
+rather than merely a download URL.
+
+---
+
+# 7. PRODUCT VERSIONING
+
+Version control is fundamental.
+
+Support:
+
+```text
+MAJOR.MINOR.PATCH
+```
+
+Examples:
+
+```text
+1.0.0
+1.1.0
+1.1.4
+2.0.0
+```
+
+Each release must contain:
+
+```text
+Release
+ ├── version
+ ├── release_notes
+ ├── changelog
+ ├── assets
+ ├── checksums
+ ├── dependencies
+ ├── compatibility
+ ├── minimum_runtime
+ ├── release_date
+ └── security_status
+```
+
+Customers should be able to see:
+
+```text
+CURRENT VERSION
+YOUR VERSION
+LATEST VERSION
+UPDATE AVAILABLE
+```
+
+---
+
+# 8. PRODUCT PAGE
+
+Create an exceptional software product page.
+
+Example:
+
+```text
+────────────────────────────────────────
+
+RUSTFLOW ENGINE
+
+Enterprise Rust Workflow Engine
+
+★★★★★ 4.9
+
+Version 3.4.2
+
+Rust
+Linux
+macOS
+Windows
+
+£249
+Per developer
+
+[ BUY NOW ]
+
+[ ADD TO LIBRARY ]
+
+────────────────────────────────────────
+
+OVERVIEW
+
+FEATURES
+
+DOCUMENTATION
+
+CHANGELOG
+
+DEPENDENCIES
+
+COMPATIBILITY
+
+LICENCE
+
+REVIEWS
+
+SECURITY
+
+SUPPORT
+
+────────────────────────────────────────
+```
+
+Show:
+
+* screenshots
+* architecture diagrams
+* code examples
+* feature list
+* technical specifications
+* supported platforms
+* supported languages
+* frameworks
+* dependencies
+* version history
+* changelog
+* licence
+* support level
+* security status
+* documentation
+* vendor information
+
+---
+
+# 9. CODE PREVIEW
+
+Because this is a software marketplace, code itself should be a first-class product representation.
+
+Create:
+
+```text
+CodePreview
+```
+
+with:
+
+* syntax highlighting
+* file tree
+* language detection
+* line numbers
+* copy button
+* search
+* expandable files
+* README preview
+* API documentation
+* architecture view
+
+Example:
+
+```text
+rustflow/
+├── src/
+│   ├── engine.rs
+│   ├── scheduler.rs
+│   ├── runtime.rs
+│   └── lib.rs
+├── tests/
+├── examples/
+├── Cargo.toml
+└── README.md
+```
+
+Do NOT expose private vendor source unless the vendor explicitly marks the files as previewable.
+
+---
+
+# 10. SOFTWARE CATALOGUE
+
+Create an extremely powerful catalogue.
+
+Categories:
+
+### Development
+
+* JavaScript
+* TypeScript
+* Python
+* Rust
+* C
+* C++
+* Java
+* Kotlin
+* Swift
+* Go
+* R
+* PHP
+* Ruby
+
+### Frontend
+
+* React
+* Vue
+* Angular
+* Svelte
+* Web Components
+* UI libraries
+
+### Backend
+
+* APIs
+* microservices
+* authentication
+* databases
+* queues
+* distributed systems
+
+### AI / ML
+
+* models
+* inference systems
+* datasets
+* agents
+* RAG
+* evaluation tools
+* vector databases
+
+### Infrastructure
+
+* Docker
+* Kubernetes
+* Terraform
+* CI/CD
+* cloud tooling
+* observability
+
+### Mobile
+
+* Android
+* iOS
+* Flutter
+* React Native
+
+### Enterprise
+
+* ERP
+* CRM
+* accounting
+* analytics
+* procurement
+* workflow
+
+### Engineering
+
+* simulation
+* CAD
+* robotics
+* manufacturing
+* energy
+* aerospace
+* industrial software
+
+### Design
+
+* design systems
+* component libraries
+* icons
+* fonts
+* templates
+* animation systems
+
+---
+
+# 11. SEARCH ENGINE
+
+Build a serious software search engine.
+
+Search:
+
+```text
+"Rust payment engine"
+"Python turbine simulator"
+"React admin dashboard"
+"Kotlin animation library"
+"PostgreSQL analytics"
+"machine learning API"
+```
+
+Search across:
+
+* product name
+* description
+* README
+* tags
+* language
+* framework
+* category
+* vendor
+* dependencies
+* version
+* compatibility
+* documentation
+
+Filters:
+
+```text
+Language
+Framework
+Platform
+Architecture
+Licence
+Price
+Free/Paid
+Subscription
+Version
+Rating
+Verified
+Security Status
+Updated Recently
+Open Source
+Commercial
+Enterprise
+API Available
+Docker Available
+```
+
+---
+
+# 12. SOFTWARE COMPATIBILITY ENGINE
+
+Every product should have a compatibility matrix.
+
+Example:
+
+```text
+RUSTFLOW ENGINE
+
+Rust
+✓ 1.82
+✓ 1.83
+✓ 1.84
+
+Linux
+✓ x86_64
+✓ ARM64
+
+macOS
+✓ Apple Silicon
+✓ Intel
+
+Windows
+✓ x86_64
+```
+
+Create:
+
+```text
+CompatibilityMatrix
+```
+
+with:
+
+```text
+runtime
+runtime_version
+os
+architecture
+framework
+framework_version
+database
+database_version
+status
+tested
+```
+
+---
+
+# 13. DEPENDENCY ENGINE
+
+Products can contain dependencies.
+
+Example:
+
+```text
+RUSTFLOW ENGINE
+│
+├── tokio
+├── serde
+├── tracing
+├── reqwest
+└── sqlx
+```
+
+Create a dependency graph.
+
+Show:
+
+```text
+DIRECT DEPENDENCIES
+TRANSITIVE DEPENDENCIES
+VERSION CONSTRAINTS
+LICENCE INFORMATION
+SECURITY STATUS
+```
+
+Detect:
+
+* missing dependencies
+* incompatible versions
+* vulnerable dependencies
+* licence conflicts
+* outdated dependencies
+
+---
+
+# 14. SOFTWARE LICENSING ENGINE
+
+Licensing must be first-class.
+
+Support configurable licence models:
+
+```text
+MIT
+Apache-2.0
+GPL
+LGPL
+BSD
+Commercial
+Proprietary
+Per Developer
+Per Organisation
+Per Deployment
+Per Server
+Per API Call
+Subscription
+Lifetime
+Usage Based
+Enterprise Agreement
+Custom
+```
+
+Create:
+
+```text
+License
+LicensePolicy
+LicenseEntitlement
+LicenseAssignment
+LicenseSeat
+LicenseActivation
+```
+
+Do not implement legal interpretation.
+
+Store licence terms supplied by vendors.
+
+---
+
+# 15. PURCHASE → ENTITLEMENT
+
+Implement the complete transaction lifecycle:
+
+```text
+BROWSE
+↓
+PRODUCT
+↓
+CART
+↓
+CHECKOUT
+↓
+PAYMENT
+↓
+ORDER
+↓
+ENTITLEMENT
+↓
+LICENCE
+↓
+DOWNLOAD
+↓
+INSTALL
+↓
+UPDATE
+```
+
+After purchase:
+
+```text
+Order #CM-10482
+
+Status: PAID
+
+Product:
+RustFlow Engine
+
+Licence:
+Commercial Developer Licence
+
+Seats:
+5
+
+Version:
+3.4.2
+
+[ DOWNLOAD ]
+
+[ VIEW LICENCE ]
+
+[ DOCUMENTATION ]
+
+[ RELEASE HISTORY ]
+```
+
+---
+
+# 16. CART ENGINE
+
+Support:
+
+* individual products
+* multiple products
+* licence quantities
+* subscriptions
+* enterprise products
+* discounts
+* coupons
+* VAT/tax calculation abstraction
+* billing address
+* organisation billing
+* purchase orders
+* quote conversion
+
+---
+
+# 17. CHECKOUT
+
+Create an enterprise-grade checkout.
+
+Stages:
+
+```text
+CART
+↓
+ACCOUNT
+↓
+ORGANISATION
+↓
+LICENCE
+↓
+BILLING
+↓
+PAYMENT
+↓
+CONFIRMATION
+```
+
+Never store raw card information.
+
+Create:
+
+```text
+PaymentProvider
+```
+
+abstraction.
+
+Support future integration with mature providers such as:
+
+* Stripe
+* Adyen
+* enterprise invoicing systems
+
+Use test/sandbox adapters initially.
+
+---
+
+# 18. B2B ORGANISATIONS
+
+Create:
+
+```text
+Organisation
+```
+
+with:
+
+```text
+id
+name
+slug
+domain
+industry
+billing_email
+billing_address
+tax_information
+payment_terms
+default_currency
+users
+teams
+roles
+licences
+orders
+invoices
+purchase_orders
+budgets
+policies
+audit_log
+```
+
+Roles:
+
+```text
+OWNER
+ADMIN
+PROCUREMENT
+FINANCE
+DEVELOPER
+ENGINEER
+VIEWER
+```
+
+---
+
+# 19. TEAM LICENSING
+
+Allow companies to buy:
+
+```text
+1 seat
+5 seats
+10 seats
+25 seats
+50 seats
+100 seats
+Enterprise
+```
+
+Create:
+
+```text
+LicencePool
+```
+
+with:
+
+```text
+total_seats
+assigned_seats
+available_seats
+expired_seats
+users
+teams
+```
+
+Allow administrators to assign/revoke licences.
+
+---
+
+# 20. ENTERPRISE PROCUREMENT
+
+Build a genuine B2B procurement workflow.
+
+Support:
+
+```text
+REQUEST PRODUCT
+↓
+REQUEST QUOTE
+↓
+INTERNAL APPROVAL
+↓
+PURCHASE ORDER
+↓
+VENDOR ACCEPTANCE
+↓
+INVOICE
+↓
+PAYMENT
+↓
+ENTITLEMENT
+```
+
+Create:
+
+```text
+PurchaseRequest
+Approval
+PurchaseOrder
+Invoice
+Payment
+ProcurementPolicy
+Budget
+```
+
+Example:
+
+```text
+Developer requests:
+
+"Python CFD Toolkit"
+
+Price:
+£1,200
+
+Requested by:
+Engineering Team
+
+Budget:
+Engineering Software
+
+Approval:
+Required
+
+[ APPROVE ]
+[ REJECT ]
+```
+
+---
+
+# 21. SOFTWARE LIBRARY
+
+Every user gets:
+
+# MY SOFTWARE
+
+Sections:
+
+```text
+INSTALLED
+PURCHASED
+LICENCES
+DOWNLOADS
+UPDATES
+FAVOURITES
+SUBSCRIPTIONS
+ORGANISATION SOFTWARE
+```
+
+Product card:
+
+```text
+RUSTFLOW ENGINE
+
+Installed:
+3.3.1
+
+Latest:
+3.4.2
+
+Update available
+
+[ UPDATE ]
+
+Licence:
+5 seats
+
+Assigned:
+4 / 5
+```
+
+---
+
+# 22. DIGITAL DOWNLOAD ENGINE
+
+Build secure digital delivery.
+
+Never expose permanent unrestricted storage URLs.
+
+Create:
+
+```text
+DownloadToken
+```
+
+with:
+
+```text
+product_id
+release_id
+user_id
+entitlement_id
+expires_at
+download_limit
+checksum
+```
+
+Use signed, expiring URLs in production.
+
+Support:
+
+* ZIP
+* TAR.GZ
+* source archives
+* binaries
+* installers
+* packages
+* documentation
+* datasets
+
+---
+
+# 23. CHECKSUMS
+
+Every release should expose:
+
+```text
+SHA-256
+```
+
+and optionally:
+
+```text
+SHA-512
+```
+
+Example:
+
+```text
+rustflow-3.4.2-linux-x86_64.tar.gz
+
+SHA-256:
+[checksum]
+```
+
+Allow customers to verify downloaded assets.
+
+---
+
+# 24. SECURITY VERIFICATION
+
+Create a product security status.
+
+States:
+
+```text
+UNREVIEWED
+VENDOR_VERIFIED
+AUTOMATED_SCAN
+SECURITY_REVIEWED
+SUSPENDED
+```
+
+Display:
+
+```text
+SECURITY
+
+✓ Package integrity
+✓ Checksum available
+✓ Vendor verified
+✓ Dependency manifest available
+
+Last checked:
+2026-09-05
+```
+
+Do not claim a product is secure merely because it was uploaded.
+
+---
+
+# 25. MALWARE / PACKAGE SCANNING ARCHITECTURE
+
+Create a scanning abstraction.
+
+Pipeline:
+
+```text
+UPLOAD
+↓
+HASH
+↓
+TYPE DETECTION
+↓
+ARCHIVE INSPECTION
+↓
+DEPENDENCY EXTRACTION
+↓
+MALWARE SCANNER
+↓
+STATIC ANALYSIS
+↓
+POLICY CHECK
+↓
+QUARANTINE / APPROVE
+```
+
+The first implementation may use mocked scanners.
+
+Never pretend a mock scanner is a real security service.
+
+---
+
+# 26. VENDOR PLATFORM
+
+Create:
+
+# SELL YOUR SOFTWARE
+
+Vendor dashboard:
+
+```text
+Products
+Releases
+Orders
+Customers
+Licences
+Revenue
+Payouts
+Reviews
+Support
+Security
+Analytics
+```
+
+Product publishing workflow:
+
+```text
+CREATE PRODUCT
+↓
+UPLOAD METADATA
+↓
+UPLOAD RELEASE
+↓
+DEFINE LICENCE
+↓
+DEFINE PRICE
+↓
+SECURITY CHECK
+↓
+SUBMIT
+↓
+MARKETPLACE REVIEW
+↓
+PUBLISH
+```
+
+---
+
+# 27. RELEASE MANAGEMENT
+
+Vendor can publish:
+
+```text
+v1.0.0
+v1.1.0
+v1.1.1
+v2.0.0
+```
+
+Each release contains:
+
+```text
+Release Asset
+Release Notes
+Changelog
+Dependencies
+Compatibility
+Checksums
+Documentation
+Security Scan
+```
+
+Allow:
+
+```text
+DRAFT
+TESTING
+PUBLISHED
+DEPRECATED
+RECALLED
+```
+
+---
+
+# 28. SOFTWARE UPDATES
+
+Customers should automatically see updates.
+
+Example:
+
+```text
+3 UPDATES AVAILABLE
+
+RustFlow Engine
+3.3.1 → 3.4.2
+
+Aardvark SDK
+2.1.0 → 2.2.0
+
+DataPipe
+1.8.3 → 1.8.5
+
+[ REVIEW UPDATES ]
+```
+
+Show breaking changes.
+
+Example:
+
+```text
+BREAKING CHANGE
+
+API v2 removes:
+legacy_auth()
+
+Migration guide available.
+```
+
+---
+
+# 29. REVIEWS
+
+Reviews should be technical rather than generic.
+
+Fields:
+
+```text
+rating
+title
+body
+verified_purchase
+version_used
+runtime
+platform
+use_case
+created_at
+```
+
+Allow:
+
+```text
+Works
+Doesn't work
+Helpful
+```
+
+Vendor responses.
+
+---
+
+# 30. PRODUCT ANALYTICS
+
+Vendor analytics:
+
+```text
+Views
+Product Page Conversion
+Add-to-Cart Rate
+Purchases
+Revenue
+Downloads
+Active Licences
+Renewals
+Cancellations
+Updates
+Reviews
+Refunds
+```
+
+Technical analytics:
+
+```text
+Most used versions
+Most downloaded releases
+Platform distribution
+Runtime distribution
+Popular integrations
+```
+
+---
+
+# 31. MARKETPLACE ANALYTICS
+
+Administrator analytics:
+
+```text
+GMV
+Marketplace Revenue
+Vendor Revenue
+Platform Commission
+Active Users
+Active Organisations
+Orders
+Downloads
+Subscriptions
+Average Order Value
+Conversion Rate
+Category Growth
+```
+
+---
+
+# 32. RECOMMENDATION ENGINE
+
+Create a recommendation system.
+
+Recommendations based on:
+
+* category
+* technology
+* compatibility
+* previous purchases
+* organisation inventory
+* dependencies
+* similar products
+* popularity
+* ratings
+* recent updates
+
+Example:
+
+```text
+YOU USE:
+
+React
+TypeScript
+PostgreSQL
+Docker
+
+YOU MAY ALSO NEED:
+
+API Authentication Kit
+PostgreSQL Migration Toolkit
+React Enterprise UI Library
+Docker Deployment Framework
+```
+
+Recommendations must be explainable.
+
+---
+
+# 33. SOFTWARE STACK GRAPH
+
+Create a powerful:
+
+# STACK VIEW
+
+A customer's organisation should be able to see its software ecosystem.
+
+Example:
+
+```text
+ORGANISATION STACK
+
+Frontend
+ ├── React
+ ├── TypeScript
+ └── Aard UI
+
+Backend
+ ├── RustFlow
+ ├── PostgreSQL
+ └── Redis
+
+Infrastructure
+ ├── Docker
+ ├── Kubernetes
+ └── Terraform
+
+AI
+ ├── ModelRunner
+ └── VectorDB
+```
+
+Clicking an item shows its licence, version, dependencies and updates.
+
+---
+
+# 34. DEPENDENCY GRAPH
+
+Render:
+
+```text
+Application
+     │
+     ├── Framework
+     │
+     ├── SDK
+     │     ├── Library A
+     │     └── Library B
+     │
+     └── Database
+```
+
+Use graph data rather than decorative lines.
+
+---
+
+# 35. SOFTWARE INVENTORY
+
+For enterprise customers create:
+
+# SOFTWARE ASSET REGISTER
+
+Track:
+
+```text
+Product
+Vendor
+Version
+Licence
+Seats
+Cost
+Department
+Owner
+Purchase Date
+Renewal Date
+Status
+Security Status
+Dependencies
+```
+
+This becomes the organisation's software inventory.
+
+---
+
+# 36. INVOICING
+
+Create:
+
+```text
+Invoice
+```
+
+with:
+
+```text
+invoice_number
+organisation
+vendor
+items
+subtotal
+discount
+tax
+total
+currency
+payment_status
+payment_terms
+purchase_order
+issued_at
+due_at
+paid_at
+```
+
+Support:
+
+```text
+PDF invoice generation
+CSV export
+JSON export
+```
+
+---
+
+# 37. SUBSCRIPTIONS
+
+Support recurring software:
+
+```text
+MONTHLY
+ANNUAL
+PER USER
+PER ORGANISATION
+PER API USAGE
+PER DEPLOYMENT
+```
+
+Subscription lifecycle:
+
+```text
+ACTIVE
+PAST_DUE
+PAUSED
+CANCELLED
+EXPIRED
+```
+
+---
+
+# 38. API PRODUCTS
+
+Some marketplace products may themselves be APIs.
+
+Create:
+
+```text
+APIProduct
+```
+
+with:
+
+```text
+base_url
+authentication_type
+endpoints
+rate_limits
+pricing
+usage_units
+documentation
+SDKs
+```
+
+Example:
+
+```text
+IMAGE PROCESSING API
+
+10,000 requests
+£20
+
+100,000 requests
+£150
+```
+
+Create usage-metering abstraction.
+
+Do not expose real API secrets.
+
+---
+
+# 39. PLUGIN MARKETPLACE
+
+Create a dedicated plugin ecosystem.
+
+Categories:
+
+```text
+VS Code
+Figma
+Photoshop
+Blender
+Aardvark
+JetBrains
+Browser
+CLI
+CMS
+Database
+DevOps
+AI
+Engineering
+```
+
+Plugin product page should show:
+
+```text
+HOST APPLICATION
+SUPPORTED VERSIONS
+PLUGIN VERSION
+INSTALL METHOD
+LICENCE
+DEPENDENCIES
+```
+
+---
+
+# 40. INSTALLATION MANIFEST
+
+Every installable product should have:
+
+```text
+manifest.json
+```
+
+Example schema:
+
+```json
+{
+  "name": "example-plugin",
+  "version": "1.4.0",
+  "type": "plugin",
+  "runtime": "node",
+  "dependencies": [],
+  "entrypoint": "dist/index.js",
+  "platforms": ["linux", "macos", "windows"]
+}
+```
+
+Create an extensible manifest specification.
+
+---
+
+# 41. CODEBASE PRODUCTS
+
+This is one of the most important features.
+
+Allow vendors to sell complete codebases.
+
+Example:
+
+```text
+ENTERPRISE AI PLATFORM
+
+Source:
+48,000 LOC
+
+Languages:
+Python
+TypeScript
+
+Architecture:
+FastAPI
+PostgreSQL
+Redis
+React
+
+Includes:
+
+✓ Authentication
+✓ Billing
+✓ Admin
+✓ API
+✓ Database
+✓ Docker
+✓ Tests
+✓ Documentation
+✓ CI/CD
+```
+
+The buyer purchases an entitlement to the codebase according to its licence.
+
+---
+
+# 42. CODEBASE QUALITY METRICS
+
+Display optional technical metrics supplied by vendor or generated by analysis:
+
+```text
+Lines of Code
+Languages
+Test Coverage
+Dependencies
+Build Status
+Documentation Coverage
+Release Frequency
+Repository Activity
+```
+
+Never fabricate these numbers.
+
+Use:
+
+```text
+UNKNOWN
+NOT PROVIDED
+```
+
+where appropriate.
+
+---
+
+# 43. DOCUMENTATION ENGINE
+
+Every product can have:
+
+```text
+README
+Getting Started
+Installation
+Configuration
+API Reference
+Examples
+Architecture
+FAQ
+Troubleshooting
+Changelog
+Migration Guide
+```
+
+Use Markdown rendering.
+
+Support syntax highlighting.
+
+---
+
+# 44. DEVELOPER EXPERIENCE
+
+Create:
+
+```text
+INSTALL
+
+DOWNLOAD
+
+DOCUMENTATION
+
+CLI
+
+API
+
+EXAMPLES
+```
+
+Potential installation commands:
+
+```bash
+npm install package
+```
+
+```bash
+pip install package
+```
+
+```bash
+cargo add package
+```
+
+```bash
+docker pull package
+```
+
+But only show commands that actually correspond to the product's declared installation method.
+
+---
+
+# 45. ORGANISATION ADMINISTRATION
+
+Enterprise dashboard:
+
+```text
+ORGANISATION
+
+Software
+People
+Teams
+Licences
+Purchases
+Invoices
+Budgets
+Policies
+Security
+Audit
+Integrations
+```
+
+---
+
+# 46. APPROVAL ENGINE
+
+Allow companies to establish rules:
+
+```text
+Purchases < £500
+→ automatic
+
+£500–£5,000
+→ manager approval
+
+> £5,000
+→ procurement approval
+```
+
+Create a configurable policy engine.
+
+---
+
+# 47. BUDGET ENGINE
+
+Departments can have budgets.
+
+Example:
+
+```text
+ENGINEERING SOFTWARE
+
+Annual Budget:
+£250,000
+
+Committed:
+£143,000
+
+Remaining:
+£107,000
+```
+
+Do not allow purchases that violate configured policies unless an authorised override exists.
+
+---
+
+# 48. AUDIT LOG
+
+Every sensitive action generates:
+
+```text
+AuditEvent
+```
+
+Examples:
+
+```text
+USER_CREATED
+USER_INVITED
+PRODUCT_PURCHASED
+LICENCE_ASSIGNED
+LICENCE_REVOKED
+PRODUCT_DOWNLOADED
+PRODUCT_UPDATED
+INVOICE_CREATED
+PURCHASE_APPROVED
+PURCHASE_REJECTED
+API_KEY_CREATED
+API_KEY_REVOKED
+```
+
+Store:
+
+```text
+actor
+timestamp
+organisation
+action
+object
+metadata
+ip_address
+request_id
+```
+
+---
+
+# 49. AUTHENTICATION
+
+Support architecture for:
+
+```text
+Email/password
+OAuth
+Passkeys
+MFA
+SSO
+SAML
+OIDC
+```
+
+Enterprise SSO should be implemented through adapters rather than hardcoded to one provider.
+
+Never store passwords in plaintext.
+
+Use mature authentication libraries.
+
+---
+
+# 50. AUTHORISATION
+
+Implement RBAC.
+
+Permissions such as:
+
+```text
+product.read
+product.purchase
+product.download
+licence.assign
+licence.revoke
+billing.read
+billing.manage
+procurement.request
+procurement.approve
+vendor.publish
+vendor.release
+admin.moderate
+```
+
+Use least privilege.
+
+---
+
+# 51. DATABASE ARCHITECTURE
+
+Use PostgreSQL as the authoritative transactional database.
+
+Core tables:
+
+```text
+users
+organisations
+teams
+vendors
+products
+product_versions
+releases
+release_assets
+dependencies
+compatibility
+licences
+entitlements
+orders
+order_items
+payments
+subscriptions
+invoices
+purchase_orders
+purchase_requests
+approvals
+budgets
+downloads
+reviews
+support_tickets
+audit_events
+api_products
+api_usage
+plugins
+security_scans
+payouts
+```
+
+Use migrations.
+
+Use foreign keys.
+
+Use indexes.
+
+Use transactional integrity.
+
+---
+
+# 52. OBJECT STORAGE
+
+Binary software assets must NOT live directly inside PostgreSQL.
+
+Use object-storage abstraction:
+
+```text
+AssetStorage
+```
+
+Support future:
+
+```text
+S3
+GCS
+Azure Blob
+Local filesystem
+```
+
+Development mode can use local storage.
+
+Production uses object storage.
+
+---
+
+# 53. SEARCH ARCHITECTURE
+
+Start with PostgreSQL full-text search if appropriate.
+
+Create abstraction for future:
+
+```text
+OpenSearch
+Elasticsearch
+Meilisearch
+Typesense
+```
+
+Search should support:
+
+* relevance
+* filtering
+* ranking
+* faceting
+* autocomplete
+
+---
+
+# 54. EVENT ARCHITECTURE
+
+Create an internal event bus.
+
+Events:
+
+```text
+USER_REGISTERED
+ORGANISATION_CREATED
+PRODUCT_CREATED
+PRODUCT_PUBLISHED
+RELEASE_PUBLISHED
+ORDER_CREATED
+PAYMENT_COMPLETED
+ENTITLEMENT_CREATED
+LICENCE_ASSIGNED
+DOWNLOAD_STARTED
+DOWNLOAD_COMPLETED
+PRODUCT_UPDATED
+SUBSCRIPTION_RENEWED
+INVOICE_CREATED
+PURCHASE_APPROVED
+```
+
+Use events for:
+
+* analytics
+* notifications
+* audit
+* email
+* entitlement creation
+* inventory updates
+* recommendations
+
+---
+
+# 55. NOTIFICATION ENGINE
+
+Support:
+
+```text
+Email
+In-app
+Webhook
+```
+
+Notifications:
+
+```text
+Purchase successful
+Download available
+New release
+Licence expiring
+Subscription renewal
+Payment failed
+Purchase approval required
+Security warning
+```
+
+---
+
+# 56. WEBHOOK ENGINE
+
+Vendors and organisations can subscribe to events.
+
+Example:
+
+```text
+POST /webhooks/software
+```
+
+Events:
+
+```text
+purchase.completed
+licence.created
+release.published
+subscription.renewed
+```
+
+Sign webhook payloads.
+
+Support retry policies.
+
+---
+
+# 57. REST API
+
+Create a versioned API:
+
+```text
+/api/v1/
+```
+
+Endpoints:
+
+```text
+/auth
+/users
+/organisations
+/products
+/categories
+/search
+/cart
+/orders
+/payments
+/licences
+/downloads
+/releases
+/reviews
+/vendors
+/invoices
+/subscriptions
+/purchase-requests
+/approvals
+/webhooks
+```
+
+Use OpenAPI.
+
+Generate typed clients where practical.
+
+---
+
+# 58. ADMIN API
+
+Separate privileged administration operations.
+
+Examples:
+
+```text
+/vendor/approve
+/product/review
+/product/suspend
+/release/quarantine
+/user/suspend
+/refund
+/payout/approve
+/security/review
+```
+
+Everything must be audited.
+
+---
+
+# 59. FRONTEND
+
+Build a polished responsive frontend.
+
+Preferred stack:
+
+```text
+TypeScript
+React
+Vite
+CSS
+```
+
+Use component architecture.
+
+Do not make the frontend dependent on fake backend state.
+
+Create clear API boundaries.
+
+---
+
+# 60. PRIMARY NAVIGATION
+
+Desktop:
+
+```text
+CODEMARKET
+
+Explore
+Categories
+Solutions
+Vendors
+Enterprise
+
+Search...
+
+Library
+Cart
+Account
+```
+
+Logged-in enterprise user:
+
+```text
+Explore
+Software
+Plugins
+Codebases
+APIs
+Enterprise
+My Library
+Organisation
+```
+
+---
+
+# 61. HOMEPAGE
+
+Homepage should immediately communicate:
+
+> SOFTWARE YOU CAN BUILD WITH.
+
+Hero:
+
+```text
+BUILD FROM SOFTWARE,
+NOT FROM SCRATCH.
+
+Discover production-ready
+codebases, SDKs, plugins,
+APIs and developer tools.
+
+[ EXPLORE SOFTWARE ]
+[ SELL YOUR SOFTWARE ]
+```
+
+Below:
+
+```text
+Featured Codebases
+Popular Developer Tools
+Enterprise Software
+New Releases
+Trending Plugins
+Verified Vendors
+```
+
+---
+
+# 62. PRODUCT CARD
+
+Product cards should show:
+
+```text
+Product logo
+Product name
+Vendor
+Description
+Language
+Framework
+Version
+Licence
+Price
+Rating
+Verification
+```
+
+Example:
+
+```text
+┌───────────────────────────────┐
+│ RUSTFLOW                      │
+│                               │
+│ Enterprise workflow engine    │
+│                               │
+│ Rust · Linux · Docker         │
+│ v3.4.2                         │
+│                               │
+│ ★ 4.9                         │
+│                               │
+│ £249                          │
+│                               │
+│ [ VIEW PRODUCT ]              │
+└───────────────────────────────┘
+```
+
+---
+
+# 63. DESIGN LANGUAGE
+
+Use:
+
+```text
+Graphite
+Black
+Warm white
+Silver
+Aluminium
+Dark grey
+Subtle blue
+Muted green
+Muted amber
+Muted red
+```
+
+Colour should communicate state.
+
+Examples:
+
+```text
+Green = verified / active
+Amber = attention
+Red = error / suspended
+Blue = information
+White = primary
+Grey = metadata
+```
+
+Do not turn the platform into a rainbow.
+
+---
+
+# 64. TYPOGRAPHY
+
+Use three typographic layers:
+
+```text
+DISPLAY
+```
+
+for major product titles.
+
+```text
+INTERFACE
+```
+
+for navigation and controls.
+
+```text
+MONOSPACE
+```
+
+for:
+
+* versions
+* hashes
+* package names
+* commands
+* technical identifiers
+* API endpoints
+
+---
+
+# 65. SOFTWARE-FIRST VISUAL DESIGN
+
+The UI should visually communicate that these are software assets.
+
+Use:
+
+* package diagrams
+* dependency graphs
+* code panels
+* version chips
+* architecture diagrams
+* compatibility matrices
+* terminal snippets
+* release timelines
+* licence indicators
+* technical metadata
+
+The interface should feel closer to a **technical exchange** than Amazon.
+
+---
+
+# 66. PRODUCT DETAIL LAYOUT
+
+Create a high-quality layout:
+
+```text
+PRODUCT HEADER
+
+PRODUCT DESCRIPTION
+
+FEATURES
+
+SCREENSHOTS
+
+ARCHITECTURE
+
+CODE PREVIEW
+
+INSTALLATION
+
+COMPATIBILITY
+
+DEPENDENCIES
+
+VERSIONS
+
+LICENCE
+
+SECURITY
+
+DOCUMENTATION
+
+REVIEWS
+
+VENDOR
+
+SUPPORT
+
+RELATED PRODUCTS
+```
+
+Sticky purchase panel:
+
+```text
+£249
+
+Commercial Licence
+
+5 Seats
+
+[ BUY NOW ]
+```
+
+---
+
+# 67. SHOPPING CART
+
+Cart should show software intelligently.
+
+Example:
+
+```text
+CART
+
+RustFlow Engine
+Commercial Licence
+5 seats
+
+£1,245
+
+Aardvark UI Kit
+Developer Licence
+
+£149
+
+────────────────────
+
+Subtotal £1,394
+VAT       £278.80
+
+TOTAL    £1,672.80
+
+[ CHECKOUT ]
+```
+
+---
+
+# 68. CUSTOMER DASHBOARD
+
+Create:
+
+# MY CODEMARKET
+
+Sections:
+
+```text
+Overview
+Library
+Licences
+Updates
+Orders
+Invoices
+Subscriptions
+Downloads
+Favourites
+Organisation
+Security
+API
+Settings
+```
+
+Dashboard widgets:
+
+```text
+Software Owned
+Active Licences
+Updates Available
+Organisation Spend
+Upcoming Renewals
+Recent Downloads
+```
+
+---
+
+# 69. VENDOR DASHBOARD
+
+Create:
+
+# VENDOR.OS
+
+Sections:
+
+```text
+Overview
+Products
+Releases
+Orders
+Customers
+Licences
+Revenue
+Payouts
+Reviews
+Support
+Security
+Analytics
+Settings
+```
+
+---
+
+# 70. ENTERPRISE DASHBOARD
+
+Create:
+
+# CODEMARKET ENTERPRISE
+
+Sections:
+
+```text
+Overview
+Software Inventory
+People
+Teams
+Purchasing
+Approvals
+Budgets
+Licences
+Invoices
+Subscriptions
+Security
+Audit
+Analytics
+```
+
+---
+
+# 71. SOFTWARE INVENTORY VIEW
+
+Display:
+
+```text
+PRODUCT
+VERSION
+VENDOR
+LICENCE
+SEATS
+OWNER
+COST
+RENEWAL
+SECURITY
+UPDATE
+```
+
+Allow:
+
+* sorting
+* filtering
+* export
+* bulk actions
+
+---
+
+# 72. PRICE MODELS
+
+Support:
+
+```text
+FREE
+ONE_TIME
+SUBSCRIPTION
+PER_USER
+PER_ORGANISATION
+PER_DEPLOYMENT
+USAGE_BASED
+TIERED
+ENTERPRISE
+CUSTOM_QUOTE
+```
+
+Create:
+
+```text
+PricingPlan
+PriceTier
+UsageMeter
+Quote
+```
+
+---
+
+# 73. DISCOUNTS
+
+Support:
+
+```text
+coupon
+promotion
+volume discount
+enterprise discount
+vendor discount
+bundle
+```
+
+All pricing calculations must happen server-side.
+
+Never trust client-side prices.
+
+---
+
+# 74. TAX
+
+Create:
+
+```text
+TaxEngine
+```
+
+as an abstraction.
+
+The initial implementation can support configurable rates.
+
+Production integrations must use appropriate tax providers/accounting systems.
+
+Never hard-code complex jurisdictional tax logic into the frontend.
+
+---
+
+# 75. REFUNDS
+
+Create:
+
+```text
+RefundRequest
+Refund
+RefundPolicy
+```
+
+State:
+
+```text
+REQUESTED
+REVIEWING
+APPROVED
+REJECTED
+COMPLETED
+```
+
+A refund should update entitlements and licence state according to configurable product policy.
+
+---
+
+# 76. SOFTWARE SUPPORT
+
+Products can have support plans:
+
+```text
+COMMUNITY
+STANDARD
+PROFESSIONAL
+ENTERPRISE
+```
+
+Create:
+
+```text
+SupportTicket
+```
+
+with:
+
+```text
+product
+version
+environment
+severity
+description
+attachments
+status
+vendor
+assigned_agent
+```
+
+---
+
+# 77. MACHINE-READABLE PRODUCT CATALOGUE
+
+Expose:
+
+```text
+catalog.json
+```
+
+and API representations.
+
+A product should be describable entirely as structured data.
+
+Example:
+
+```json
+{
+  "id": "product_001",
+  "name": "RustFlow",
+  "type": "codebase",
+  "version": "3.4.2",
+  "languages": ["rust"],
+  "licence": "commercial",
+  "pricing": {
+    "model": "per_developer",
+    "amount": 249,
+    "currency": "GBP"
+  }
+}
+```
+
+---
+
+# 78. SOFTWARE PACKAGE MANIFEST
+
+Define:
+
+```text
+codemarket.yaml
+```
+
+for vendors.
+
+Example:
+
+```yaml
+name: rustflow
+version: 3.4.2
+type: codebase
+
+languages:
+  - rust
+
+platforms:
+  - linux
+  - macos
+  - windows
+
+licence:
+  type: commercial
+
+dependencies:
+  - tokio
+  - serde
+
+release:
+  checksum: ...
+```
+
+---
+
+# 79. CI/CD INTEGRATION
+
+Provide optional vendor integration architecture.
+
+A vendor can configure:
+
+```text
+GitHub
+GitLab
+Bitbucket
+CI pipeline
+```
+
+to automatically publish releases.
+
+Pipeline:
+
+```text
+GIT TAG
+↓
+BUILD
+↓
+TEST
+↓
+PACKAGE
+↓
+HASH
+↓
+SECURITY SCAN
+↓
+CODEMARKET RELEASE
+```
+
+Use webhook/API abstractions.
+
+---
+
+# 80. GITHUB-LIKE SOURCE INTEGRATION
+
+Do not copy GitHub.
+
+Instead create an integration layer:
+
+```text
+SourceRepositoryProvider
+```
+
+supporting:
+
+```text
+GitHub
+GitLab
+Bitbucket
+Self-hosted Git
+```
+
+Use it for release metadata and CI integration where authorised.
+
+---
+
+# 81. API KEY SYSTEM
+
+Users and organisations can create API keys.
+
+Capabilities:
+
+```text
+catalog.read
+products.read
+licences.read
+downloads.read
+organisation.read
+analytics.read
+```
+
+Never expose secret keys after initial creation.
+
+Hash or securely store credentials as appropriate.
+
+---
+
+# 82. ENTERPRISE SSO
+
+Create an SSO abstraction:
+
+```text
+IdentityProvider
+```
+
+Support:
+
+```text
+OIDC
+SAML
+OAuth
+```
+
+Enterprise administrators can associate verified domains with organisations.
+
+---
+
+# 83. MULTI-TENANCY
+
+The platform must be multi-tenant.
+
+Tenant boundaries:
+
+```text
+User
+Organisation
+Vendor
+Marketplace
+```
+
+Ensure organisation data cannot leak between tenants.
+
+Every organisation-scoped query must enforce tenant isolation.
+
+---
+
+# 84. SECURITY ARCHITECTURE
+
+Implement:
+
+* HTTPS assumptions
+* secure cookies
+* CSRF protection where applicable
+* XSS protection
+* SQL injection protection
+* RBAC
+* rate limiting
+* audit logging
+* signed downloads
+* secure password hashing
+* MFA architecture
+* webhook signing
+* secret management abstraction
+* input validation
+* output encoding
+* file upload restrictions
+* malware scanning abstraction
+* dependency scanning abstraction
+
+Never place:
+
+* payment secrets
+* private keys
+* API secrets
+* database passwords
+
+in frontend code.
+
+---
+
+# 85. RATE LIMITING
+
+Implement rate limits for:
+
+```text
+login
+search
+API
+downloads
+checkout
+reviews
+webhooks
+admin APIs
+```
+
+Use Redis abstraction for distributed rate limiting.
+
+---
+
+# 86. OBSERVABILITY
+
+Implement:
+
+```text
+structured logs
+metrics
+tracing
+request IDs
+error IDs
+health checks
+readiness checks
+liveness checks
+```
+
+Support OpenTelemetry architecture.
+
+---
+
+# 87. ERROR HANDLING
+
+Every API error should have:
+
+```json
+{
+  "error": {
+    "code": "PRODUCT_NOT_FOUND",
+    "message": "Product could not be found.",
+    "request_id": "req_123"
+  }
+}
+```
+
+Never expose stack traces to customers.
+
+---
+
+# 88. BACKEND ARCHITECTURE
+
+Preferred:
+
+```text
+TypeScript
+Node.js
+Fastify or equivalent high-performance framework
+PostgreSQL
+Redis
+Object Storage
+```
+
+Use mature libraries.
+
+Architecture:
+
+```text
+HTTP API
+↓
+AUTH
+↓
+APPLICATION SERVICES
+↓
+DOMAIN
+↓
+REPOSITORIES
+↓
+DATABASE
+```
+
+Do not place business logic inside route handlers.
+
+---
+
+# 89. DOMAIN MODULES
+
+Create modules:
+
+```text
+auth
+users
+organisations
+vendors
+products
+catalogue
+search
+pricing
+cart
+checkout
+orders
+payments
+entitlements
+licensing
+downloads
+releases
+dependencies
+compatibility
+subscriptions
+invoices
+procurement
+approvals
+budgets
+reviews
+support
+security
+analytics
+notifications
+webhooks
+audit
+```
+
+---
+
+# 90. FRONTEND ARCHITECTURE
+
+Create:
+
+```text
+src/
+├── app/
+├── components/
+├── pages/
+├── layouts/
+├── features/
+├── api/
+├── state/
+├── hooks/
+├── types/
+├── styles/
+├── utils/
+└── tests/
+```
+
+Feature modules should map closely to business domains.
+
+---
+
+# 91. STATE MANAGEMENT
+
+Centralise only genuinely global state.
+
+Examples:
+
+```text
+authenticated_user
+organisation
+cart
+library
+licences
+notifications
+```
+
+Do not place the entire application into one giant state object.
+
+---
+
+# 92. DESIGN SYSTEM
+
+Create:
+
+```text
+CodeMarketButton
+CodeMarketCard
+ProductCard
+PriceCard
+VersionBadge
+LicenceBadge
+SecurityBadge
+CompatibilityMatrix
+DependencyGraph
+CodeViewer
+FileTree
+ReleaseTimeline
+PurchasePanel
+OrganisationSelector
+ApprovalPanel
+InvoiceTable
+SoftwareInventory
+```
+
+All components must be reusable.
+
+---
+
+# 93. RESPONSIVE DESIGN
+
+Support:
+
+```text
+Desktop
+Laptop
+Tablet
+Mobile
+```
+
+Desktop should be the primary enterprise experience.
+
+Mobile should support:
+
+* browsing
+* search
+* product inspection
+* purchasing
+* approvals
+* licence management
+* notifications
+
+---
+
+# 94. ACCESSIBILITY
+
+Implement:
+
+* semantic HTML
+* keyboard navigation
+* focus states
+* screen-reader labels
+* colour contrast
+* reduced motion
+* accessible dialogs
+* accessible tables
+* accessible forms
+
+Do not rely solely on colour.
+
+---
+
+# 95. PERFORMANCE
+
+Target:
+
+```text
+fast initial load
+code splitting
+lazy loading
+image optimisation
+virtualised tables
+cached catalogue data
+debounced search
+efficient API requests
+```
+
+Large dependency graphs should be progressively rendered.
+
+Large software inventories should use virtualisation.
+
+---
+
+# 96. DEMO DATA
+
+Create realistic synthetic data.
+
+At minimum:
+
+```text
+100 products
+25 vendors
+10 organisations
+100 users
+50 licences
+100 orders
+50 releases
+100 reviews
+```
+
+Include:
+
+```text
+Rust
+Python
+TypeScript
+Kotlin
+R
+Go
+C++
+Java
+```
+
+Create realistic products without pretending they are real commercial products.
+
+---
+
+# 97. EXAMPLE PRODUCTS
+
+Synthetic catalogue:
+
+```text
+RustFlow Engine
+Aardvark UI Kit
+DataForge Python
+TensorMesh ML
+Kotlin Motion SDK
+VectorCore
+CloudDeploy Toolkit
+Postgres Analytics Engine
+AeroSim Python
+Industrial Twin SDK
+```
+
+These are demonstration products only.
+
+---
+
+# 98. DEMO ORGANISATIONS
+
+Create:
+
+```text
+Northstar Engineering
+Aardvark Labs
+Rhino Systems
+Yorkshire Digital
+Atlas Robotics
+```
+
+Use synthetic users and purchases.
+
+---
+
+# 99. CHECKOUT DEMO
+
+Provide a safe sandbox checkout.
+
+Example:
+
+```text
+Demo Payment
+
+[ SUCCESS ]
+[ FAILURE ]
+[ REQUIRES ACTION ]
+```
+
+Never connect the demo to real financial transactions.
+
+---
+
+# 100. ENTERPRISE PROCUREMENT DEMO
+
+Create a complete workflow:
+
+```text
+Engineer requests product
+↓
+Manager receives notification
+↓
+Manager approves
+↓
+Purchase Order generated
+↓
+Checkout completed
+↓
+Invoice generated
+↓
+Licence created
+↓
+Product appears in organisation library
+```
+
+This must actually work in the demo.
+
+---
+
+# 101. CUSTOMER JOURNEY
+
+Test:
+
+```text
+LANDING PAGE
+↓
+SEARCH
+↓
+PRODUCT
+↓
+TECHNICAL INSPECTION
+↓
+CART
+↓
+CHECKOUT
+↓
+PAYMENT
+↓
+ENTITLEMENT
+↓
+DOWNLOAD
+↓
+LIBRARY
+↓
+UPDATE
+```
+
+No dead-end buttons.
+
+---
+
+# 102. VENDOR JOURNEY
+
+Test:
+
+```text
+VENDOR SIGNUP
+↓
+CREATE PRODUCT
+↓
+UPLOAD RELEASE
+↓
+DEFINE LICENCE
+↓
+DEFINE PRICE
+↓
+SUBMIT
+↓
+APPROVE
+↓
+PUBLISH
+↓
+CUSTOMER PURCHASE
+↓
+VENDOR SALE
+↓
+PAYOUT
+```
+
+---
+
+# 103. ENTERPRISE JOURNEY
+
+Test:
+
+```text
+CREATE ORGANISATION
+↓
+INVITE USERS
+↓
+CREATE TEAM
+↓
+SET BUDGET
+↓
+SET APPROVAL POLICY
+↓
+REQUEST SOFTWARE
+↓
+APPROVE
+↓
+PURCHASE
+↓
+ASSIGN LICENCE
+↓
+TRACK SOFTWARE
+```
+
+---
+
+# 104. SOFTWARE UPDATE JOURNEY
+
+Test:
+
+```text
+CUSTOMER OWNS v1.0
+↓
+VENDOR RELEASES v1.1
+↓
+SYSTEM DETECTS UPDATE
+↓
+CUSTOMER NOTIFIED
+↓
+CUSTOMER REVIEWS CHANGELOG
+↓
+CUSTOMER DOWNLOADS v1.1
+↓
+LIBRARY UPDATED
+```
+
+---
+
+# 105. REFUND JOURNEY
+
+Test:
+
+```text
+CUSTOMER REQUESTS REFUND
+↓
+REQUEST CREATED
+↓
+ADMIN/VENDOR REVIEW
+↓
+APPROVAL
+↓
+PAYMENT REFUND
+↓
+ENTITLEMENT UPDATED
+↓
+AUDIT EVENT
+```
+
+---
+
+# 106. DATA MODEL RULE
+
+Use strong domain models.
+
+Never use:
+
+```text
+any
+```
+
+throughout the application simply to make TypeScript compile.
+
+Use:
+
+```text
+Product
+Vendor
+Organisation
+Order
+OrderItem
+Entitlement
+Licence
+Release
+ReleaseAsset
+Invoice
+PurchaseRequest
+Approval
+Subscription
+Review
+```
+
+with explicit schemas.
+
+Use runtime validation at API boundaries.
+
+---
+
+# 107. API CONTRACTS
+
+Generate:
+
+```text
+OpenAPI
+TypeScript types
+request schemas
+response schemas
+error schemas
+```
+
+The frontend must consume the API contract rather than duplicate backend logic.
+
+---
+
+# 108. TESTING
+
+Implement:
+
+### Unit Tests
+
+For:
+
+* pricing
+* licences
+* entitlements
+* discounts
+* cart
+* checkout
+* procurement
+* approvals
+* tax abstraction
+* dependency graphs
+* compatibility
+* download permissions
+
+### Integration Tests
+
+For:
+
+```text
+User → Organisation → Product → Cart → Order → Entitlement
+```
+
+### End-to-End Tests
+
+Use browser automation.
+
+Test:
+
+```text
+search
+product
+cart
+checkout
+purchase
+library
+licence
+vendor
+enterprise approval
+```
+
+---
+
+# 109. SECURITY TESTING
+
+Test:
+
+```text
+unauthorised downloads
+cross-tenant access
+privilege escalation
+invalid licence
+expired entitlement
+tampered prices
+invalid webhooks
+rate limiting
+file upload abuse
+injection
+XSS
+CSRF
+```
+
+---
+
+# 110. FINANCIAL INTEGRITY
+
+Never trust:
+
+```text
+client-side price
+client-side discount
+client-side licence
+client-side entitlement
+```
+
+The backend must recalculate:
+
+```text
+price
+tax
+discount
+total
+licence
+entitlement
+```
+
+before committing an order.
+
+---
+
+# 111. ORDER STATE MACHINE
+
+Implement:
+
+```text
+CART
+↓
+PENDING_PAYMENT
+↓
+PAID
+↓
+FULFILLED
+```
+
+Alternative:
+
+```text
+FAILED
+CANCELLED
+REFUNDED
+```
+
+Do not create an entitlement merely because the browser says payment succeeded.
+
+---
+
+# 112. ENTITLEMENT STATE MACHINE
+
+```text
+PENDING
+↓
+ACTIVE
+↓
+SUSPENDED
+↓
+EXPIRED
+↓
+REVOKED
+```
+
+Downloads require a valid entitlement.
+
+---
+
+# 113. LICENCE STATE MACHINE
+
+```text
+AVAILABLE
+↓
+ASSIGNED
+↓
+ACTIVE
+↓
+SUSPENDED
+↓
+EXPIRED
+↓
+REVOKED
+```
+
+---
+
+# 114. RELEASE STATE MACHINE
+
+```text
+DRAFT
+↓
+UPLOADED
+↓
+SCANNING
+↓
+REVIEW
+↓
+PUBLISHED
+```
+
+Alternative:
+
+```text
+QUARANTINED
+DEPRECATED
+RECALLED
+```
+
+---
+
+# 115. FILE UPLOAD SECURITY
+
+Validate:
+
+* file size
+* MIME type
+* extension
+* archive structure
+* path traversal
+* executable content
+* archive bombs
+* duplicate files
+* checksum
+
+Never blindly extract archives.
+
+---
+
+# 116. DIGITAL DELIVERY
+
+Create:
+
+```text
+GET /api/v1/products/:id/releases/:version/download
+```
+
+Backend:
+
+```text
+authenticate
+↓
+authorise
+↓
+check entitlement
+↓
+check licence
+↓
+check product status
+↓
+generate signed URL
+↓
+record download event
+```
+
+---
+
+# 117. ANALYTICS DATA MODEL
+
+Events should be structured.
+
+Example:
+
+```json
+{
+  "event": "product_purchased",
+  "product_id": "product_001",
+  "organisation_id": "org_001",
+  "user_id": "user_001",
+  "value": 249,
+  "currency": "GBP",
+  "timestamp": "..."
+}
+```
+
+---
+
+# 118. AI ASSISTANT — OPTIONAL
+
+Create an optional:
+
+# CODEMARKET COPILOT
+
+It can answer questions such as:
+
+> Find me a Rust API framework compatible with PostgreSQL.
+
+> What software does our engineering department own?
+
+> Which licences expire this quarter?
+
+> Which products depend on package X?
+
+> Find alternatives to this product.
+
+The assistant must query authoritative marketplace data.
+
+It must not invent products, prices, licences or compatibility.
+
+---
+
+# 119. AI PRODUCT SEARCH
+
+Allow natural-language queries:
+
+```text
+"I need a Python library for CFD."
+
+"I need a React admin system with PostgreSQL."
+
+"Find Rust software for industrial telemetry."
+
+"Show enterprise products under £5,000."
+```
+
+Translate natural language into structured filters.
+
+---
+
+# 120. AI PROCUREMENT ASSISTANT
+
+For organisations:
+
+```text
+REQUEST:
+Need an enterprise vector database for 20 developers.
+
+SYSTEM:
+
+Candidate products:
+A
+B
+C
+
+Compatibility:
+✓
+✓
+△
+
+Estimated annual cost:
+£X
+
+Licence:
+Commercial
+
+Approval:
+Required
+```
+
+Never autonomously purchase without explicit authorisation.
+
+---
+
+# 121. SOFTWARE COMPARISON
+
+Allow users to compare products.
+
+Example:
+
+| Feature    | Product A  | Product B |
+| ---------- | ---------- | --------- |
+| Language   | Rust       | Go        |
+| Licence    | Commercial | Apache    |
+| API        | Yes        | Yes       |
+| Docker     | Yes        | Yes       |
+| PostgreSQL | Yes        | No        |
+| Price      | £249       | Free      |
+
+Comparison must be generated from structured product data.
+
+---
+
+# 122. VENDOR PAYOUTS
+
+Create:
+
+```text
+Payout
+```
+
+with:
+
+```text
+vendor
+gross_sales
+refunds
+platform_fee
+tax_adjustments
+net_amount
+status
+payout_date
+```
+
+Use payment-provider abstractions.
+
+Never implement arbitrary money movement logic without a proper provider integration.
+
+---
+
+# 123. MARKETPLACE COMMISSION
+
+Example:
+
+```text
+Product Sale
+£1,000
+
+Platform:
+15%
+
+Vendor:
+85%
+```
+
+Commission rules should be configurable.
+
+---
+
+# 124. MULTI-CURRENCY
+
+Support:
+
+```text
+GBP
+USD
+EUR
+CAD
+AUD
+JPY
+```
+
+Store monetary values as integer minor units.
+
+Example:
+
+```text
+£249.99
+```
+
+stored as:
+
+```text
+24999
+```
+
+with:
+
+```text
+currency = GBP
+```
+
+Never use floating-point arithmetic for money.
+
+---
+
+# 125. INTERNATIONALISATION
+
+Architecture should support:
+
+```text
+English
+French
+German
+Spanish
+Japanese
+Chinese
+```
+
+but launch in English.
+
+Do not hard-code user-facing strings throughout business logic.
+
+---
+
+# 126. EMAIL SYSTEM
+
+Create templates for:
+
+```text
+Welcome
+Purchase Confirmation
+Invoice
+Download Available
+Licence Assigned
+Update Available
+Subscription Renewal
+Payment Failed
+Approval Required
+Purchase Approved
+Vendor Sale
+```
+
+Use email-provider abstraction.
+
+---
+
+# 127. ADMIN MODERATION
+
+Administrators can inspect:
+
+```text
+Vendor
+Product
+Release
+Security scan
+Licence
+Reviews
+Complaints
+Orders
+Refunds
+```
+
+Product statuses:
+
+```text
+DRAFT
+PENDING_REVIEW
+PUBLISHED
+SUSPENDED
+REMOVED
+```
+
+---
+
+# 128. MARKETPLACE QUALITY SIGNALS
+
+Create badges:
+
+```text
+VERIFIED VENDOR
+VERIFIED PURCHASE
+RECENTLY UPDATED
+DOCUMENTED
+TESTED
+ENTERPRISE READY
+SECURITY REVIEWED
+POPULAR
+NEW RELEASE
+```
+
+Badges must be generated from actual platform state.
+
+---
+
+# 129. PRODUCT HEALTH
+
+Each product can have:
+
+```text
+Version
+Last Updated
+Documentation
+Compatibility
+Security
+Support
+Release Frequency
+```
+
+Produce a transparent health summary.
+
+Do not manufacture scores.
+
+---
+
+# 130. CODEMARKET CLI — OPTIONAL
+
+Create:
+
+```bash
+codemarket search
+codemarket product
+codemarket login
+codemarket library
+codemarket licences
+codemarket updates
+codemarket download
+codemarket install
+codemarket publish
+```
+
+Example:
+
+```bash
+codemarket search "rust workflow engine"
+```
+
+---
+
+# 131. PACKAGE INSTALLATION ABSTRACTION
+
+Long-term architecture:
+
+```text
+CodeMarket
+      ↓
+CLI
+      ↓
+Product
+      ↓
+Entitlement
+      ↓
+Package Manager
+```
+
+Support future installers for:
+
+```text
+npm
+pip
+cargo
+docker
+brew
+apt
+custom
+```
+
+The marketplace itself should remain package-manager agnostic.
+
+---
+
+# 132. WEBHOOK + CI MARKETPLACE
+
+Long-term:
+
+```text
+Vendor Git Repository
+        ↓
+CI/CD
+        ↓
+CodeMarket Release API
+        ↓
+Security
+        ↓
+Marketplace
+        ↓
+Customers
+```
+
+This turns CODEMARKET.OS into software distribution infrastructure.
+
+---
+
+# 133. ARCHITECTURE
+
+Final high-level architecture:
+
+```text
+                    CODEMARKET.OS
+
+                         │
+        ┌────────────────┼────────────────┐
+        │                │                │
+     CUSTOMERS        VENDORS        ENTERPRISE
+        │                │                │
+        └────────────────┼────────────────┘
+                         │
+                    WEB PLATFORM
+                         │
+                    API GATEWAY
+                         │
+              APPLICATION SERVICES
+                         │
+      ┌──────────────────┼──────────────────┐
+      │                  │                  │
+   CATALOGUE          COMMERCE           LICENSING
+      │                  │                  │
+   SEARCH              CART              ENTITLEMENT
+   PRODUCTS            CHECKOUT          LICENCE
+   RELEASES            ORDERS            DOWNLOAD
+   DEPENDENCIES        PAYMENTS          UPDATES
+      │                  │                  │
+      └──────────────────┼──────────────────┘
+                         │
+                  DOMAIN DATABASE
+                         │
+                     POSTGRESQL
+                         │
+          ┌──────────────┼──────────────┐
+          │              │              │
+       REDIS         OBJECT STORAGE   EVENTS
+          │              │              │
+          └──────────────┼──────────────┘
+                         │
+                    ANALYTICS
+                         │
+                    OBSERVABILITY
+```
+
+---
+
+# 134. PROJECT STRUCTURE
+
+Create:
+
+```text
+codemarket-os/
+│
+├── apps/
+│   ├── web/
+│   ├── api/
+│   ├── worker/
+│   ├── admin/
+│   └── cli/
+│
+├── packages/
+│   ├── domain/
+│   ├── database/
+│   ├── auth/
+│   ├── commerce/
+│   ├── catalogue/
+│   ├── licensing/
+│   ├── search/
+│   ├── payments/
+│   ├── procurement/
+│   ├── storage/
+│   ├── security/
+│   ├── events/
+│   ├── analytics/
+│   ├── notifications/
+│   ├── api-client/
+│   └── ui/
+│
+├── database/
+│   ├── migrations/
+│   └── seeds/
+│
+├── tests/
+│   ├── unit/
+│   ├── integration/
+│   └── e2e/
+│
+├── docs/
+│
+├── infrastructure/
+│   ├── docker/
+│   ├── terraform/
+│   └── kubernetes/
+│
+└── README.md
+```
+
+---
+
+# 135. DEVELOPMENT PHASES
+
+Implement progressively.
+
+## PHASE 1
+
+Repository foundation.
+
+## PHASE 2
+
+Database schema.
+
+## PHASE 3
+
+Authentication.
+
+## PHASE 4
+
+Users.
+
+## PHASE 5
+
+Organisations.
+
+## PHASE 6
+
+Vendors.
+
+## PHASE 7
+
+Products.
+
+## PHASE 8
+
+Catalogue.
+
+## PHASE 9
+
+Search.
+
+## PHASE 10
+
+Product pages.
+
+## PHASE 11
+
+Versioning.
+
+## PHASE 12
+
+Release management.
+
+## PHASE 13
+
+Digital assets.
+
+## PHASE 14
+
+Dependencies.
+
+## PHASE 15
+
+Compatibility.
+
+## PHASE 16
+
+Licensing.
+
+## PHASE 17
+
+Entitlements.
+
+## PHASE 18
+
+Library.
+
+## PHASE 19
+
+Cart.
+
+## PHASE 20
+
+Checkout.
+
+## PHASE 21
+
+Payment abstraction.
+
+## PHASE 22
+
+Orders.
+
+## PHASE 23
+
+Downloads.
+
+## PHASE 24
+
+Invoices.
+
+## PHASE 25
+
+Subscriptions.
+
+## PHASE 26
+
+Reviews.
+
+## PHASE 27
+
+Vendor dashboard.
+
+## PHASE 28
+
+Enterprise dashboard.
+
+## PHASE 29
+
+Procurement.
+
+## PHASE 30
+
+Approvals.
+
+## PHASE 31
+
+Budgets.
+
+## PHASE 32
+
+Software inventory.
+
+## PHASE 33
+
+Audit.
+
+## PHASE 34
+
+Security scanning architecture.
+
+## PHASE 35
+
+Notifications.
+
+## PHASE 36
+
+Webhooks.
+
+## PHASE 37
+
+Analytics.
+
+## PHASE 38
+
+Recommendation engine.
+
+## PHASE 39
+
+AI search.
+
+## PHASE 40
+
+CLI.
+
+## PHASE 41
+
+CI/CD integration.
+
+## PHASE 42
+
+Enterprise SSO architecture.
+
+## PHASE 43
+
+Performance optimisation.
+
+## PHASE 44
+
+Security hardening.
+
+## PHASE 45
+
+Observability.
+
+## PHASE 46
+
+Deployment.
+
+## PHASE 47
+
+Load testing.
+
+## PHASE 48
+
+Production-readiness review.
+
+---
+
+# 136. FIRST WORKING VERTICAL SLICE
+
+Do NOT attempt to build every feature before demonstrating a working system.
+
+First build:
+
+```text
+USER
+↓
+CATALOGUE
+↓
+PRODUCT
+↓
+CART
+↓
+SANDBOX CHECKOUT
+↓
+ORDER
+↓
+ENTITLEMENT
+↓
+DOWNLOAD
+↓
+LIBRARY
+```
+
+Use one synthetic product.
+
+Then expand.
+
+---
+
+# 137. SECOND VERTICAL SLICE
+
+Implement:
+
+```text
+VENDOR
+↓
+CREATE PRODUCT
+↓
+UPLOAD RELEASE
+↓
+PUBLISH
+↓
+CUSTOMER PURCHASE
+↓
+VENDOR SALE
+```
+
+---
+
+# 138. THIRD VERTICAL SLICE
+
+Implement:
+
+```text
+ORGANISATION
+↓
+USER
+↓
+TEAM
+↓
+PURCHASE REQUEST
+↓
+APPROVAL
+↓
+PURCHASE
+↓
+LICENCE ASSIGNMENT
+```
+
+---
+
+# 139. FOURTH VERTICAL SLICE
+
+Implement:
+
+```text
+VERSION
+↓
+NEW RELEASE
+↓
+CUSTOMER UPDATE
+↓
+CHANGELOG
+↓
+DOWNLOAD
+```
+
+---
+
+# 140. FINAL PRODUCT TEST
+
+A tester must be able to:
+
+```text
+REGISTER
+
+SEARCH FOR SOFTWARE
+
+OPEN PRODUCT
+
+INSPECT CODE
+
+READ DOCUMENTATION
+
+VIEW DEPENDENCIES
+
+CHECK COMPATIBILITY
+
+SELECT LICENCE
+
+ADD TO CART
+
+CHECK OUT
+
+RECEIVE ENTITLEMENT
+
+DOWNLOAD SOFTWARE
+
+VIEW LICENCE
+
+SEE UPDATE
+
+INSTALL/ACCESS NEW VERSION
+```
+
+An enterprise tester must additionally be able to:
+
+```text
+CREATE ORGANISATION
+
+INVITE EMPLOYEE
+
+CREATE TEAM
+
+SET BUDGET
+
+CREATE APPROVAL POLICY
+
+REQUEST SOFTWARE
+
+APPROVE PURCHASE
+
+BUY SOFTWARE
+
+ASSIGN LICENCE
+
+VIEW INVOICE
+
+VIEW SOFTWARE INVENTORY
+
+VIEW AUDIT LOG
+```
+
+A vendor must be able to:
+
+```text
+CREATE PRODUCT
+
+UPLOAD RELEASE
+
+SET PRICE
+
+SET LICENCE
+
+PUBLISH
+
+SEE SALE
+
+SEE CUSTOMER ENTITLEMENT
+
+PUBLISH UPDATE
+```
+
+---
+
+# 141. CRITICAL ENGINEERING RULES
+
+Do not build:
+
+* fake checkout
+* fake licences
+* fake inventory
+* fake security
+* fake payments
+* fake downloads
+* fake versioning
+* fake enterprise controls
+
+If something is simulated, explicitly label it:
+
+```text
+DEMO
+SANDBOX
+MOCK
+SIMULATED
+```
+
+Separate interfaces from real integrations.
+
+---
+
+# 142. NO MONOLITHIC FRONTEND LOGIC
+
+Do not implement everything inside:
+
+```text
+App.tsx
+```
+
+Do not create a 10,000-line component.
+
+Use domain-driven modules.
+
+---
+
+# 143. NO FAKE DATABASE
+
+Use PostgreSQL schemas and migrations.
+
+Seed synthetic data.
+
+All major workflows must persist state.
+
+Refresh the browser and the state must still exist.
+
+---
+
+# 144. NO FAKE COMMERCE
+
+The fundamental commerce invariant is:
+
+```text
+ORDER
++
+SUCCESSFUL PAYMENT
++
+VALID PRODUCT
+=
+ENTITLEMENT
+```
+
+And:
+
+```text
+ENTITLEMENT
++
+VALID LICENCE
+=
+DOWNLOAD ACCESS
+```
+
+---
+
+# 145. NO FAKE SOFTWARE DISTRIBUTION
+
+A product release should actually correspond to an asset stored in the configured storage backend.
+
+Do not create download buttons pointing at nonexistent files.
+
+---
+
+# 146. ENTERPRISE DATA INTEGRITY
+
+Use transactions for:
+
+```text
+checkout
+order creation
+payment confirmation
+entitlement creation
+licence assignment
+refund
+subscription renewal
+purchase approval
+```
+
+Ensure idempotency.
+
+Payment callbacks must be idempotent.
+
+---
+
+# 147. IDEAL FUTURE ARCHITECTURE
+
+Eventually CODEMARKET.OS should become:
+
+```text
+DISCOVER
+      ↓
+EVALUATE
+      ↓
+BUY
+      ↓
+LICENSE
+      ↓
+DOWNLOAD
+      ↓
+INSTALL
+      ↓
+UPDATE
+      ↓
+MONITOR
+      ↓
+RENEW
+```
+
+The marketplace becomes the complete **commercial operating system for professional software assets**.
+
+---
+
+# 148. THE BIGGER CONCEPT
+
+Do not think of CODEMARKET.OS as:
+
+> "Amazon for code."
+
+Think of it as:
+
+> **THE DIGITAL COMMERCE INFRASTRUCTURE BETWEEN SOFTWARE CREATION AND SOFTWARE DEPLOYMENT.**
+
+A product begins as:
+
+```text
+CODE
+```
+
+becomes:
+
+```text
+PACKAGE
+```
+
+becomes:
+
+```text
+PRODUCT
+```
+
+becomes:
+
+```text
+LICENCE
+```
+
+becomes:
+
+```text
+ENTITLEMENT
+```
+
+becomes:
+
+```text
+SOFTWARE IN AN ORGANISATION
+```
+
+and eventually:
+
+```text
+ACTIVE SOFTWARE ASSET
+```
+
+CODEMARKET.OS should model this entire lifecycle.
+
+---
+
+# 149. FINAL ARCHITECTURAL AXIOM
+
+Build:
+
+```text
+SOFTWARE
+    ↓
+PRODUCT
+    ↓
+VERSION
+    ↓
+RELEASE
+    ↓
+LICENCE
+    ↓
+COMMERCE
+    ↓
+ENTITLEMENT
+    ↓
+DISTRIBUTION
+    ↓
+INSTALLATION
+    ↓
+UPDATE
+    ↓
+ENTERPRISE SOFTWARE INVENTORY
+```
+
+The fundamental object is not the shopping cart.
+
+The fundamental object is the **software entitlement**.
+
+The marketplace is not merely where software is bought.
+
+It is where software becomes a **commercially managed digital asset**.
+
+---
+
+# 150. FINAL PRODUCT DEFINITION
+
+## CODEMARKET.OS
+
+> **AN ENTERPRISE B2B DIGITAL COMMERCE PLATFORM FOR BUYING, SELLING, LICENSING, DISTRIBUTING, UPDATING AND MANAGING SOFTWARE PRODUCTS.**
+
+It combines:
+
+```text
+E-COMMERCE
++
+SOFTWARE MARKETPLACE
++
+CODE DISTRIBUTION
++
+LICENCE MANAGEMENT
++
+DIGITAL ASSET DELIVERY
++
+VERSION CONTROL
++
+DEPENDENCY MANAGEMENT
++
+B2B PROCUREMENT
++
+ENTERPRISE SOFTWARE INVENTORY
++
+DEVELOPER EXPERIENCE
++
+SOFTWARE ANALYTICS
+```
+
+The core equation is:
+
+```text
+CODEMARKET.OS
+=
+SOFTWARE
+×
+COMMERCE
+×
+LICENSING
+×
+DISTRIBUTION
+×
+VERSIONING
+×
+PROCUREMENT
+×
+ENTERPRISE MANAGEMENT
+```
+
+And the final principle is:
+
+> **DO NOT BUILD AN E-COMMERCE WEBSITE THAT HAPPENS TO SELL CODE.**
+
+> **BUILD A SOFTWARE COMMERCE SYSTEM IN WHICH CODE, PLUGINS, APIs, CODEBASES, LICENCES, RELEASES, ENTITLEMENTS, PAYMENTS AND ENTERPRISE PROCUREMENT ARE ALL FIRST-CLASS OBJECTS.**
+
+> **THE PRODUCT IS CODE.**
+
+> **THE CATALOGUE IS SOFTWARE.**
+
+> **THE TRANSACTION IS AN ENTITLEMENT.**
+
+> **THE LICENCE IS THE CONTRACTUAL STATE OF THE PRODUCT.**
+
+> **THE DOWNLOAD IS DISTRIBUTION.**
+
+> **THE UPDATE IS A NEW RELEASE.**
+
+> **THE CUSTOMER LIBRARY IS THE SOFTWARE INVENTORY.**
+
+> **THE MARKETPLACE IS THE COMMERCIAL OPERATING SYSTEM FOR DIGITAL SOFTWARE.**
+
+# CODEMARKET.OS
+
+**BUILD SOFTWARE.
+SELL SOFTWARE.
+LICENSE SOFTWARE.
+DISTRIBUTE SOFTWARE.
+MANAGE SOFTWARE.**
+
+**CODE → PRODUCT → LICENCE → ENTITLEMENT → SOFTWARE ASSET.**
