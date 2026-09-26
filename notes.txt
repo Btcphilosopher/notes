@@ -8,3 +8,5 @@ IBM, Micron, Amex, Apple.
 Intel, STRC
 
 dividend focus - paid out in sterling to the UK stock market.
+
+all class a stock.
