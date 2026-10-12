@@ -1,1 +1,1 @@
-calls increase fpr constituency's to be printed on ballot boxes, and QR codes to be scanned for each ballot cast.
+calls increase fpr constituency names to be printed on ballot boxes, and QR codes to be scanned for each ballot cast.
