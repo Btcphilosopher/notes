@@ -8,3 +8,5 @@ synethtic pricing as in pulling money forward to inder to pay $100 now for actua
 or selling stock synthetically at 10% lower - especially if you've got shorts on...
 
 or synthetically higher- but that's a put?
+
+or maybe then randomise the sales between 10% either side - on all sides- or even higher to find a true price, amdist a sea of synthetic prices?
