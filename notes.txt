@@ -1,21 +1,6 @@
-Basin/Region	Countries	Est’d Resource Potential	Geological Rationale	Exploration Status	Key Risks	Infrastructure Access
-Tarim Basin	China	~~30×10^9 barrels oil (in-place)	Thick Paleozoic source shales (Cambrian), large Jurassic–Cretaceous traps.  Major plays: Bachu, Tarim Depression.	Heavily drilled on edges (Tahe, North Ta) but deep subbasins underexplored.	Very deep/high T, overpressure; complex faulting.	Pipelines to East China; local refining.
-Cambay–Kutch Basin	India	~10–20×10^9 barrels oil eq (undiscovered)	Rifted Mesozoic basin with prolific Jurassic-Cretaceous source-reservoir intervals (Lathi, Cambay Formations).  Proven gas (Mumbai High analogues).	Mature onshore, deep blocks remain. New deep wells (Cambay Deep) ongoing.	High heat flow; mixed source maturity; water disposal in tight units.	Onshore pipelines, close to Gulf infrastructure.
-Krishna-Godavari Basin	India	~50+ TCF gas (in known fields)	Offshore rifted margin with rich Tertiary marine shales (KG-Deep gas play).  One supergiant D6 gas discovery (77 TCF).	Extensive 3D seismic; large fields found (D1–D6); ultra-deep frontier (KG-DWN-98/3) proven.	Complex fault systems; deep targets >3 km; competition for acreage.	Offshore tie-backs to Mundra (gas export pipeline).
-Assam–Arakan Foredeep	India/Myanmar	>1000 MMbbl oil eq (undiscovered?)	Himalayan foreland basin with multiple Tertiary source intervals (Barail, Kopili coals) charging thrust-trap structures.	Partly drilled on shelf (Assam oils); frontier across Arakan (Rakhine) with confirmed gas (Shwe) and seeps.	Terrain/insurgency; uncertain contracts; disputed border zones.	Local pipeline network in Assam; Myanmar gas pipeline.
-Bengal Deepwater (Cauvery–Krishna off.)	India	Multi-TCF gas potential (unconsol.)	Prolific Bengal basin continuation: Miocene-deltaic turbidites and Paleocene calcareous shales (source) in deepwater.	Only very limited well control (e.g. India-Japan KM gas in 1999). Promising seismic leads.	Very deepwater (5+ km); hostile currents; Indian drilling risk-aversion.	No existing export routes; potential LNG markets.
-Malay–Natuna Shelf	Indonesia/Malaysia	~~20 TCF gas + condensate	Proven Tertiary carbonate and clastic reefs (Natuna Sea) with huge gas fields (North Natuna D).  Four-way dip-closed structures under shallow water.	Numerous discoveries (Laminaria, Duri etc). South Natuna expansion ongoing.	High CO₂ in Deep Natuna; pricing; maritime border clarity with Vietnam.	Nearby processing/refining in Bintulu, pipelines across Malaysia.
-Borneo Deepwater	Malaysia/Indonesia	~~5+ Bboe (gas+oil)	Turbiditic Tertiary plays (Baram Delta, Kutei Basin) with excellent Miocene sands. New play in deepwater (Sabah/Sarawak slopes).	Many fields (e.g. Sepinggan oil). New gas finds at Kakap, Capricornus. Wells drilled to >3 km.	Deepwater drilling hazard; weather (Typhoons); price sensitivity.	Good: gas to Bintulu LNG (MLNG), oil to Kuching refineries.
-South China Sea (SCS)	Vietnam/Philippines/Malaysia	~~5–10 TCF gas (offshore)	Tertiary rift/passive-margin basins with prolific Oligocene–Miocene lacustrine shales (Song Hong, Cuu Long) and carbonate reefs (Phil/China).	Well-developed offshore gas (e.g. Vietnam’s Nam Con Son, Malaysia’s Luconia). Frontier plays in deep (Nansha/East Palawan).	Int’l disputes (Spratly, Paracel), high CO₂ pockets, deepwater.	Vietnam LNG/GTP facilities; pipelines to China (Paracel gas).
-East Indonesia (Papua)	Indonesia	~~3+ Bboe (Leitong); large gas	Complex back-arc basins (Bird’s Head, Bintuni); proven Jurassic/Cretaceous source rocks (Mamberamo); thick Neogene reservoirs.	Some production (Bintuni gas), but giant fields (e.g. Abadi gas) delayed. New plays in Salawati/Sorong sub-basins.	Frontier geology; infrastructure-poor; land disputes; deepwater faults.	Distant; planned Papua-LNG; minimal pipelines.
-E. Siberia / Sakhalin	Russia (Asia)	~~20 Bboe oil + 60 TCF gas	Foreland basins with Carboniferous–Permian source (Bazhenov-equivalent). Sakhalin’s Miocene clastics.  Cold-region permafrost traps.	Major developments (Sakhalin-1/2 oil & gas). New heavy oil in deposits (Vankor, Vityaz).	Arctic/climate extremes; remote labor; sanctions constraints.	Limited – Trans-Siberian pipeline eastward; LNG terminals (Sakhalin).
 
+“One is a gasfield that caters for the domestic market, while the other is an oilfield that is mainly for export,” she said.
 
+“It is right that we judge each application in its own right, and it is absolutely critical that the decision is consistent with our climate obligations, our carbon budgets and the end destination we need to get to with the energy transition.”
 
-https://www.youtube.com/watch?v=fij_ixfjiZE&t=
-
-
-is the short over? has JP Morgan gone to the Fed to get some cash out to stablise the market? 
-
-
-did not seem to come through...
+Afterwards she mused on the nature of energy and its role in civilisation before coming to her totemic decision which is...?
