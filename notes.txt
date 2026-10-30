@@ -30,3 +30,29 @@ would pick up some SDR's but would prefer more Sterling in. 8% feels low in the 
 is that stock market portfolio going ahead? should have probably added VW.
 
 is the short still on? it keeps going lower!!
+
+
+Ranked Exploration Targets
+
+The table below compares prime exploration targets:
+Region / Area	Deposit Type	Key Metals	Depth (m)	Dist. to Shore / Port	Infrastructure/Logistics	Jurisdiction	Env. Sensitivity
+Clarion–Clipperton Zone (CCZ)<br>Pacific (approx. 0–20°N, 115°W–160°W)	Polymetallic nodules	Mn, Fe with Ni, Cu, Co, Zn	~3,000–6,000 m	~3,000–4,000 km (Hawaii/Mexico)	Ultra-deep mining (5000 m), requires long-distance support vessels	International Seabed (“Area”) – multiple ISA contractors	High – unique abyssal fauna (50% new species), protected APEIs covering ~2.0×10^6 km²
+Central Indian Ocean Basin (CIOB)<br>Indian Ocean (approx. 8–20°S, 70–80°E)	Polymetallic nodules	Mn, Fe with Ni, Cu, Co	~4,000–5,500 m	~3,000 km (India/Seychelles)	Remote, deep; limited local ports	ISA contracts (India, others)	High – similar abyssal ecosystem concerns; IOCB under developing REMP
+Peru Basin<br>East Pacific (approx. 10–20°S, 110–125°W)	Polymetallic nodules	Mn, Fe with Ni, Cu, Co	~3,500–4,500 m	~2,500 km (Peru/Chile ports)	Far offshore, deep mining tech needed	ISA contracts (Germany, France, others)	High – abyssal environment (Challenger Mound fauna, etc.); regional biodiversity poorly known
+Prime Crust Zone (W. Pacific)<br>(approx. 0–20°N, 140–170°E, west of Mariana/Japan)	Cobalt-rich crusts	Mn, Fe with high Co, Ni, REEs	~800–2,500 m	~1,000–3,000 km (Guam, Japan)	Seamount mining at moderate depth; supply via island bases	ISA contracts (Japan JOGMEC, China COMRA, S. Korea)	High – seamounts host corals, sponges, unique biota; rare and slow to recover habitats
+Papua New Guinea (Bismarck Sea)<br>(approx. 4–6°S, 152°E)	SMS (vent fields Solwara 1+)	Cu, Au, Ag, Zn	~1,400–1,800 m	~30 km from coast (PNG)	Easier access; PNG mining infrastructure; small area (~0.1 km²)	PNG national waters (licenced to Nautilus/DSE)	High – chemosynthetic vent ecosystem; concerns over food chains and methane consumers
+Red Sea Rift (Atlantis II Deep)<br>(approx. 19°N, 38°E)	SMS (brine/pool deposits)	Zn, Cu, Au, Ag (extremely high grades)	~2,000–3,000 m	<100 km (Saudi/Jordan coast)	Relatively shallow and close; legal issues (conflict zone)	EEZs (Saudi Arabia, Jordan) – Atlantis-II mine (Saudi)	High – unique hydrothermal basin, limited fauna data (some microbial communities that oxidize methane)
+
+
+
+
+Comparative Attributes of Targets
+Attribute	CCZ (Nodules)	CIOB (Nodules)	Peru Basin (Nodules)	W. Pacific Crusts	PNG Vent (SMS)
+Deposit type	Polymetallic nodules	Polymetallic nodules	Polymetallic nodules	Cobalt-rich crusts	Seafloor massive sulphides
+Main metals	Mn, Fe, Ni, Cu, Co, Zn	Mn, Fe, Ni, Cu, Co	Mn, Fe, Ni, Cu, Co	Mn, Fe, Co, Ni, REEs	Cu, Au, Ag, Zn
+Estimated resources	~21×10^9 t nodules (Ni≈7 Mt, Cu≈5 Mt, Co≈1.4 Mt)	Multi-billion tonnes nodules (likely second-largest field)	Multi-billion tonnes nodules	~7.5×10^9 t crusts (very high Co and REE content)	~2×10^6 t ore at ~7% Cu (Solwara-1 estimated)
+Water depth	3,000–6,000 m	4,000–5,500 m	3,500–4,500 m	800–2,500 m	~1,400–1,800 m
+Distance to shore	>2,000 km (Hawaii/Mexico)	>2,000 km (India)	~1,000–2,000 km (Peru)	~1,000–3,000 km (e.g. Japan)	~30 km (PNG coast)
+Infrastructure	International shipping; no nearby ports; requires large deep-sea vessels	International shipping; remote	Pacific ports (Callao, etc.)	Island bases (Guam, Okinawa, etc.); mid-depth mining	Local port (PNG); integrated with land supply chains
+Environmental risk	Very high (deep-sea benthos; slow recovery)	Very high (similar abyssal habitats)	Very high (abyssal ecology)	Very high (seamount ecosystems)	Very high (vent ecosystems; coral reefs)
+Regulation	ISA “Area” (UNCLOS), multiple contracts	ISA “Area”, contracts exist	ISA “Area”, contracts (e.g. Germany)	ISA “Area”, contracts (Japan, etc.)	PNG national license (Nautilus/DSE); PNG law & ISA guidelines
