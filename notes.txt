@@ -71,3 +71,9 @@ is somebody alraedy selling gold?
 
 short on all day. monday sell deiravtes and crash the price.
 
+Field Location & Depth Cu (wt%) Al (wt%) Resource (wet nodules) Accessibility / Relief Legal Status Notes / Environment
+Clarion–Clipperton Zone (CCZ) Pacific Ocean (≃ 8°–20°N, 120°–160°W); 4–6 km ≈1.0–1.2% ~3% ~27×10^9 t Mostly flat abyssal hills (<20% slopes for ~98% of area) ABNJ; multiple ISA contracts (e.g. Nauru, China, Germany, Tonga) Highest nodule densities (15–75 kg/m²); very rich faunal diversity; precautionary APEIs designated.
+Peru Basin Pacific (≈4°–10°S, 90°–110°W); 4–5 km ≈0.8–1.0% (estimated) ~3% (assumed) ~~40–50×10^9 t (rough calc.)~ Broad abyssal plain (low relief) ABNJ; no active contracts reported Moderate nodule densities (≈10 kg/m²); fewer deep-sea studies than CCZ.
+Penrhyn Basin (Cook Is.) South Pacific, near Cook Is.; ~4–5 km ≈1.0% (typical Pacific) ~3% ~3–5×10^9 t (est.) Possibly gentle basin; some rise topography Likely Cook Islands’ EEZ (no ISA contract) Smallest high-density field; may be under national jurisdiction.
+Central Indian Ocean Indian Ocean (≈12°S, 85°E); ~4.8 km ≈0.9% (similar to CCZ) ~3% 4×10^9 t (field) Abyssal plain (5 kg/m² average) ABNJ; ISA contracts (India, China, Korea) Sole large Indian nodule field; somewhat lower nodule abundance than CCZ.
+Other (e.g. Atlantic) e.g. Angola Basin, etc.; depths ~4–5 km Data sparse ~3%? Unknown Often steeper slopes or sediment veneer None (Atlantic nodules not licenced by ISA) Smaller patches found; much less explored.
