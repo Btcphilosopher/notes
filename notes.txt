@@ -105,3 +105,21 @@ tech stocks are still falling. time for mortage backed securities. what a beauti
 https://drive.google.com/file/d/1zgG84xfvW6Cw28nrkGG01Qa0b1uBZv_v/view?usp=drive_link
 
 https://drive.google.com/file/d/1zgG84xfvW6Cw28nrkGG01Qa0b1uBZv_v/view?usp=drive_link - and it was effectively the community charge which brought thatcher down.
+
+
+Physical block	RTL source / role	Recommended implementation	Indicative 65 nm active area	Preferred aspect ratio	Placement constraint
+Scalar control complex	fetch_unit, decoder, control_core, ALU, forwarding	Standard cells	0.08–0.16 mm²	1.0–1.5	Close to IMEM, register file and scheduler
+Instruction SRAM	IMEM_DEPTH=1024, 32-bit	Compiled SRAM macro	0.03–0.08 mm²	Compiler dependent, often tall rectangle	Immediately adjacent to fetch stage
+Scalar scratchpad	shared memory_controller	Compiled 1 KiB SRAM	0.01–0.03 mm²	Compiler dependent	Near scalar MEM stage
+Register bank	32×32 + 16×128	Flops for first spin or small RF macro	0.02–0.05 mm²	1–2	Between decoder/control and scheduler
+Scheduler	scoreboard, tile dispatch, barrier	Standard cells	0.02–0.05 mm²	~1	Exact centre of four tiles
+One vector engine	four 32-bit lanes, including multiplies	Standard cells / multiplier cells	0.04–0.09 mm²	1–2	Beside tile SRAM
+One tensor engine	sequential 32×32 multiply-accumulate FSM	Standard cells	0.03–0.07 mm²	1–1.5	Beside vector engine
+One tile SRAM	256×32 = 1 KiB	Compiled SRAM	0.01–0.03 mm²	Compiler dependent	Inner edge of each tile
+One NoC router	five-port local XY router	Standard cells	0.01–0.025 mm²	~1	Tile corner facing chip centre
+Complete compute tile	vector + tensor + SRAM + router/control	Hierarchical placed block	0.11–0.20 mm²	0.8–1.25	Fixed quadrant
+Four-tile fabric	four repeated tiles	Hierarchical standard-cell blocks	0.45–0.80 mm²	~1	Symmetric 2×2
+Chiplet/tile interface	serializer, 2-FF retiming	Standard cells + hard PHY if truly off-chip	0.02–0.05 mm² excluding pads	edge-oriented	Die edge
+PLL	absent from present RTL	Foundry hard macro	0.02–0.10 mm² node dependent	fixed macro	Quiet corner, dedicated supply
+I/O / ESD ring	top-level external signals	Foundry I/O cells	pad-limited	ring	Die perimeter
+Scan/MBIST/test	not currently architected	DFT logic	+8–20% logic	distributed	Scan chains local to physical partitions
