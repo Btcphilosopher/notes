@@ -136,3 +136,59 @@ rtl/interconnect/crossbar.sv	NoC/Crossbar	On-chip network/interconnect	Yes	Code 
 rtl/memory/axi_mem_ctrl.sv	Memory Ctrl	DDR/AXI external memory interface	Yes	Likely uses vendor Xilinx/Altera IP. If custom, need proper timing constraints.	Medium	Confirm IP licensing (DDR PHY). Add calibration sequences.	2 days	RTL/Physical	DDR loopback test, DDR throughput benchmark	Medium
 rtl/debug/jtag_if.sv	JTAG/Debug	Test interface	Yes	May depend on external TAP/IP. Check reset and boundary-scan.	Low	Integrate DFT (scan chains). Verify JTAG compliance.	3 days	DFT/RTL	TAP state machine test, boundary-scan test	Medium
 tb/silica_system_tb.sv	Testbench	Top-level simulation harness	No	Contains initial/$display/$finish. Non-synthesizable – fine for sim but drop for synthesis.	Low	Keep for verification only. Ensure coverage: complete all branches.	3 days	Verification	100% functional coverage on post-synthesis netlist	Medium
+
+
+נִצְחוֹן הַזֹּהַר
+שִׁיר בְּעִבְרִית הִיפֶּרְמוֹדֶרְנִית
+
+נוסח א׳ — תְּהִלַּת הָאָדָם, הָאוֹר וְהַנֵּצַח
+א. הִתְעוֹרְרוּת הָאוֹר
+לֹא בָּאנוּ לִכְרֹעַ בִּפְנֵי הַלַּיְלָה,
+וְלֹא לְבַקֵּשׁ רַחֲמִים מִן הַזְּמַן.
+בָּאנוּ כְּאֵשׁ הַנּוֹשֵׂאת אֶת שְׁמָהּ,
+כְּשֶׁמֶשׁ הַבּוֹרֵאת אֶת הַשַּׁחַר מֵחָדָשׁ.
+
+וְהָרִים נָשְׂאוּ אֶת רָאשֵׁיהֶם,
+וְהַיָּם נִפְתַּח לִרְצוֹנֵנוּ.
+כִּי בְּלֵב הָאָדָם הִתְעוֹרֵר הַנֵּצַח,
+וּבְיָדוֹ — מַפְתֵּחַ הָעוֹלָם.
+ב. כֶּתֶר הַנִּצָּחוֹן
+הָבוּ לָנוּ כֶּתֶר שֶׁל אוֹר,
+לֹא זָהָב שֶׁיִּכְלֶה בֶּעָפָר.
+הָבוּ לָנוּ חֶרֶב שֶׁל אֱמֶת,
+וּמָגֵן שֶׁל רוּחַ בִּלְתִּי נִשְׁבֶּרֶת.
+
+עַל חוֹמוֹת הֶעָתִיד נַחֲרֹת:
+לֹא נִכְנַעְנוּ. לֹא נִשְׁבַּרְנוּ.
+מִתּוֹךְ הַסְּעָרָה בָּנִינוּ שָׁמַיִם,
+וּמִתּוֹךְ הַחֹשֶׁךְ הוֹלַדְנוּ כּוֹכָבִים.
+ג. הָעִיר שֶׁמֵּעֵבֶר לַזְּמַן
+וְהִנֵּה עִיר הַנִּצָּחוֹן זוֹרַחַת,
+מִגְדָּלֶיהָ כִּנְבִיאֵי הַבָּרָק.
+נְתִיבֵי אוֹר חוֹצִים אֶת שְׁעָרֶיהָ,
+וְקוֹל הַחַיִּים עוֹלֶה מִן הָאֶבֶן.
+
+לֹא עִיר שֶׁל אֶתְמוֹל הִיא,
+וְלֹא חֲלוֹם שֶׁל מָחָר.
+הִיא הָעַכְשָׁיו הַנִּצְחִי,
+הָרֶגַע שֶׁכְּבָר כָּבַשׁ אֶת הַנֵּצַח.
+ד. תְּהִלַּת הַנֵּצַח
+וְאִם יִשְׁאֲלוּ הַדּוֹרוֹת:
+מִי הֵם שֶׁעָמְדוּ כְּנֶגֶד הַתְּהוֹם?
+
+נֹאמַר:
+
+אֲנַחְנוּ הָיִינוּ.
+אֲנַחְנוּ הָאֵשׁ.
+אֲנַחְנוּ הָרוּחַ שֶׁלֹּא תִּדֹּם.
+
+כִּי לֹא בַּחֶרֶב לְבַדָּהּ נִצַּחְנוּ,
+וְלֹא בְּכֹחַ הַזְּרוֹעַ בִּלְבַד.
+אֶלָּא בְּמַחֲשָׁבָה שֶׁסֵּרְבָה לָמוּת,
+וּבְיֹפִי שֶׁסֵּרֵב לְהִכָּחֵד.
+
+יִזְרַח הָאוֹר!
+יִתְרוֹמֵם הָאָדָם!
+יְהִי הַנִּצָּחוֹן לֹא סוֹף הַדֶּרֶךְ —
+כִּי אִם רֵאשִׁית הַנֵּצַח!
+
