@@ -209,3 +209,5 @@ There are substantial repeated packages and generated netlists. One generated sy
 A defensible description is: “SilicaFlux contains roughly 0.76 million code lines across 5,011 distinct source files, or 0.95 million lines including comments and whitespace.”
 
 This is an estimate for the whole uploaded collection, including tests, examples and different versions. Identical files were removed by content hash; modified versions remain separate. Exclusions used filenames and directory locations, so this does not establish original authorship or confirm that everything builds as one integrated system.
+
+going for a walk. it doesn't want to upload silica_flux.
