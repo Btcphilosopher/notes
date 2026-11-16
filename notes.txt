@@ -178,3 +178,34 @@ will probably smash buy some though when i get it through - some new $$$$ . you 
 will it come today - maybe
 
 listing the silica flux out on shopify today. did not go through on gumroad , although its taking ages up upload.
+
+
+The upload contains approximately 759,000 lines of code after removing identical files and excluding identifiable vendor code and generated outputs. Including comments and blank lines, those source files contain 946,560 lines.
+
+I inspected the main ZIP and its nested archives—150 archive occurrences in total.
+Counting method	Lines
+All source-like files, including repeated copies, dependencies and generated code	3,084,471
+Filtered source files, before removing identical copies	1,195,603
+Distinct filtered source files, including comments and blank lines	946,560
+Estimated code lines, excluding comments and blank lines	758,599
+
+
+The filtered count covers 5,011 distinct source files:
+Area	Files	Estimated code lines
+Hardware RTL and testbenches: SystemVerilog, Verilog and .sf	2,027	365,380
+Python	1,768	246,050
+C / C++	386	65,493
+Web interfaces: HTML, JavaScript, TypeScript and CSS	130	32,749
+Other source and scripts	574	24,511
+Rust	63	16,782
+Kotlin	63	7,634
+Total	5,011	758,599
+
+
+The collection extends well beyond a processor’s RTL. It includes vector and tensor computing, memory and interconnect modules, verification code, runtime software, and tools for synthesis, timing, floorplanning, thermal analysis, packaging and yield analysis.
+
+There are substantial repeated packages and generated netlists. One generated synthesis netlist alone contains 92,313 lines, which is why the raw three-million-line figure overstates the maintained source.
+
+A defensible description is: “SilicaFlux contains roughly 0.76 million code lines across 5,011 distinct source files, or 0.95 million lines including comments and whitespace.”
+
+This is an estimate for the whole uploaded collection, including tests, examples and different versions. Identical files were removed by content hash; modified versions remain separate. Exclusions used filenames and directory locations, so this does not establish original authorship or confirm that everything builds as one integrated system.
